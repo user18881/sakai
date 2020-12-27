@@ -17,7 +17,7 @@ package org.sakaiproject.lessonbuildertool.cc;
 
 import java.util.Map;
 import java.util.HashMap;
-import org.jdom2.Namespace;
+import org.jdom.Namespace;
 
 // all version dependencies should be in this file. 
 // Parser sets the right index for the current version

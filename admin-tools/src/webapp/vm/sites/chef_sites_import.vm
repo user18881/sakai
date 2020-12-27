@@ -1,0 +1,69 @@
+##<!-- $Header: /cvs/sakai2/legacy/tools/src/webapp/vm/admin/chef_sites_pages.vm,v 1.6 2005/06/06 19:42:22 gsilver.umich.edu Exp $ -->
+#javascript("/library/js/spinner.js")
+<div class="portletBody">
+#if($menu)
+	#toolbar($menu)
+#end
+		<h3>
+			$tlang.getString("import.heading")
+		</h3>
+		#if ($alertMessage)
+			<div class="sak-banner-error">
+				$tlang.getString("useconrem.alert") $formattedText.escapeHtml($alertMessage)
+			</div>
+		#end
+
+		<p>$tlang.getString("import.instr")</p>
+
+		<p><b>$tlang.getString("import.instr.req.header")</b></p>
+		<ul>
+			<li>$tlang.getString("import.instr.req.1")</li>
+			<li>$tlang.getString("import.instr.req.2")</li>
+			<li>$tlang.getString("import.instr.req.3")</li>
+		</ul>
+
+		<form name="importForm" action="#toolForm("$action")" method="post">
+
+			#set ($size = 0)
+			#if (!$importedSites.isEmpty())
+				#set ($size =  $importedSites.size())
+			#end
+
+			#if ($size == 0)
+				<div class="act">
+					<input type="submit" name="eventSubmit_doAttachments" value="$tlang.getString('import.file.button')" />
+				</div>
+
+				<div class="act">
+					<input type="submit" name="eventSubmit_doCancelImport" value="$tlang.getString("useconrem.can")"  accesskey="x" />
+				</div>
+
+			#else
+				<h3>$tlang.getString("import.process.msg")</h3>
+				<div class="instruction">$tlang.getString("import.process.info")</div>
+				<table class="listHier lines" cellspacing="0" summary ="$tlang.getString('import.user.list.accessibility')">
+					<thead>
+						<tr>
+							<th id="Sid">$tlang.getString("site.id")</th>
+							<th id="Title">$tlang.getString("site.titl")</th>
+    					</tr>
+					</thead>
+					<tbody>
+					#foreach ($site in $importedSites)
+						<tr>
+							<td headers="Sid">$formattedText.escapeHtml($site.sid)</td>
+							<td headers="Title">$formattedText.escapeHtml($site.title)</td>
+						</tr>
+					#end
+                    </tbody>
+				</table>
+
+				<div class="act">
+					<input type="submit" class="active" name="eventSubmit_doImport" value="$tlang.getString("import.file.continue")" accesskey="s" onclick="SPNR.disableControlsAndSpin( this, null );" />
+					<input type="submit" name="eventSubmit_doCancelImport" value="$tlang.getString("useconrem.can")" accesskey="x" onclick="SPNR.disableControlsAndSpin( this, null );" />
+				</div>
+			#end
+
+			<input type="hidden" name="sakai_csrf_token" value="$sakai_csrf_token" />
+		</form>
+</div>

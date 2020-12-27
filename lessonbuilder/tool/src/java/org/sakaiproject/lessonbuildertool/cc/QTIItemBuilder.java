@@ -59,7 +59,7 @@ package org.sakaiproject.lessonbuildertool.cc;
 import java.util.List;
 import java.util.Vector;
 
-import org.jdom2.Element;
+import org.jdom.Element;
 
 public class QTIItemBuilder {
 

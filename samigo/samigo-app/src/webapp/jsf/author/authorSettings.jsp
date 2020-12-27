@@ -47,7 +47,7 @@
       <script>includeWebjarLibrary('momentjs');</script>
       <script src="/library/js/lang-datepicker/lang-datepicker.js"></script>
       <script src="/samigo-app/js/authoring.js"></script>
-
+      <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css"/>
       <script>includeWebjarLibrary('bootstrap-multiselect');</script>
 
       <script>
@@ -84,20 +84,21 @@
               }
 
               if (enabled) {
-			$('#assessmentSettingsAction\\:linear_access_warning').hide();
-			$('#assessmentSettingsAction\\:markForReview1').removeAttr("disabled").parent().removeClass("placeholder");
-			QuesFormatRadios.forEach( function(v, i, a) {
-                      		$('label[for="' + v + '"]').removeClass("placeholder");
-                      		$("#" + v).removeAttr("disabled");
-                  	});
+                  $('#assessmentSettingsAction\\:markForReview1').removeAttr("disabled");
+                  $('#assessmentSettingsAction\\:markForReview1').parent().removeClass("placeholder");
+                  QuesFormatRadios.forEach( function(v, i, a) {
+                      $('label[for="' + v + '"]').removeClass("placeholder");
+                      $("#" + v).removeAttr("disabled");
+                  });
               } else {
-			$('#assessmentSettingsAction\\:linear_access_warning').show();
-			$('#assessmentSettingsAction\\:markForReview1').attr("disabled", true).prop("checked", false).parent().addClass("placeholder");
-			QuesFormatRadios.forEach( function(v, i, a) {
-                      		$('#assessmentSettingsAction\\:assessmentFormat\\:0').click();
-                      		$('label[for="' + v + '"]').addClass("placeholder");
-                      		$("#" + v).attr("disabled", true);
-                  	});
+                  $('#assessmentSettingsAction\\:markForReview1').attr("disabled", true);
+                  $('#assessmentSettingsAction\\:markForReview1').prop("checked", false);
+                  $('#assessmentSettingsAction\\:markForReview1').parent().addClass("placeholder");
+                  QuesFormatRadios.forEach( function(v, i, a) {
+                      $('#assessmentSettingsAction\\:assessmentFormat\\:0').click();
+                      $('label[for="' + v + '"]').addClass("placeholder");
+                      $("#" + v).attr("disabled", true);
+                  });
               }
           };
 
@@ -741,7 +742,7 @@
           <li><t:radio renderLogicalId="true" for="itemNavigation" index="1" /></li>
         </ul>
         <div class="info-text help-block small">
-          <h:outputText id="linear_access_warning" value="#{assessmentSettingsMessages.linear_access_warning} "/>
+          <h:outputText value="#{assessmentSettingsMessages.linear_access_warning} "/>
         </div>
       </div>
     </h:panelGroup>

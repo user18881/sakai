@@ -23,8 +23,8 @@
 
 package org.sakaiproject.lessonbuildertool.service;
 
-import org.jdom2.Element;
-import org.jdom2.Namespace;
+import org.jdom.Element;
+import org.jdom.Namespace;
 
 import java.util.List;
 

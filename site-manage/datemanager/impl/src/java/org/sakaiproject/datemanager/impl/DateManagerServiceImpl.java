@@ -1243,18 +1243,12 @@ public class DateManagerServiceImpl implements DateManagerService {
 	@Override
 	public JSONArray getLessonsForContext(String siteId) {
 		JSONArray jsonLessons = new JSONArray();
-		jsonLessons = addAllSubpages(simplePageToolDao.findItemsInSite(siteId), null, jsonLessons, "false");
-		return jsonLessons;
-	}
-
-	private JSONArray addAllSubpages(List<SimplePageItem> items, Long pageId, JSONArray jsonLessons, String extraInfo) {
+		String url = getUrlForTool(DateManagerConstants.COMMON_ID_LESSONS);
+		List<SimplePageItem> items = simplePageToolDao.findItemsInSite(siteId);
 		if (items != null) {
-			String url = getUrlForTool(DateManagerConstants.COMMON_ID_LESSONS);
 			String toolTitle = toolManager.getTool(DateManagerConstants.COMMON_ID_LESSONS).getTitle();
 			for (SimplePageItem item : items) {
-				if (item.getType() == SimplePageItem.PAGE // Avoid creating a infinite loop
-					&& !Long.valueOf(item.getSakaiId()).equals(pageId) 
-					&& !jsonLessons.toString().contains("\"id\":\""+item.getSakaiId()+"\"")) {
+				if (item.getType() == SimplePageItem.PAGE) {
 					JSONObject lobj = new JSONObject();
 					lobj.put("id", Long.parseLong(item.getSakaiId()));
 					lobj.put("title", item.getName());
@@ -1266,16 +1260,39 @@ public class DateManagerServiceImpl implements DateManagerService {
 					}
 					lobj.put("tool_title", toolTitle);
 					lobj.put("url", url);
-					lobj.put("extraInfo", extraInfo);
+					lobj.put("extraInfo", "false");
 					jsonLessons.add(lobj);
-					long itemId = Long.parseLong(item.getSakaiId());
-					jsonLessons = addAllSubpages(simplePageToolDao.findItemsOnPage(itemId), itemId, jsonLessons, rb.getString("tool.lessons.extra.subpage"));
+					jsonLessons = addAllSubpages(Long.parseLong(item.getSakaiId()), jsonLessons);
 				}
 			}
 		}
 		return jsonLessons;
 	}
 
+	private JSONArray addAllSubpages(Long pageId, JSONArray jsonLessons) {
+		List<SimplePageItem> items = simplePageToolDao.findItemsOnPage(pageId);
+		String url = getUrlForTool(DateManagerConstants.COMMON_ID_LESSONS);
+		for (SimplePageItem item : items) {
+			String toolTitle = toolManager.getTool(DateManagerConstants.COMMON_ID_LESSONS).getTitle();
+			if (item.getType() == SimplePageItem.PAGE) {
+				JSONObject lobj = new JSONObject();
+				lobj.put("id", Long.parseLong(item.getSakaiId()));
+				lobj.put("title", item.getName());
+				SimplePage page = simplePageToolDao.getPage(Long.parseLong(item.getSakaiId()));
+				if(page.getReleaseDate() != null) {
+					lobj.put("open_date", formatToUserDateFormat(page.getReleaseDate()));
+				} else {
+					lobj.put("open_date", null);
+				}
+				lobj.put("tool_title", toolTitle);
+				lobj.put("url", url);
+				lobj.put("extraInfo", rb.getString("tool.lessons.extra.subpage"));
+				jsonLessons.add(lobj);
+				jsonLessons = addAllSubpages(Long.parseLong(item.getSakaiId()), jsonLessons);
+			}
+		}
+		return jsonLessons;
+	}
 
 	/**
 	 * {@inheritDoc}

@@ -56,7 +56,7 @@ package org.sakaiproject.lessonbuildertool.cc;
  *
  **********************************************************************************/
 
-import org.jdom2.Element;
+import org.jdom.Element;
 
 
 public class WebContentParser extends AbstractParser implements ContentParser {

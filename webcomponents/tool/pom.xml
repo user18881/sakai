@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.sakaiproject</groupId>
         <artifactId>webcomponents-parent</artifactId>
-        <version>20.1</version>
+        <version>20-SNAPSHOT</version>
     </parent>
 
     <name>Sakai Web Components Tool</name>
@@ -66,24 +66,33 @@
                 <configuration>
                     <filesets>
                         <fileset>
+                            <directory>src/main/frontend/node_modules</directory>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>src/main/frontend/assets</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>src/main/frontend/dist</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
                             <directory>src/main/frontend</directory>
                             <includes>
-                                <include>**</include>
+                                <include>**/*.js</include>
                             </includes>
                             <excludes>
                                 <exclude>js/**</exclude>
                                 <exclude>conf/**</exclude>
-                                <exclude>stories/**</exclude>
-                                <exclude>test/**</exclude>
-                                <exclude>.storybook/**</exclude>
-                                <exclude>package.json</exclude>
-                                <exclude>package-lock.json</exclude>
-                                <exclude>.gitignore</exclude>
-                                <exclude>.jshintrc</exclude>
                             </excludes>
-                        </fileset>
-                        <fileset>
-                            <directory>src/main/frontend/js/assets</directory>
+                            <followSymlinks>false</followSymlinks>
                         </fileset>
                     </filesets>
                 </configuration>

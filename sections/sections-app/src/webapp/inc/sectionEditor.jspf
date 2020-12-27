@@ -22,9 +22,7 @@
 							id="titleInput"
 							required="true"
 							maxlength="99"
-							value="#{section.title}">
-							<f:validator validatorId="SectionTitleValidator"/>
-                        </h:inputText>
+							value="#{section.title}"/>
 					</h:panelGroup>
 
 					<% // Max Size %>

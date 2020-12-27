@@ -4,7 +4,6 @@
 #if($menu)
 	#toolbar($menu)
 #end
-	
 		<h3>
 			$tlang.getString("import.heading")
 		</h3>
@@ -52,6 +51,8 @@
 							<th id="Email">$tlang.getString("useconrem.ema")</th>
 							<th id="Password">$tlang.getString("useconrem.pass")</th>
 							<th id="Type">$tlang.getString("usecre.typ")</th>
+							<th id="Type">$tlang.getString("usecre.role")</th>
+							<th id="Type">$tlang.getString("usecre.sid")</th>
 							<th id="Properties">$tlang.getString("import.user.properties")</th>
     					</tr>
 					</thead>
@@ -64,6 +65,8 @@
 							<td headers="Email">$formattedText.escapeHtml($user.email)</td>
 							<td headers="Password">$formattedText.escapeHtml($user.password)</td>
 							<td headers="Type">$formattedText.escapeHtml($user.type)</td>
+							<td headers="Role">$formattedText.escapeHtml($user.role)</td>
+							<td headers="Sid">$formattedText.escapeHtml($user.sid)</td>
 							<td headers="Properties">
 								#set ($paramNames = $user.Properties.PropertyNames)
 								#foreach ($paramName in $paramNames)

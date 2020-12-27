@@ -23,15 +23,10 @@ package org.sakaiproject.site.tool;
 
 import static org.sakaiproject.site.api.SiteService.SITE_TITLE_MAX_LENGTH;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import java.util.Vector;
+import java.io.InputStreamReader;
+import java.util.*;
 
+import com.opencsv.CSVReader;
 import org.apache.commons.lang3.StringUtils;
 import org.sakaiproject.alias.api.Alias;
 import org.sakaiproject.alias.api.AliasService;
@@ -41,11 +36,7 @@ import org.sakaiproject.authz.api.AuthzRealmLockException;
 import org.sakaiproject.authz.api.GroupNotDefinedException;
 import org.sakaiproject.authz.api.Role;
 import org.sakaiproject.authz.api.SecurityService;
-import org.sakaiproject.cheftool.Context;
-import org.sakaiproject.cheftool.JetspeedRunData;
-import org.sakaiproject.cheftool.PagedResourceActionII;
-import org.sakaiproject.cheftool.RunData;
-import org.sakaiproject.cheftool.VelocityPortlet;
+import org.sakaiproject.cheftool.*;
 import org.sakaiproject.cheftool.api.Menu;
 import org.sakaiproject.cheftool.api.MenuItem;
 import org.sakaiproject.cheftool.menu.MenuDivider;
@@ -54,8 +45,14 @@ import org.sakaiproject.cheftool.menu.MenuField;
 import org.sakaiproject.cheftool.menu.MenuImpl;
 import org.sakaiproject.component.cover.ComponentManager;
 import org.sakaiproject.component.cover.ServerConfigurationService;
+import org.sakaiproject.content.api.ContentHostingService;
+import org.sakaiproject.content.api.ContentResource;
+import org.sakaiproject.content.api.FilePickerHelper;
 import org.sakaiproject.courier.api.ObservingCourier;
+import org.sakaiproject.coursemanagement.api.AcademicSession;
+import org.sakaiproject.coursemanagement.api.CourseManagementService;
 import org.sakaiproject.entity.api.Entity;
+import org.sakaiproject.entity.api.Reference;
 import org.sakaiproject.entity.api.ResourcePropertiesEdit;
 import org.sakaiproject.event.api.EventTrackingService;
 import org.sakaiproject.event.api.SessionState;
@@ -74,9 +71,11 @@ import org.sakaiproject.time.api.UserTimeService;
 import org.sakaiproject.tool.api.SessionManager;
 import org.sakaiproject.tool.api.Tool;
 import org.sakaiproject.tool.api.ToolManager;
+import org.sakaiproject.tool.api.ToolSession;
 import org.sakaiproject.user.api.User;
 import org.sakaiproject.user.api.UserDirectoryService;
 import org.sakaiproject.user.api.UserNotDefinedException;
+import org.sakaiproject.user.tool.UsersActionState;
 import org.sakaiproject.util.ResourceLoader;
 import org.sakaiproject.util.Validator;
 import org.sakaiproject.util.api.FormattedText;
@@ -127,6 +126,8 @@ public class AdminSitesAction extends PagedResourceActionII
 	private SecurityService securityService;
 	private UserTimeService userTimeService;
 	private FormattedText formattedText;
+	private CourseManagementService cms;
+	ContentHostingService contentHostingService;
 
 	public AdminSitesAction() {
 		super();
@@ -140,8 +141,8 @@ public class AdminSitesAction extends PagedResourceActionII
 		securityService = ComponentManager.get(SecurityService.class);
 		userTimeService = ComponentManager.get(UserTimeService.class);
 		formattedText = ComponentManager.get(FormattedText.class);
-		
-		
+		cms = ComponentManager.get(CourseManagementService.class);
+		contentHostingService = ComponentManager.get(ContentHostingService.class);
 	}
 
 	/**
@@ -376,6 +377,9 @@ public class AdminSitesAction extends PagedResourceActionII
 
 		String template = null;
 
+		UsersActionState sstate = (UsersActionState)this.getState(context, rundata, UsersActionState.class);
+		String status = sstate.getStatus();
+
 		// check mode and dispatch
 		String mode = (String) state.getAttribute("mode");
 		if (mode == null)
@@ -444,6 +448,13 @@ public class AdminSitesAction extends PagedResourceActionII
 		{
 			template = buildToolsContext(state, context);
 		}
+		else if (mode.equals("import"))
+		{
+			template = this.buildImportContext(state, context);
+		} else if (mode.equals("mode_helper") && StringUtils.equals(status, "processImport"))
+		{
+			template = this.buildProcessImportContext(state, rundata, context);
+		}
 		else if (mode.equals("newTool"))
 		{
 			template = buildNewToolContext(state, context);
@@ -468,6 +479,248 @@ public class AdminSitesAction extends PagedResourceActionII
 
 	} // buildMainPanelContext
 
+	protected ControllerState getState(String peid, RunData rundata, Class stateClass) {
+		if (peid == null) {
+			log.warn("peid null");
+			return null;
+		} else {
+			try {
+				SessionState ss = ((JetspeedRunData)rundata).getPortletSessionState(peid);
+				ControllerState state = (ControllerState)ss.getAttribute("state");
+				if (state != null) {
+					return state;
+				} else {
+					state = (ControllerState)stateClass.newInstance();
+					state.setId(peid);
+					ss.setAttribute("state", state);
+					return state;
+				}
+			} catch (Exception var6) {
+				log.warn(var6.getMessage(), var6);
+				return null;
+			}
+		}
+	}
+	protected ControllerState getState(Context context, RunData rundata, Class stateClass) {
+		return this.getState(((JetspeedRunData)rundata).getJs_peid(), rundata, stateClass);
+	}
+
+	// NIMI //
+	private String buildImportContext(SessionState state, Context context) {
+		return "_import";
+	}
+
+	private String buildProcessImportContext(SessionState state, RunData data, Context context) {
+		UsersActionState sstate = (UsersActionState)this.getState(context, data, UsersActionState.class);
+
+		try {
+			Reference attachment = (Reference)sstate.getAttachments().get(0);
+			this.processImportedSitesFile(state, context, attachment);
+		} catch (IndexOutOfBoundsException var6) {
+		}
+
+		return "_import";
+	}
+
+	private void processImportedSitesFile(SessionState state, Context context, Reference file) {
+		try {
+			ContentResource resource = this.contentHostingService.getResource(file.getId());
+			String contentType = resource.getContentType();
+			if (!StringUtils.equals(contentType, "text/csv")) {
+				addAlert(state, rb.getString("import.error"));
+			} else {
+				CSVReader reader = new CSVReader(new InputStreamReader(resource.streamContent()));
+				int lineCount = 0;
+				List<ImportedSite> list = new ArrayList();
+
+				String[] nextLine;
+				for(Map mapping = null; (nextLine = reader.readNext()) != null; ++lineCount) {
+					if (lineCount == 0) {
+						mapping = this.mapHeaderRow(nextLine);
+					} else {
+						list.add(this.mapLine(nextLine, mapping));
+					}
+				}
+
+				state.setAttribute("importedSites", list);
+				context.put("importedSites", list);
+			}
+		} catch (Exception var11) {
+			log.error("Error reading imported file: {}", var11.getMessage(), var11);
+			addAlert(state, rb.getString("import.error"));
+		}
+	}
+
+	private Map<Integer, String> mapHeaderRow(String[] line) {
+		Map<Integer, String> mapping = new LinkedHashMap();
+
+		for(int i = 0; i < line.length; ++i) {
+			mapping.put(i, line[i]);
+		}
+
+		return mapping;
+	}
+
+	private ImportedSite mapLine(String[] line, Map<Integer, String> mapping) {
+		ImportedSite u = new ImportedSite();
+		Iterator var4 = mapping.entrySet().iterator();
+
+		while(var4.hasNext()) {
+			Map.Entry<Integer, String> entry = (Map.Entry)var4.next();
+			int i = (Integer)entry.getKey();
+			String col = (String)entry.getValue();
+			if (StringUtils.equals(col, "site id")) {
+				u.setSid(line[i]);
+			} else if (StringUtils.equals(col, "site title")) {
+				u.setTitle(line[i]);
+			}
+		}
+
+		return u;
+	}
+
+	public void doImport(RunData data, Context context) {
+		SessionState state = ((JetspeedRunData)data).getPortletSessionState(((JetspeedRunData)data).getJs_peid());
+		UsersActionState sstate = (UsersActionState)this.getState(context, data, UsersActionState.class);
+		state.setAttribute("mode", "import");
+		log.debug("doImport");
+		List<ImportedSite> sites = (List)state.getAttribute("importedSites");
+		if (sites != null && sites.size() > 0) {
+			for( ImportedSite site : sites){
+				if (!this.siteService.siteExists(site.getSid())) {
+					this.createSite(site.getSid(), site.getTitle(), state);
+				}
+			}
+
+			state.setAttribute("successMessage", rb.getString("import.success"));
+			state.removeAttribute("importedSites");
+			state.removeAttribute("mode");
+			this.enableObserver(state);
+		}
+
+	}
+
+	private void createSite(String sid, String title, SessionState state) {
+		String type = "course";
+		String shortDescription = "";
+		String description = "";
+		boolean joinable = false;
+		String joinerRole = "Student";
+		String icon = "";
+		String info = "";
+		boolean published = true;
+		boolean softlyDeleted = false;
+		String skin = "";
+		boolean pubView = false;
+		boolean customOrder = false;
+		String titleStripped = this.formattedText.stripHtmlFromText(title, true, true);
+		SiteTitleValidationStatus status = this.siteService.validateSiteTitle(title, titleStripped);
+		if (!SiteTitleValidationStatus.STRIPPED_TO_EMPTY.equals(status)) {
+			if (!SiteTitleValidationStatus.EMPTY.equals(status)) {
+				if (!SiteTitleValidationStatus.TOO_LONG.equals(status)) {
+					Site site;
+					try {
+						site = this.siteService.addSite(sid, type);
+					} catch (IdUsedException var32) {
+						log.warn(var32.getMessage());
+						return;
+					} catch (IdInvalidException var33) {
+						log.warn(var33.getMessage());
+						return;
+					} catch (PermissionException var34) {
+						log.warn(var34.getMessage());
+						return;
+					}
+
+					List currentTerms = this.cms.getCurrentAcademicSessions();
+					if (!currentTerms.isEmpty()) {
+						AcademicSession academicSession = (AcademicSession)currentTerms.get(0);
+						site.getProperties().addProperty("term_eid", academicSession.getEid());
+						site.getProperties().addProperty("term", academicSession.getTitle());
+					}
+
+					site.setTitle(titleStripped);
+					site.setShortDescription(shortDescription);
+					site.setDescription(description);
+					site.setJoinable(joinable);
+					site.setJoinerRole(joinerRole);
+					site.setIconUrl(icon);
+					site.setInfoUrl(info);
+					site.setSkin(skin);
+					site.setType(type);
+					site.setPubView(pubView);
+					site.setPublished(published);
+					site.setSoftlyDeleted(softlyDeleted);
+					site.setCustomPageOrdered(customOrder);
+
+					SitePage syllabus = site.addPage();
+					SitePage announcements = site.addPage();
+					SitePage test = site.addPage();
+					SitePage lessons = site.addPage();
+					SitePage gradebook = site.addPage();
+					SitePage calendar = site.addPage();
+					SitePage resources = site.addPage();
+					SitePage siteinfo = site.addPage();
+
+					syllabus.setTitle(rb.getString("tool.syllabus"));
+					announcements.setTitle(rb.getString("tool.announcements"));
+					test.setTitle(rb.getString("tool.test"));
+					lessons.setTitle(rb.getString("tool.lessons"));
+					gradebook.setTitle(rb.getString("tool.gradebook"));
+					calendar.setTitle(rb.getString("tool.calendar"));
+					resources.setTitle(rb.getString("tool.resources"));
+					siteinfo.setTitle(rb.getString("tool.siteinfo"));
+
+					syllabus.addTool("sakai.syllabus");
+					announcements.addTool("sakai.announcements");
+					test.addTool("sakai.samigo");
+					lessons.addTool("sakai.lessonbuildertool");
+					gradebook.addTool("sakai.gradebookng");
+					calendar.addTool("sakai.schedule");
+					resources.addTool("sakai.resources");
+					siteinfo.addTool("sakai.siteinfo");
+
+					User user = userDirectoryService.getCurrentUser();
+					site.removeMember(user.getEid());
+
+					try {
+						this.siteService.save(site);
+					} catch (IdUnusedException var30) {
+					} catch (PermissionException var31) {
+					}
+
+
+
+				}
+			}
+		}
+	}
+
+	public void doCancelImport(RunData data, Context context) {
+		SessionState state = ((JetspeedRunData)data).getPortletSessionState(((JetspeedRunData)data).getJs_peid());
+		if ("POST".equals(data.getRequest().getMethod())) {
+			state.removeAttribute("importedSites");
+			UsersActionState sstate = (UsersActionState)this.getState(context, data, UsersActionState.class);
+			sstate.setAttachments(new ArrayList());
+			sstate.setStatus((String)null);
+			state.removeAttribute("mode");
+			this.enableObserver(state);
+		}
+	}
+
+	public void doAttachments(RunData rundata, Context context) {
+		ToolSession session = this.sessionManager.getCurrentToolSession();
+		session.setAttribute("sakaiproject.filepicker.attachLinks", (new Boolean(true)).toString());
+		this.startHelper(rundata.getRequest(), "sakai.filepicker");
+		SessionState state = ((JetspeedRunData)rundata).getPortletSessionState(((JetspeedRunData)rundata).getJs_peid());
+		UsersActionState sstate = (UsersActionState)this.getState(context, rundata, UsersActionState.class);
+		state.setAttribute("sakaiproject.filepicker.attachments", sstate.getAttachments());
+		state.setAttribute("sakaiproject.filepicker.maxAttachments", FilePickerHelper.CARDINALITY_SINGLE);
+		sstate.setStatus("processImport");
+	}
+
+	// END : NIMI //
+
 	/**
 	 * Build the context for the main list mode.
 	 */
@@ -489,6 +742,7 @@ public class AdminSitesAction extends PagedResourceActionII
 		if (siteService.allowAddSite(null))
 		{
 			bar.add(new MenuEntry(rb.getString("sitact.newsit"), "doNew"));
+			bar.add(new MenuEntry(rb.getString("sitact.importsits"), "doImport"));
 		}
 
 		// add the paging commands
@@ -2659,7 +2913,7 @@ public class AdminSitesAction extends PagedResourceActionII
 	
 	/**
 	 * get one alias for site, if it exists
-	 * @param channelReference
+	 * @param reference
 	 * @return
 	 */
 	private String getSiteAlias(String reference)

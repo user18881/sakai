@@ -27,7 +27,7 @@ export class GraderToggle extends SakaiElement {
     getViewPreferences(newValue).then(prefs => {
 
       if (!prefs) {
-        this.checked = false;
+        this.checked = true;
       } else {
         this.prefs = JSON.parse(prefs);
         this.checked = this.prefs.usegrader;

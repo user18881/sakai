@@ -68,15 +68,11 @@
                 <div class="form-group">
                     <t:selectOneRadio id="creationMode" layout="spread" value="#{author.assessCreationMode}" rendered="#{samLiteBean.visible}">
                         <f:selectItem itemValue="1" itemLabel="#{authorFrontDoorMessages.assessmentBuild}" />
-                        <f:selectItem itemValue="2" itemLabel="#{authorFrontDoorMessages.markupText}" />
                     </t:selectOneRadio>
                     <!-- SAM-2487 mark them up manually -->
                     <ul class="creation-mode-list no-list">
                         <li>
                             <t:radio renderLogicalId="true" for="creationMode" index="0" />
-                        </li>
-                        <li>
-                            <t:radio renderLogicalId="true" for="creationMode" index="1" />
                         </li>
                     </ul>
                 </div>

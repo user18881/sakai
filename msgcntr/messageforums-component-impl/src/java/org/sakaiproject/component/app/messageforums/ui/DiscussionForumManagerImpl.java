@@ -1167,27 +1167,27 @@ public class DiscussionForumManagerImpl extends HibernateDaoSupport implements
   }
 
   @Override
-  public DiscussionTopic saveTopic(DiscussionTopic topic)
+  public void saveTopic(DiscussionTopic topic)
   {
-    return saveTopic(topic, false);
+    saveTopic(topic, false);
   }
 
   @Override
-  public DiscussionTopic saveTopic(DiscussionTopic topic, boolean draft)
+  public void saveTopic(DiscussionTopic topic, boolean draft)
   {
     TopicEvent event = topic.getId() == null ? TopicEvent.ADD : TopicEvent.REVISE;
     LRS_Statement statement = getStatementForUserPosted(topic.getTitle(), SAKAI_VERB.interacted).orElse(null);
-    return saveTopic(topic, draft, new ForumsTopicEventParams(event, statement));
+    saveTopic(topic, draft, new ForumsTopicEventParams(event, statement));
   }
 
   @Override
-  public DiscussionTopic saveTopic(DiscussionTopic topic, boolean draft, ForumsTopicEventParams params)
+  public void saveTopic(DiscussionTopic topic, boolean draft, ForumsTopicEventParams params)
   {
-    return saveTopic(topic, draft, params, getCurrentUser());
+    saveTopic(topic, draft, params, getCurrentUser());
   }
 
   @Override
-  public DiscussionTopic saveTopic(DiscussionTopic topic, boolean draft, ForumsTopicEventParams params, String currentUser)
+  public void saveTopic(DiscussionTopic topic, boolean draft, ForumsTopicEventParams params, String currentUser)
   {
     log.debug("Save topic {}, as a draft ({})", topic, draft);
 
@@ -1195,7 +1195,7 @@ public class DiscussionForumManagerImpl extends HibernateDaoSupport implements
     
     topic.setDraft(draft);
     DiscussionForum forum = (DiscussionForum) topic.getBaseForum();
-    topic = forumManager.saveDiscussionForumTopic(topic, forum.getDraft(), currentUser, params != null);
+    forumManager.saveDiscussionForumTopic(topic, forum.getDraft(), currentUser, params != null);
     // refresh the forum for Hibernate
     forum = (DiscussionForum) topic.getBaseForum();
 
@@ -1212,7 +1212,6 @@ public class DiscussionForumManagerImpl extends HibernateDaoSupport implements
           NotificationService.NOTI_OPTIONAL, params.lrsStatement);
       eventTrackingService.post(event);
     }
-    return topic;
   }
 
   /*

@@ -99,10 +99,10 @@ public class PresenceHandler extends BasePortalHandler
 		}
 		catch (PermissionException e)
 		{
-			// if not logged in, just send a 401 dont attempt a relogin
+			// if not logged in, give them a chance
 			if (session.getUserId() == null)
 			{
-				res.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+				portal.doLogin(req, res, session, URLUtils.getSafePathInfo(req), false);
 			}
 			else
 			{

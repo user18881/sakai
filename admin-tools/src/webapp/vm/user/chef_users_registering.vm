@@ -1,0 +1,71 @@
+## $Header: /cvs/sakai2/legacy/tools/src/webapp/vm/admin/chef_users_view.vm,v 1.2 2005/05/24 19:36:12 gsilver.umich.edu Exp $
+#javascript("/library/js/spinner.js")
+<div class="portletBody">
+#if($menu)
+	#toolbar($menu)
+#end
+		<h3>
+			$tlang.getString("import.heading")
+		</h3>
+		#if ($alertMessage)
+			<div class="sak-banner-error">
+				$tlang.getString("useconrem.alert") $formattedText.escapeHtml($alertMessage)
+			</div>
+		#end
+
+		<p>$tlang.getString("import.registering.instr")</p>
+
+		<p><b>$tlang.getString("import.instr.req.header")</b></p>
+		<ul>
+			<li>$tlang.getString("import.registering.instr.req.1")</li>
+			<li>$tlang.getString("import.instr.req.2")</li>
+			<li>$tlang.getString("import.instr.req.3")</li>
+		</ul>
+
+		<form name="importForm" action="#toolForm("$action")" method="post">
+
+			#set ($size = 0)
+			#if (!$userSiteMap.isEmpty())
+				#set ($size =  $userSiteMap.size())
+			#end
+
+			#if ($size == 0)
+				<div class="act">
+					<input type="submit" name="eventSubmit_doRegisterAttachments" value="$tlang.getString('import.file.button')" />
+				</div>
+
+				<div class="act">
+					<input type="submit" name="eventSubmit_doCancelRegistering" value="$tlang.getString("useconrem.can")"  accesskey="x" />
+				</div>
+
+			#else
+				<h3>$tlang.getString("import.process.msg")</h3>
+				<div class="instruction">$tlang.getString("import.registering.process.info")</div>
+				<table class="listHier lines" cellspacing="0" summary ="$tlang.getString('import.user.list.accessibility')">
+					<thead>
+						<tr>
+							<th id="Eid">$tlang.getString("useconrem.useid")</th>
+							<th id="Role">$tlang.getString("usecre.role")</th>
+							<th id="Sid">$tlang.getString("usecre.sid")</th>
+    					</tr>
+					</thead>
+					<tbody>
+					#foreach ($user in $userSiteMap)
+						<tr>
+							<td headers="Eid">$formattedText.escapeHtml($user.eid)</td>
+							<td headers="Role">$formattedText.escapeHtml($user.role)</td>
+							<td headers="Sid">$formattedText.escapeHtml($user.sid)</td>
+						</tr>
+					#end
+                    </tbody>
+				</table>
+
+				<div class="act">
+					<input type="submit" class="active" name="eventSubmit_doRegister" value="$tlang.getString("import.file.continue")" accesskey="s" onclick="SPNR.disableControlsAndSpin( this, null );" />
+					<input type="submit" name="eventSubmit_doCancelRegistering" value="$tlang.getString("useconrem.can")" accesskey="x" onclick="SPNR.disableControlsAndSpin( this, null );" />
+				</div>
+			#end
+
+			<input type="hidden" name="sakai_csrf_token" value="$sakai_csrf_token" />
+		</form>
+</div>

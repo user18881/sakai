@@ -24,12 +24,7 @@ package org.sakaiproject.user.tool;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,9 +34,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.sakaiproject.accountvalidator.logic.ValidationLogic;
 import org.sakaiproject.accountvalidator.model.ValidationAccount;
-import org.sakaiproject.authz.api.AuthzGroup;
-import org.sakaiproject.authz.api.AuthzGroupService;
-import org.sakaiproject.authz.api.SecurityService;
+import org.sakaiproject.authz.api.*;
 import org.sakaiproject.cheftool.Context;
 import org.sakaiproject.cheftool.ControllerState;
 import org.sakaiproject.cheftool.JetspeedRunData;
@@ -63,6 +56,7 @@ import org.sakaiproject.entity.api.ResourceProperties;
 import org.sakaiproject.entity.api.ResourcePropertiesEdit;
 import org.sakaiproject.event.api.SessionState;
 import org.sakaiproject.event.api.UsageSessionService;
+import org.sakaiproject.event.cover.EventTrackingService;
 import org.sakaiproject.portal.util.PortalUtils;
 import org.sakaiproject.site.api.Site;
 import org.sakaiproject.site.api.SiteService;
@@ -122,6 +116,8 @@ public class UsersAction extends PagedResourceActionII
 	private static final String IMPORT_EMAIL="email";
 	private static final String IMPORT_PASSWORD="password";
 	private static final String IMPORT_TYPE="type";
+	private static final String IMPORT_SITE_ID="site id";
+	private static final String IMPORT_ROLE="role";
 
 	// SAK-23568
 	private static final PasswordPolicyHelper pwHelper = new PasswordPolicyHelper();
@@ -155,7 +151,7 @@ public class UsersAction extends PagedResourceActionII
 	private ContentHostingService contentHostingService;
 	
 	private SessionManager sessionManager;
-	
+
 	private ThreadLocalManager threadLocalManager;
 	private UserTimeService userTimeService;
 	private PasswordFactory passwordFactory;
@@ -372,9 +368,17 @@ public class UsersAction extends PagedResourceActionII
 		{
 			template = buildImportContext(state, context);
 		}
+		else if ( mode.equals("registering"))
+		{
+			template = buildRegisteringContext(state, context);
+		}
 		else if (mode.equals("mode_helper") && StringUtils.equals(status, "processImport")) {
 			//returning from helper after uploading file
 			template = buildProcessImportContext(state, rundata, context);
+		}
+		else if (mode.equals("mode_helper") && StringUtils.equals(status, "processRegisterImport")) {
+			//returning from helper after uploading file
+			template = buildProcessRegisteringContext(state, rundata, context);
 		}
 		else
 		{
@@ -386,6 +390,88 @@ public class UsersAction extends PagedResourceActionII
 		return prefix + template;
 
 	} // buildNormalContext
+
+	// NIMI //
+	private String buildRegisteringContext(SessionState state, Context context) {
+
+		//render the template
+		return "_registering";
+
+	}
+
+	private String buildProcessRegisteringContext(SessionState state, RunData data, Context context) {
+
+		//process the attachments (there will be only one)
+		UsersActionState sstate = (UsersActionState)getState(context, data, UsersActionState.class);
+
+		try {
+			Reference attachment = (Reference)sstate.getAttachments().get(0);
+			processImportedUserSiteMapFile(state, context, attachment);
+		} catch (IndexOutOfBoundsException e) {
+			//no attachment, carry on, will render correctly
+		}
+
+		//render the template
+		return "_registering";
+
+	}
+
+	public void doCancelRegistering(RunData data, Context context)
+	{
+		SessionState state = ((JetspeedRunData) data).getPortletSessionState(((JetspeedRunData) data).getJs_peid());
+
+		if (!"POST".equals(data.getRequest().getMethod())) {
+			return;
+		}
+
+		//cleanup session
+		state.removeAttribute("userSiteMap");
+
+		//also cleanup our state handler (I think this should be combined into SessionState)
+		UsersActionState sstate = (UsersActionState)getState(context, data, UsersActionState.class);
+		sstate.setAttachments(new ArrayList());
+		sstate.setStatus(null);
+
+		// return to main mode
+		state.removeAttribute("mode");
+
+		// make sure auto-updates are enabled
+		enableObserver(state);
+
+	}
+
+	public void doRegister(RunData data, Context context)
+	{
+		SessionState state = ((JetspeedRunData) data).getPortletSessionState(((JetspeedRunData) data).getJs_peid());
+		UsersActionState sstate = (UsersActionState)getState(context, data, UsersActionState.class);
+
+		state.setAttribute("mode", "registering");
+
+		log.debug("doRegister");
+
+		List<UserSiteMap> userSiteMap = (List<UserSiteMap>)state.getAttribute("userSiteMap");
+		if(userSiteMap !=null && userSiteMap.size() > 0) {
+
+			for(UserSiteMap map: userSiteMap) {
+
+					this.addUserToSite(map.getEid(), map.getSid(), map.getRole());
+
+			}
+
+			//set a message to show it was successful
+			state.setAttribute(STATE_SUCCESS_MESSAGE, rb.getString("import.success"));
+
+			//cleanup
+			state.removeAttribute("userSiteMap");
+			state.removeAttribute("mode");
+			sstate.setAttachments(new ArrayList());
+
+			// make sure auto-updates are enabled
+			enableObserver(state);
+		}
+
+	}
+	// END : NIMI //
 
 	/**
 	 * Build the context for the main list mode.
@@ -404,6 +490,7 @@ public class UsersAction extends PagedResourceActionII
 		{
 			bar.add(new MenuEntry(rb.getString("useact.newuse"), null, true, MenuItem.CHECKED_NA, "doNew"));
 			bar.add(new MenuEntry(rb.getString("import.user.file"), null, true, MenuItem.CHECKED_NA, "doImport"));
+			bar.add(new MenuEntry(rb.getString("import.user.map"), null, true, MenuItem.CHECKED_NA, "doRegister"));
 		}
 
 		// add the paging commands
@@ -821,12 +908,12 @@ public class UsersAction extends PagedResourceActionII
 						continue;
 					}
 					
-					User newUser = userDirectoryService.addUser(null, user.getEid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getType(), user.getProperties());
-			
+					User newUser = this.userDirectoryService.addUser((String)null, user.getEid(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getType(), user.getProperties());
+					this.addUserToSite(user.getEid(), user.getSid(), user.getRole());
 					
 				}
 				catch (UserAlreadyDefinedException e){
-					//ok, just skip
+					this.addUserToSite(user.getEid(), user.getSid(), user.getRole());
 					continue;
 				}
 				catch (UserIdInvalidException e) {
@@ -849,13 +936,59 @@ public class UsersAction extends PagedResourceActionII
 			//cleanup
 			state.removeAttribute("importedUsers");
 			state.removeAttribute("mode");
+			sstate.setAttachments(new ArrayList());
 			
 			// make sure auto-updates are enabled
 			enableObserver(state);
 		}
 		
 	} // doImport
-	
+
+	public void addUserToSite(String eid, String sid, String role) {
+		if (!sid.contentEquals("") && !role.contentEquals("")) {
+			String realmId = "/site/" + sid;
+
+			try {
+				AuthzGroup realmEdit = this.authzGroupService.getAuthzGroup(realmId);
+				boolean allowUpdate = this.authzGroupService.allowUpdate(realmId);
+				Set<String> okRoles = new HashSet();
+				if (!allowUpdate && !okRoles.contains(role)) {
+					Role r = realmEdit.getRole(role);
+					if (r != null && r.isAllowed("site.upd")) {
+						return;
+					}
+
+					okRoles.add(role);
+				}
+
+				realmEdit.getRole(role);
+
+				try {
+					User user = this.userDirectoryService.getUserByEid(eid);
+					if (this.authzGroupService.allowUpdate(realmId)) {
+						realmEdit.addMember(user.getId(), role, true, false);
+					}
+				} catch (UserNotDefinedException var12) {
+					log.debug(this + ".addUsersRealm: cannot find user with eid= " + eid, var12);
+					return;
+				}
+
+				try {
+					this.authzGroupService.save(realmEdit);
+					EventTrackingService.post(EventTrackingService.newEvent("site.upd.site.mbrshp", realmEdit.getId(), false));
+				} catch (GroupNotDefinedException var10) {
+					log.warn(this + ".addUsersRealm: cannot find realm for" + realmId, var10);
+				} catch (AuthzPermissionException var11) {
+					log.warn(this + ".addUsersRealm: don't have permission to edit realm " + realmId, var11);
+				}
+			} catch (GroupNotDefinedException var13) {
+				log.warn(this + ".addUsersRealm: cannot find realm for " + realmId, var13);
+			} catch (Exception var14) {
+				log.warn(this + ".addUsersRealm: " + var14.getMessage() + " realmId=" + realmId, var14);
+			}
+
+		}
+	}
 	
 	
 	/**
@@ -1715,7 +1848,27 @@ public class UsersAction extends PagedResourceActionII
 		//set return status
 		sstate.setStatus("processImport");
 	}
-	
+
+
+	public void doRegisterAttachments(RunData rundata, Context context) {
+
+		// use special form of the helper for the admin workspace
+		ToolSession session = sessionManager.getCurrentToolSession();
+		session.setAttribute(FilePickerHelper.FILE_PICKER_ATTACH_LINKS, new Boolean(true).toString());
+
+		// use the helper
+		startHelper(rundata.getRequest(), "sakai.filepicker");
+
+		// setup the parameters for the helper
+		SessionState state = ((JetspeedRunData) rundata).getPortletSessionState(((JetspeedRunData) rundata).getJs_peid());
+		UsersActionState sstate = (UsersActionState)getState( context, rundata, UsersActionState.class );
+
+		state.setAttribute(FilePickerHelper.FILE_PICKER_ATTACHMENTS, sstate.getAttachments());
+		state.setAttribute(FilePickerHelper.FILE_PICKER_MAX_ATTACHMENTS, FilePickerHelper.CARDINALITY_SINGLE);
+
+		//set return status
+		sstate.setStatus("processRegisterImport");
+	}
 	
 	
 	
@@ -1875,7 +2028,49 @@ public class UsersAction extends PagedResourceActionII
 	} // releaseState
 
 	// ******* end of copy from VelocityPortletStateAction
-	
+	private void processImportedUserSiteMapFile(SessionState state, Context context, Reference file) {
+
+		try{
+			ContentResource resource = contentHostingService.getResource(file.getId());
+			String contentType = resource.getContentType();
+
+			//check mime type
+			if(!StringUtils.equals(contentType, CSV_MIME_TYPE)) {
+				addAlert(state, rb.getString("import.error"));
+				return;
+			}
+
+			CSVReader reader = new CSVReader(new InputStreamReader(resource.streamContent()));
+			String [] nextLine;
+			int lineCount = 0;
+			List<UserSiteMap> list = new ArrayList<UserSiteMap>();
+			Map<Integer,String> mapping = null;
+
+			while ((nextLine = reader.readNext()) != null) {
+
+				if(lineCount == 0) {
+					//header row, capture it
+					mapping = mapHeaderRow(nextLine);
+				} else {
+					//map the fields into the object
+					list.add(mapLineRegister(nextLine, mapping));
+				}
+
+				lineCount++;
+			}
+
+			state.setAttribute("userSiteMap", list);
+			context.put("userSiteMap", list);
+
+		} catch (Exception e) {
+			log.error("Error reading imported file: {}", e.getMessage(), e);
+			addAlert(state, rb.getString("import.error"));
+			return;
+		}
+
+		return;
+
+	}
 	
 	private void processImportedUserFile(SessionState state, Context context, Reference file) {
 		
@@ -1994,6 +2189,10 @@ public class UsersAction extends PagedResourceActionII
 				u.setPassword(line[i]);
 			} else if(StringUtils.equals(col, IMPORT_TYPE)) {
 				u.setType(line[i]);
+			}else if (StringUtils.equals(col, IMPORT_SITE_ID)) {
+				u.setSid(line[i]);
+			} else if (StringUtils.equals(col, IMPORT_ROLE)) {
+				u.setRole(line[i]);
 			} else {
 				//only add if not blank
 				if(StringUtils.isNotBlank(line[i])) {
@@ -2005,6 +2204,27 @@ public class UsersAction extends PagedResourceActionII
 		u.setProperties(p);
 		
 		return u;
+	}
+
+	private UserSiteMap mapLineRegister(String[] line, Map<Integer,String> mapping){
+
+		UserSiteMap map = new UserSiteMap();
+
+		for(Map.Entry<Integer,String> entry: mapping.entrySet()) {
+			int i = entry.getKey();
+			String col = entry.getValue();
+
+			//now check each of the main properties in turn to determine which one to set, otherwise set into props
+			if(StringUtils.equals(col, IMPORT_USER_ID)) {
+				map.setEid(line[i]);
+			} else if (StringUtils.equals(col, IMPORT_SITE_ID)) {
+				map.setSid(line[i]);
+			} else if (StringUtils.equals(col, IMPORT_ROLE)) {
+				map.setRole(line[i]);
+			}
+		}
+
+		return map;
 	}
 	
 	/**
