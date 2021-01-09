@@ -24,15 +24,17 @@ body.is-logged-out{
 }
 
 .#{$namespace}mainHeader{
-		box-shadow: $divider-shadow-fixed;
-		
+
+		box-shadow: $divider-shadow-fixed;		
 		position: relative;
+		background: #bdbdbd;
 
 	.#{$namespace}headerLogo{
 		width: 100%;
 		padding: 0 $standard-spacing;
 		height: $banner-height;
-		background: $top-header-background;
+		background: #52b387;
+		border-bottom-left-radius: 25px;
 
 		text-align: center;
 		@include transition( width 0.5s linear 0s );
@@ -40,7 +42,7 @@ body.is-logged-out{
 			background: url($logo) no-repeat center center;
 			width: 		$logo-width;
 			height: 100%; // align vertically center
-			float: left;
+			float: right;
 			background-size: $logo-width $logo-height;
 		}
 	}
@@ -81,7 +83,6 @@ body.is-logged-out{
 			@media #{$phone}{
 				display: none;
 			}
-			background: $sites-nav-background;
 		}
 	}
 
@@ -166,7 +167,7 @@ body.is-logged-out{
 	}
 	.#{$namespace}userNav__submenuitem--fullname-and-id{
 		padding-top: 1em;
-		color: $text-color;
+		color: #FFF;
 		display: inline-block;
 		margin-bottom: 5px;
 		width: 10em;
@@ -190,7 +191,7 @@ body.is-logged-out{
 	.#{$namespace}userData{
 		border-bottom: 1px solid $tool-border-color;
 		margin-bottom: 0.5em;
-		background-color: $tool-menu-background-color;
+		background-color: #8aa6ec;
 	}
 
 	.#{$namespace}userNav__submenuitem--profile-and-image{
@@ -212,13 +213,13 @@ body.is-logged-out{
 }
 
 .#{$namespace}topHeader{
-	background: $top-header-background;
+	background: #bdbdbd;
 	color: $background-color;
 	font-size: 1em;
 	height: auto;
 	width: 100%;
 	box-shadow: $divider-shadow;
-
+	border-bottom-left-radius: 20px;
 	a
 	{
 		@include display-flex;
@@ -421,32 +422,50 @@ body.is-logged-out{
 			margin: 0 0.5em 0 0;
 			font-weight: normal;
 			text-transform: capitalize;
+			color : #457386;
 
 			@media #{$phone}{
 				display: none;
 			}
 		}
 		input[type="text"],input[type="password"],input[type="email"]{
+			border: 3px solid #7cc8e6;
+			border-radius: 10px;
 			margin: 0 1em 0 0;
 			padding: 0.25em;
-			border: 0px none;
 			@media #{$phone}{
 				width: 40%;
 				margin-right: 0.6em;
 				font-size: $default-font-size - 2px;
 			}
+			&:hover, &:focus {
+				background: #adfbfb;
+			}
 		}
 		#submit{
+
+			
 			margin: 0;
 			padding: 0.4em 1em;
 			font-size: $default-font-size;
 			color: #333333;
 			position: relative;
 
+			width: 100px;
+			height: 44px;
+			border-radius: 10px;
+			border: 3px solid #7cc8e6;
+			margin-right: 10px;
+			margin-left: 10px;
+
 			@media #{$phone}
 			{
 				font-size: $default-font-size - 2px;
 				padding: 0.25em 1em;
+			}
+
+			&:hover, &:focus {
+				background-color: #7cc8e6;
 			}
 		}
 		.#{$namespace}loginForm__button{
@@ -848,7 +867,7 @@ body.is-logged-out{
 {
 	@include display-flex;
 	@include align-items(center);
-	background-color: $sites-nav-background;
+	background-color: #bdbdbd;
 	min-height: $banner-height;
 	padding: 0 $standard-spacing;		// space on the sides; top and bottom spacing will be determined by children
 }
@@ -868,7 +887,7 @@ body.is-logged-out{
 			margin: 0 $standard-spacing $standard-spacing 0;	// space the items apart, and space vertically if wrapped
 			padding: 0;
 			border-radius: $sites-nav-menu-item-border-radius;
-			background: $sites-nav-menu-item-background;
+			background: #cadae3;
 			.link-container{
 				@include display-flex;
 				@include align-items( center );
@@ -889,11 +908,11 @@ body.is-logged-out{
 				}
 				
 				.link-container, .#{$namespace}sitesNav__dropdown, .#{$namespace}sitesNav__favbtn {
-						border-top: $sites-nav-menu-item-hover-border-top;
-						border-right: $sites-nav-menu-item-hover-border-right;
-						border-bottom: $sites-nav-menu-item-hover-border-bottom;
-						border-left: $sites-nav-menu-item-hover-border-left;
-						background: $sites-nav-menu-item-hover-background;
+						border-top: 1px solid #cadae3;
+						border-right: 1px solid #cadae3;
+						border-bottom: 1px solid #cadae3;
+						border-left: 1px solid #cadae3;
+						background: #cadae3;
 				}
 			}
 
@@ -994,13 +1013,15 @@ body.is-logged-out{
 			&.is-selected {
 				background: $sites-nav-menu-item-selected-background;
 				.link-container, .#{$namespace}sitesNav__dropdown, .#{$namespace}sitesNav__favbtn {
-					background: $sites-nav-menu-item-selected-background;
-					border-top: $sites-nav-menu-item-selected-border-top;
-					border-right: $sites-nav-menu-item-selected-border-right;
-					border-bottom: $sites-nav-menu-item-selected-border-bottom;
-					border-left: $sites-nav-menu-item-selected-border-left;
+
+					background: #52b387;
+					border-top: 1px solid #52b387;
+					border-right: 1px solid #52b387;
+					border-bottom: 1px solid #52b387;
+					border-left: 1px solid #52b387;
 					color: $sites-nav-menu-item-selected-color;
 					font-weight: $sites-nav-menu-item-selected-font-weight;
+
 					&:hover, &:focus {
 						border-top: $sites-nav-menu-item-selected-hover-border-top;
 						border-right: $sites-nav-menu-item-selected-hover-border-right;
@@ -1017,11 +1038,11 @@ body.is-logged-out{
 					}
 					
 					.link-container, .#{$namespace}sitesNav__dropdown, .#{$namespace}sitesNav__favbtn {
-						border-top: $sites-nav-menu-item-selected-hover-border-top;
-						border-right: $sites-nav-menu-item-selected-hover-border-right;
-						border-bottom: $sites-nav-menu-item-selected-hover-border-bottom;
-						border-left: $sites-nav-menu-item-selected-hover-border-left;
-						background: $sites-nav-menu-item-selected-hover-background;
+						border-top: 1px solid #cadae3;
+						border-right: 1px solid #cadae3;
+						border-bottom: 1px solid #cadae3;
+						border-left: 1px solid #cadae3;
+						background:#cadae3;
 					}
 				}
 
@@ -1289,7 +1310,7 @@ body.is-logged-out #linkNav .#{$namespace}sitesNav__menuitem .#{$namespace}sites
 .#{$namespace}siteHierarchy .manage-overview-link {
 	@include sakai_secondary_button();
 	position: absolute;
-	right: $standard-spacing;
+	left : 16px;
 	margin-top: -4px;
 	
 	> span {

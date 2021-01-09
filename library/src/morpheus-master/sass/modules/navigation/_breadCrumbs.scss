@@ -1,5 +1,8 @@
 .#{$namespace}siteHierarchy{
-	background: $tool-background-color;
+
+	background: #bdbdbd;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
 	min-height: $hierarchy-size;
 
 	h1{

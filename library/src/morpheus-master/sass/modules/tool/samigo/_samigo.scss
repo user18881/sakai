@@ -161,7 +161,7 @@
 	
 	#assessmentSettingsAction .layout-navigation input[type="radio"]{
 		@media #{$nonPhone}{
-			float:left;
+			float:right;
 			& + label {
 				overflow:auto;
 				display:block;

@@ -38,7 +38,7 @@ $material-elevation-8dp: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,
 @if $portal-as-material {
     $primary-color: #15597e;
     $secondary-color: #42AAE0;
-    $body-background-color: #fff;
+    $body-background-color: rgb(54, 56, 61);
     $top-header-background: $primary-color;
     $tool-menu-background-color: $body-background-color;
     $sites-nav-background: $body-background-color;
@@ -50,7 +50,7 @@ $material-elevation-8dp: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,
     $sites-nav-menu-item-border-thickness: 1px;
     $sites-nav-menu-item-border-radius: $button-radius-pill;
     
-    $sites-nav-menu-item-background: hsla(0, 0%, 92%, 1);
+    $sites-nav-menu-item-background: rgb(54, 56, 61);
     $sites-nav-menu-item-color: hsla(0, 0%, 25%, 1);
     $sites-nav-menu-item-border-color: $sites-nav-menu-item-background;
     $sites-nav-menu-item-border-top:            $sites-nav-menu-item-border-thickness solid $sites-nav-menu-item-border-color;

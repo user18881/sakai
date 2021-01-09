@@ -13,7 +13,7 @@
 
 .#{$namespace}portalWrapper {
 	position: relative;
-	background: $main-content-background;
+	background: #bdbdbd;
 }
 
 #pageBody{
@@ -64,7 +64,8 @@
 }
 
 .#{$namespace}mainContent{
-	background: $main-content-background;
+	//background: $main-content-background;
+	background: #bdbdbd;
 }
 
 .#{$namespace}pageColumns--single {
@@ -84,8 +85,10 @@
 // Note: this is the footer container; see _footer.scss for the rest of the design of the footer
 .#{$namespace}container--footer {
 	margin-top: auto; 	// push the footer to the bottom of the page
-	background-color: $footer-background-color;
+	background-color: #646464;
 	border-top: 1px solid $footer-border-color;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
 }
 
 .#{$namespace}noJs.js-warn-no-js {

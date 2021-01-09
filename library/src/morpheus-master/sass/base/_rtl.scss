@@ -111,4 +111,16 @@ html[dir="rtl"]{
 		}
 	}
 
+	#toolMenu {
+		ul{
+			li{
+				.Mrphs-toolsNav__menuitem--link{
+					.Mrphs-toolsNav__menuitem--icon{
+						margin-right : 20px;
+					}
+				}
+			}
+		}
+	}
+
 }
