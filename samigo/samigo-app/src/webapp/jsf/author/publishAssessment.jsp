@@ -151,7 +151,7 @@
 			<f:verbatim></b></f:verbatim>
 		</h:panelGroup>
 		
-		<h:outputFormat value=" #{assessmentSettingsMessages.available_anonymously_at}" escape="false" rendered="#{assessmentSettings.releaseTo eq 'Anonymous Users'}">
+		<h:outputFormat value="#{assessmentSettingsMessages.available_anonymously_at}" escape="false" rendered="#{assessmentSettings.releaseTo eq 'Anonymous Users'}">
 			<f:param value="#{assessmentSettings.startDateInClientTimezoneString}" />
 			<f:param value="#{assessmentSettings.publishedUrl}" />
 		</h:outputFormat>

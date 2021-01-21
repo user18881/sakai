@@ -109,7 +109,7 @@ public class SelectAssessmentBean implements Serializable {
 	/**
 	 * ArrayLists should be lists of DeliveryBean objects
 	 *
-	 * @param reviewAssessments ArrayLists should be lists of DeliveryBean objects
+	 * @param reviewableAssessments ArrayLists should be lists of DeliveryBean objects
 	 */
 	public void setReviewableAssessments(List reviewableAssessments)
 	{
@@ -184,7 +184,7 @@ public class SelectAssessmentBean implements Serializable {
 
 	/**
 	 * sort for take assessment table
-	 * @param sort
+	 * @param takeableSortOrder
 	 */
 	public void setTakeableSortOrder(String takeableSortOrder)
 	{
@@ -193,7 +193,7 @@ public class SelectAssessmentBean implements Serializable {
 
 	/**
 	 * sort for review assessment table
-	 * @param sort
+	 * @param reviewableSortOrder
 	 */
 	public void setReviewableSortOrder(String reviewableSortOrder)
 	{
@@ -290,7 +290,7 @@ public class SelectAssessmentBean implements Serializable {
 	}
 
 	/**
-	 * @param Average tMultipleSubmission The hasAverageMultipleSubmission to set.
+	 * @param hasAverageMultipleSubmissions tMultipleSubmission The hasAverageMultipleSubmission to set.
 	 */
 	public void setHasAverageMultipleSubmissions(boolean hasAverageMultipleSubmissions) {
 		this.hasAverageMultipleSubmissions = hasAverageMultipleSubmissions;

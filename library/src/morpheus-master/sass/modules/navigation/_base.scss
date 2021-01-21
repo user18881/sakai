@@ -27,14 +27,14 @@ body.is-logged-out{
 
 		box-shadow: $divider-shadow-fixed;		
 		position: relative;
-		background: #bdbdbd;
+		background: #f5f5f5;
 
 	.#{$namespace}headerLogo{
 		width: 100%;
 		padding: 0 $standard-spacing;
 		height: $banner-height;
-		background: #52b387;
-		border-bottom-left-radius: 25px;
+		background: #ffffff;
+		border-radius: 10px;
 
 		text-align: center;
 		@include transition( width 0.5s linear 0s );
@@ -429,17 +429,20 @@ body.is-logged-out{
 			}
 		}
 		input[type="text"],input[type="password"],input[type="email"]{
-			border: 3px solid #7cc8e6;
+			border: none;
 			border-radius: 10px;
 			margin: 0 1em 0 0;
 			padding: 0.25em;
+			padding-right : 8px;
+			text-align: right;
+			background: #ebecf0;
 			@media #{$phone}{
 				width: 40%;
 				margin-right: 0.6em;
 				font-size: $default-font-size - 2px;
 			}
 			&:hover, &:focus {
-				background: #adfbfb;
+				background: #adc8fb;
 			}
 		}
 		#submit{
@@ -448,15 +451,18 @@ body.is-logged-out{
 			margin: 0;
 			padding: 0.4em 1em;
 			font-size: $default-font-size;
-			color: #333333;
+			color: #ffffff;
 			position: relative;
 
 			width: 100px;
-			height: 44px;
+			height: 39px;
 			border-radius: 10px;
-			border: 3px solid #7cc8e6;
+			border: 1px solid #00d170;
 			margin-right: 10px;
 			margin-left: 10px;
+
+			background : #00d170;
+
 
 			@media #{$phone}
 			{
@@ -1011,7 +1017,7 @@ body.is-logged-out{
 			
 			// Current site is selected:
 			&.is-selected {
-				background: $sites-nav-menu-item-selected-background;
+				background: #52b387;
 				.link-container, .#{$namespace}sitesNav__dropdown, .#{$namespace}sitesNav__favbtn {
 
 					background: #52b387;

@@ -34,6 +34,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
 
+import com.ghasemkiani.util.icu.PersianCalendar;
+import com.ghasemkiani.util.icu.PersianDateFormat;
+import org.sakaiproject.util.JalaliCalendar;
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -88,14 +92,14 @@ public class CalendarBean {
 	public static final String 						PRIORITY_LOW			= "priority_low";
 	private static final String 					imgLocation				= "/../library/image/sakai/";
 	private static final String 					SCHEDULE_TOOL_ID		= "sakai.schedule";
-	
+
 	private static final String 					MERGED_CALENDARS_PROP 	= "mergedCalendarReferences";
 
 	/** Resource bundle */
 	private transient ResourceLoader				msgs					= new ResourceLoader("calendar");
-	
+
 	private CalendarUtil calendarUtil = new CalendarUtil();
-	
+
 	/** Bean members */
 	private String									viewMode				= MODE_MONTHVIEW;
 	private String									prevViewMode			= null;
@@ -120,7 +124,7 @@ public class CalendarBean {
 	private String									siteId					= null;
 
 	private Map	<String, String>					eventIconMap			= new HashMap<String, String>();
-	
+
 	private long									lastModifiedPrefs		= 0l;
 	private Map										priorityColorsMap		= null;
 	private String									highPrCSSProp			= "";
@@ -130,8 +134,8 @@ public class CalendarBean {
 	private List									highPriorityEvents		= null;
 	private List									mediumPriorityEvents	= null;
 	private List									lowPriorityEvents		= null;
-	
-	
+
+
 	/** Sakai services */
 	private transient CalendarService				M_ca					= (CalendarService) ComponentManager.get(CalendarService.class.getName());
 	private transient ExternalCalendarSubscriptionService M_ecs				= (ExternalCalendarSubscriptionService) ComponentManager.get(ExternalCalendarSubscriptionService.class.getName());
@@ -141,25 +145,25 @@ public class CalendarBean {
 	private transient ToolManager					M_tm					= (ToolManager) ComponentManager.get(ToolManager.class.getName());
 	private transient PreferencesService			M_ps					= (PreferencesService) ComponentManager.get(PreferencesService.class.getName());
 	private transient SessionManager				M_sm					= (SessionManager) ComponentManager.get(SessionManager.class.getName());
-	
+
 
 	// ######################################################################################
 	// Main methods
 	// ######################################################################################
-	public CalendarBean(){		
+	public CalendarBean(){
 		readPreferences();
 		// go to today events it is first time loading
 		selectedDay = getToday();
 	}
-	
+
 	public String getInitValues() {
 		long lastModified = PrefsBean.getPreferenceLastModified();
 		if(lastModifiedPrefs != lastModified)
 			readPreferences();
-		
+
 		// re-read events from API for selected month/week
 		calendarEventVector = null;
-		
+
 		return "";
 	}
 
@@ -169,23 +173,23 @@ public class CalendarBean {
 	private void readPreferences() {
 		log.debug("Reading preferences...");
 		lastModifiedPrefs = PrefsBean.getPreferenceLastModified();
-		
+
 		// view mode
 		prevViewMode = viewMode;
 		viewMode = PrefsBean.getPreferenceViewMode();
-		
+
 		// priority colors (CSS properties)
 		priorityColorsMap = PrefsBean.getPreferencePriorityColors();
 		if(priorityColorsMap != null) {
 			highPrCSSProp = (String) priorityColorsMap.get(PrefsBean.PREFS_HIGHPRIORITY_COLOR);
 			mediumPrCSSProp = (String) priorityColorsMap.get(PrefsBean.PREFS_MEDIUMPRIORITY_COLOR);
 			lowPrCSSProp = (String) priorityColorsMap.get(PrefsBean.PREFS_LOWPRIORITY_COLOR);
-			
+
 			highPrCSSProp = (highPrCSSProp == null || highPrCSSProp.trim().length() == 0)? "" : "background-color: " + highPrCSSProp;
 			mediumPrCSSProp = (mediumPrCSSProp == null || mediumPrCSSProp.trim().length() == 0)? "" : "background-color: " + mediumPrCSSProp;
 			lowPrCSSProp = (lowPrCSSProp == null || lowPrCSSProp.trim().length() == 0)? "" : "background-color: " + lowPrCSSProp;
 		}
-		
+
 		// priority events
 		priorityEventsMap = PrefsBean.getPreferencePriorityEvents();
 		if(priorityEventsMap != null) {
@@ -198,13 +202,13 @@ public class CalendarBean {
 			lowPriorityEvents = new ArrayList();
 		}
 	}
-	
+
 	private List getCalendarReferences() {
 		// get merged calendars channel refs
 		List referenceList = M_ca.getCalendarReferences(getSiteId());
 		return referenceList;
 	}
-	
+
 	/**
 	 ** loadChannels -- load specified primaryCalendarReference or merged
 	 ** calendars if initMergeList is defined
@@ -237,19 +241,19 @@ public class CalendarBean {
 		}
 		return siteId;
 	}
-	
+
 	public String getUserId() {
 		return M_sm.getCurrentSessionUserId();
 	}
-	
+
 	private CalendarEventVector getEventsFromSchedule() {
 		if(calendarEventVector == null) {
 			Calendar firstDay;
 			Calendar lastDay;
-			
+
 			if(viewMode.equals(MODE_WEEKVIEW)){
 				// WEEK VIEW
-				
+
 				// select first day
 				firstDay = Calendar.getInstance(getCurrentUserTimezone(),msgs.getLocale());
 				firstDay.setTime(getViewingDate());
@@ -263,7 +267,7 @@ public class CalendarBean {
 					firstDay.add(Calendar.DAY_OF_WEEK, -1);
 					dayOfWeek = firstDay.get(Calendar.DAY_OF_WEEK);
 				}
-				
+
 				// select last day
 				lastDay = (Calendar) firstDay.clone();
 				lastDay.add(Calendar.DAY_OF_WEEK, 6);
@@ -279,7 +283,7 @@ public class CalendarBean {
 				}
 			}else{
 				// MONTH VIEW
-				
+
 				// select first day
 				firstDay = Calendar.getInstance(getCurrentUserTimezone(),msgs.getLocale());
 				firstDay.setTime(getViewingDate());
@@ -297,7 +301,7 @@ public class CalendarBean {
 					firstDay.add(Calendar.DAY_OF_WEEK, -1);
 					dayOfWeek = firstDay.get(Calendar.DAY_OF_WEEK);
 				}
-				
+
 				// select last day
 				lastDay = (Calendar) firstDay.clone();
 				lastDay.set(Calendar.YEAR, selYear);
@@ -314,8 +318,8 @@ public class CalendarBean {
 					dayOfWeek = lastDay.get(Calendar.DAY_OF_WEEK);
 				}
 			}
-			
-			
+
+
 			Time firstTime = M_ts.newTime(firstDay.getTimeInMillis());
 			Time lastTime = M_ts.newTime(lastDay.getTimeInMillis());
 			TimeRange range = M_ts.newTimeRange(firstTime, lastTime);
@@ -323,11 +327,11 @@ public class CalendarBean {
 		}
 		return calendarEventVector;
 	}
-	
-	
+
+
 	private CalendarEventVector getScheduleEventsForDay(Calendar c) {
 		CalendarEventVector cev = new CalendarEventVector();
-		
+
 		TimeZone timeZone = getCurrentUserTimezone();
 		DateTime start = new DateTime(c).withZone(DateTimeZone.forTimeZone(timeZone)).withTime(0, 0, 0, 0);
 		log.debug("looking for events for: {}", start);
@@ -335,7 +339,7 @@ public class CalendarBean {
 		DateTime endOfDay = new DateTime(c).withZone(DateTimeZone.forTimeZone(timeZone)).withTime(23, 59, 59, 0);
 		Time eod = M_ts.newTime(endOfDay.getMillis());
 		TimeRange range = M_ts.newTimeRange(sod, eod);
-		
+
 		Iterator<CalendarEvent> i = getEventsFromSchedule().iterator();
 		while(i.hasNext()){
 			CalendarEvent ce = (CalendarEvent) i.next();
@@ -353,13 +357,13 @@ public class CalendarBean {
 	 * @return
 	 */
 	private TimeZone getCurrentUserTimezone() {
-		
+
 		TimeZone tz = TimeService.getLocalTimeZone();
 		log.debug("got tz {}", tz.getDisplayName());
 		return tz;
 	}
 //	}
-	
+
 	private List getDayEvents(CalendarEventVector dayEventVector) {
 		ListIterator i = dayEventVector.listIterator();
 		List eventList = new ArrayList();
@@ -395,7 +399,7 @@ public class CalendarBean {
 				highestPriorityFound = PRIORITY_MEDIUM;
 			else if(lowPriorityEvents != null && lowPriorityEvents.contains(type) && !highestPriorityFound.equals(PRIORITY_HIGH) && !highestPriorityFound.equals(PRIORITY_MEDIUM))
 				highestPriorityFound = PRIORITY_LOW;
-			
+
 			if(highestPriorityFound.equals(PRIORITY_HIGH))
 				break;
 		}
@@ -421,7 +425,7 @@ public class CalendarBean {
 		selectedEventRef = null;
 		updateEventList = true;
 	}
-	
+
 	public void prev(ActionEvent e) {
 		updateEventList = true;
 		if(viewMode.equals(MODE_WEEKVIEW)){
@@ -432,7 +436,7 @@ public class CalendarBean {
 			prevMonth(e);
 		}
 	}
-	
+
 	public void next(ActionEvent e) {
 		updateEventList = true;
 		if(viewMode.equals(MODE_WEEKVIEW)){
@@ -443,7 +447,7 @@ public class CalendarBean {
 			nextMonth(e);
 		}
 	}
-	
+
 	private void prevMonth(ActionEvent e) {
 		Calendar cal = Calendar.getInstance(getCurrentUserTimezone(),msgs.getLocale());
 		cal.setTime(viewingDate);
@@ -461,7 +465,7 @@ public class CalendarBean {
 		selectedDay = null;
 		selectedEventRef = null;
 	}
-	
+
 	private void prevWeek(ActionEvent e) {
 		Calendar cal = Calendar.getInstance(getCurrentUserTimezone(),msgs.getLocale());
 		cal.setTime(viewingDate);
@@ -516,11 +520,11 @@ public class CalendarBean {
 			log.error("Error in backToEventList: {}", ex.toString());
 		}
 	}
-	
+
 	public String getViewMode() {
 		return viewMode;
 	}
-	
+
 	public void setViewMode(String viewMode) {
 		this.viewMode = viewMode;
 	}
@@ -554,11 +558,11 @@ public class CalendarBean {
 			return getWeeks();
 		}
 	}
-	
+
 	private List getWeeks() {
 		if(reloadCalendarEvents()) {
 			initializeWeeksDataStructure();
-			
+
 			// selected month
 			Calendar c = Calendar.getInstance(getCurrentUserTimezone(),msgs.getLocale());
 			c.setTime(getViewingDate());
@@ -634,7 +638,7 @@ public class CalendarBean {
 		}
 		return weeks;
 	}
-	
+
 	private List getWeek() {
 		if(reloadCalendarEvents()) {
 			// initialize days
@@ -643,20 +647,20 @@ public class CalendarBean {
 				week1.setDay(d, new Day());
 			}
 			weeks.add(week1);
-			
+
 			// selected week
 			Calendar c = Calendar.getInstance(getCurrentUserTimezone(), msgs.getLocale());
 			c.setTime(getViewingDate());
 			int selMonth = c.get(Calendar.MONTH);
 			int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
 			//int selWeek = c.get(Calendar.WEEK_OF_YEAR);
-			
+
 			// select first day of week (locale-specific)
 			while(dayOfWeek != c.getFirstDayOfWeek()) {
 				c.add(Calendar.DAY_OF_WEEK, -1);
 				dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
 			}
-			
+
 			for(int i=0; i<7; i++){
 				Day day;
 				boolean sameMonth = (selMonth == c.get(Calendar.MONTH));
@@ -667,9 +671,9 @@ public class CalendarBean {
 				day.setOccursInOtherMonth(!sameMonth);
 				day.setBackgroundCSSProperty(getDayPriorityCSSProperty(vector));
 				day.setToday(sameDay(c, getToday()));
-				day.setSelected(selected);	
+				day.setSelected(selected);
 				day.setDayEvents(getDayEvents(vector));
-	
+
 				week1.setDay(i, day);
 				c.add(Calendar.DAY_OF_WEEK, +1);
 			}
@@ -682,7 +686,7 @@ public class CalendarBean {
 		boolean reload = (weeks == null) || (weeks.size() == 0) || updateEventList || (!prevViewMode.equals(viewMode));
 		return reload;
 	}
-	
+
 	private boolean sameDay(Calendar date1, Date date2) {
 		Calendar cal1 = Calendar.getInstance(getCurrentUserTimezone(), msgs.getLocale());
 		cal1.setTime(date1.getTime());
@@ -708,8 +712,7 @@ public class CalendarBean {
 	}
 
 	public String getCaption() {
-		SimpleDateFormat formatter = new SimpleDateFormat(msgs.getString("viewm.date_format"), msgs.getLocale());
-		formatter.setTimeZone(getCurrentUserTimezone());
+		PersianDateFormat formatter = new PersianDateFormat(msgs.getString("viewm.date_format"), msgs.getLocale());
 		return formatter.format(getViewingDate());
 	}
 
@@ -719,7 +722,7 @@ public class CalendarBean {
 			t.setTime(selectedDay);
 			selectedDayHasEvents = getScheduleEventsForDay(t).size() > 0;
 		}
-		
+
 		/*return selectedDayHasEvents && selectedDay != null && selectedEventRef == null;*/
 		return selectedDayHasEvents && selectedDay != null && selectedEventRef == null;
 	}
@@ -729,9 +732,8 @@ public class CalendarBean {
 	}
 
 	public String getSelectedDayAsString() {
-		SimpleDateFormat formatter = new SimpleDateFormat(msgs.getString("date_format"), msgs.getLocale());
-		formatter.setTimeZone(getCurrentUserTimezone());
-		return StringUtils.capitalize(formatter.format(selectedDay));
+		PersianDateFormat formatter = new PersianDateFormat(msgs.getString("persian_date_format"), msgs.getLocale());
+		return formatter.format(selectedDay);
 	}
 
 	public List getSelectedDayEvents() {
@@ -768,16 +770,16 @@ public class CalendarBean {
 						{
 							entityBroker = (EntityBroker) ComponentManager.get("org.sakaiproject.entitybroker.EntityBroker");
 						}
-						entityBroker.executeCustomAction(entityId.toString(), ASSN_ENTITY_ACTION, null, null);						
+						entityBroker.executeCustomAction(entityId.toString(), ASSN_ENTITY_ACTION, null, null);
 					}
-					
+
 				}catch(EntityNotFoundException e){
 					final String openDateErrorDescription = msgs.getFormattedMessage("java.alert.opendatedescription",
-									event.getField(CalendarUtil.NEW_ASSIGNMENT_OPEN_DATE_ANNOUNCED));
+							event.getField(CalendarUtil.NEW_ASSIGNMENT_OPEN_DATE_ANNOUNCED));
 					selectedEvent.setOpenDateErrorDescription(openDateErrorDescription);
 					selectedEvent.setOpenDateError(true);
-				}				
-				
+				}
+
 				// groups
 				if(M_as.unlock("calendar.all.groups", "/site/"+calendar.getContext())){
 					Collection grps = event.getGroupObjects();
@@ -793,7 +795,7 @@ public class CalendarBean {
 						selectedEvent.setGroups(sb.toString());
 					}
 				}
-				
+
 			}catch(IdUnusedException e){
 				log.error("IdUnusedException: {}", e.getMessage());
 			}catch(PermissionException e){
@@ -802,7 +804,7 @@ public class CalendarBean {
 		}
 		return selectedEvent;
 	}
-	
+
 	private String buildEventUrl(Site site, String eventRef) {
 		StringBuilder url = new StringBuilder();
 		ToolConfiguration tc = null;
@@ -853,10 +855,10 @@ public class CalendarBean {
 		{
 			spanIconMap.put(eventType, "<span class=\"icon " + iconMap.get(eventType) + "\"></span>");
 		}
-		
+
 		return spanIconMap;
 	}
-	
+
 	public String getImgLocation() {
 		return this.imgLocation;
 	}
@@ -872,17 +874,17 @@ public class CalendarBean {
 	public void setViewingDate(Date selectedMonth) {
 		this.viewingDate = selectedMonth;
 	}
-	
+
 	public String[] getDayOfWeekNames() {
 		Calendar c = Calendar.getInstance(getCurrentUserTimezone(),msgs.getLocale());
 		return new CalendarUtil(c).getCalendarDaysOfWeekNames(false);
 	}
-	
+
 	//SAK-19700 method to get name of tool so it can be rendered with the option link, for screenreaders
 	public String getToolTitle() {
 		return M_tm.getCurrentPlacement().getTitle();
 	}
-	
+
 	//SAK-19700 renders a complete Options link with an additional span link for accessiblity
 	public String getAccessibleOptionsLink() {
 		StringBuilder sb = new StringBuilder();
@@ -891,9 +893,9 @@ public class CalendarBean {
 		sb.append(getToolTitle());
 		sb.append("</span>");
 		return sb.toString();
-		
+
 	}
-	
+
 	/**
 	 * Tests if the options section should be displayed.
 	 */

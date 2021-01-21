@@ -24,16 +24,8 @@ package org.sakaiproject.tool.assessment.ui.bean.author;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
@@ -44,6 +36,9 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+
+import com.ghasemkiani.util.icu.PersianDateFormat;
+import com.github.mfathi91.time.PersianDate;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -1131,11 +1126,12 @@ public void setFeedbackComponentOption(String feedbackComponentOption) {
   }
 
   public String getStartDateInClientTimezoneString() {
+    PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy hh:mm aaa");
     if (!this.isValidStartDate) {
-      return this.originalStartDateString;
+      return formatter.format(originalStartDateString);
     }
     else {
-      return userTimeService.dateTimeFormat(startDate, new ResourceLoader().getLocale(), DateFormat.MEDIUM);
+      return formatter.format(startDate);
     }
   }
 

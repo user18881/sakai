@@ -38,6 +38,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import org.apache.commons.lang3.StringUtils;
 import org.sakaiproject.content.api.ContentResource;
 import org.sakaiproject.content.api.FilePickerHelper;
@@ -1165,11 +1166,12 @@ public class AssessmentSettingsBean implements Serializable {
   }
 
   public String getStartDateInClientTimezoneString() {
+    PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy hh:mm aaa");
     if (!this.isValidStartDate) {
-      return this.originalStartDateString;
+      return formatter.format(originalStartDateString);
     }
     else {
-      return userTimeService.dateTimeFormat(startDate, new ResourceLoader().getLocale(), DateFormat.MEDIUM);
+      return formatter.format(startDate);
     }
   }
 

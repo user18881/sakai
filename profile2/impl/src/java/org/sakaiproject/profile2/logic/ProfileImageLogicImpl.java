@@ -816,7 +816,7 @@ public class ProfileImageLogicImpl implements ProfileImageLogic {
 	
 	/**
 	 * Get the URL to an image that a user has specified as their profile image
-	 * @param userId		uuid of user
+	 * @param userUuid		uuid of user
 	 * @param size			comes from ProfileConstants. main or thumbnail.
 	 *
 	 * <p>Note: if thumbnail is requested and none exists, the main image will be returned instead. It can be scaled in the markup.</p>
@@ -1066,6 +1066,7 @@ public class ProfileImageLogicImpl implements ProfileImageLogic {
 
 			String displayName = sakaiProxy.getUserDisplayName(userUuid);
 			String[] names = displayName.split(" ");
+			int size = names.length;
 			String initials = "";
 			int fontSize;
 			int profileInitialsSize = Integer.parseInt(sakaiProxy.getServerConfigurationParameter("profile2.avatar.initials.size", "2"));
@@ -1076,10 +1077,9 @@ public class ProfileImageLogicImpl implements ProfileImageLogic {
 					break;
 				case 2:
 				default:
-					for (int i=0; i < names.length;i++) {
-						if (i > 1) break;
-						initials += Character.toString(names[i].charAt(0));
-					}
+					initials+= Character.toString(names[0].charAt(0));
+					initials+= "\u200c";
+					initials+= Character.toString(names[size-1].charAt(0));
 					fontSize = Integer.parseInt(sakaiProxy.getServerConfigurationParameter("profile2.avatar.initials.font.size", ProfileConstants.DFLT_PROFILE_AVATAR_FONT_SIZE_2_CHAR));
 					break;
 			}

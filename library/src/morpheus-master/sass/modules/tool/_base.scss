@@ -1,5 +1,5 @@
 .#{$namespace}pageColumns--single {
-	background: #bdbdbd;
+	background: #f5f5f5;
 	.#{$namespace}toolTitleNav__button_container {
 		@include display-flex;
 		@include align-items(center);
@@ -22,8 +22,12 @@
 	.#{$namespace}container {
 		border: $overview-portlet-border;
 		border-radius: 15px;
-		box-shadow: $overview-portlet-shadow;
+		//box-shadow: $overview-portlet-shadow;
 		margin-bottom: $standard-spacing;
+
+		// TODO : get best box shad
+		-webkit-box-shadow: 4px 7px 25px -9px rgba(0,0,0,0.7); 
+		box-shadow: 4px 7px 25px -9px rgba(0,0,0,0.7);
 
 		&.#{$namespace}toolTitleNav.#{$namespace}container.#{$namespace}container--toolTitleNav {
 			border-top: 0;
@@ -55,6 +59,7 @@
 		@media #{$tablet}{
 			font-size: 1.2em;
 		}
+		display : none;
 	}
 
 	.#{$namespace}toolTitleNav{
@@ -208,7 +213,7 @@
 	border-top-left-radius: 10px;
 	//border: 3px solid #6fa1fd;
 
-	padding: 0px 15px 15px 20px;
+	padding: 20px 15px 15px 20px;
 	@media #{$phone}{
 		margin: 2.3em 0 0 0;
 	}

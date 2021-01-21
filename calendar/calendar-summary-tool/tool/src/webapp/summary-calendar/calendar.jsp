@@ -31,12 +31,14 @@
 				<f:verbatim><h3 style="text-align: left; white-space: nowrap;"></f:verbatim><h:outputText value="#{CalBean.caption}"/><f:verbatim></h3></f:verbatim>
 			</f:subview>
 
-	        <h:panelGroup>
+	    <h:panelGroup>
                 <f:verbatim><fieldset><legend></f:verbatim><h:outputText value="#{msgs.previous}"/><f:verbatim></legend></f:verbatim><h:commandButton value=" < " actionListener="#{CalBean.prev}" immediate="true"/><f:verbatim></fieldset></f:verbatim>
                 <h:commandButton value="#{msgs.today}" actionListener="#{CalBean.currDay}" immediate="true" styleClass="todayButton" />
                 <f:verbatim><fieldset><legend></f:verbatim><h:outputText value="#{msgs.next}"/><f:verbatim></legend></f:verbatim><h:commandButton value=" > " actionListener="#{CalBean.next}" immediate="true"/><f:verbatim></fieldset></f:verbatim>
-	        </h:panelGroup>
+	    </h:panelGroup>
+
 		</h:panelGrid>
+
 
 		<h:dataTable
 			id="table_calendar"

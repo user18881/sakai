@@ -34,15 +34,6 @@
                 <a class="Mrphs-toolTitleNav__link Mrphs-toolTitleNav__link--edit" accesskey="e" id="jsr-edit" href="${tool.toolJSR168Edit}" title="${rloader.sit_edit}"></a>
             #end ## END of IF (${tool.toolJSR168Edit})
 
-            #if (${tool.toolShowHelpButton})
-
-                #if (${tool.toolJSR168Help})
-                    <a class="Mrphs-toolTitleNav__link Mrphs-toolTitleNav__link--help" accesskey="h" href="${tool.toolJSR168Help}" title="${rloader.sit_help}"><span class="skip">${rloader.site_newwindow}</span></a>
-                #else
-                    <a class="Mrphs-toolTitleNav__link Mrphs-toolTitleNav__link--help-popup" href="${tool.toolHelpActionUrl}" title="${rloader.sit_helpfor} ${tool.toolRenderResult.getTitle()}" target="_blank" onclick="openWindow('${tool.toolHelpActionUrl}', 'Help', 'resizable=yes,toolbar=no,scrollbars=yes,menubar=yes,width=1024,height=768'); return false"><span class="skip">${rloader.site_newwindow}</span></a>
-                #end ## END of IF  (${tool.toolJSR168Help})
-
-            #end ## END of IF (${tool.toolShowHelpButton})
         </nav>
 
     #else
@@ -53,14 +44,6 @@
             #else
                  <h2 class="Mrphs-toolTitleNav__title">${tool.toolTitle}</h2>
             #end ## END of IF (${tool.toolShowResetButton})
-
-            #if (${tool.toolShowHelpButton})
-                <a class="Mrphs-toolTitleNav__link Mrphs-toolTitleNav__link--help-popup" href="${tool.toolHelpActionUrl}" title="${rloader.sit_helpfor} ${tool.toolTitle}" target="_blank" onclick="openWindow('${tool.toolHelpActionUrl}', 'Help', 'resizable=yes,toolbar=no,scrollbars=yes,menubar=yes,width=1024,height=768'); return false">
-                <span class="Mrphs-itemTitle">${rloader.sit_helpfor}</span>
-                <span class="skip">${rloader.site_newwindow}</span>
-            </a>
-            #end ## END of IF (${tool.toolShowHelpButton})
-
         </nav>
     #end ## END of IF (${tool.hasRenderResult})
 

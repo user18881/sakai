@@ -98,7 +98,9 @@
 	}
 	focus_path = [ '$fField' ];
 </script>
-#javascript("/library/js/lang-datepicker/lang-datepicker.js")
+#javascript("/library/js/lang-datepicker/new-datepicker.js")
+#javascript("/library/js/lang-datepicker/persian.date.js")
+#javascript("/library/js/lang-datepicker/persian.datepicker.js")
 ## Include other javascript specific to this page
 #javascript("/sakai-assignment-tool/js/instructorNewEdit.js")
 

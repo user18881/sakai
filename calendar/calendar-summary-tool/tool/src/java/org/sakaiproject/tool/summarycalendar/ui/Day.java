@@ -25,7 +25,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import com.ghasemkiani.util.icu.PersianCalendar;
 import org.sakaiproject.util.ResourceLoader;
+import org.sakaiproject.util.JalaliCalendar;
 
 public class Day implements Serializable {
 	private static final long	serialVersionUID				= 1136403394613377956L;
@@ -56,7 +59,9 @@ public class Day implements Serializable {
 	public Day(Calendar c, boolean hasEvents) {
 		this.hasEvents = hasEvents;
 		this.date = c.getTime();
-		this.dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+		PersianCalendar temp = new PersianCalendar();
+		temp.setTime(c.getTime());
+		this.dayOfMonth = temp.get(PersianCalendar.DAY_OF_MONTH);
 	}
 
 	public void setDate(Date date) {

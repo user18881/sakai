@@ -6,6 +6,17 @@
 // Lessons can display subpages in the tool menu or not
 
 //.#{$namespace}
+
+@font-face{
+	font-family: Kalameh;
+	src: url('/library/fonts/KalamehBold.ttf');
+}
+
+@font-face{
+	font-family: 'A Ghasem';
+	src: url('/library/fonts/AGhasem.ttf');
+}
+
 body.is-logged-out{
 	.#{$namespace}mainHeader.is-maximized ~ #container #toolMenuWrap{
 		top: $header-size;
@@ -16,6 +27,7 @@ body.is-logged-out{
 		min-height: calc(100vh - #{$banner-height});	// viewport minus the top banner when logged out
 	}
 }
+
 
 // Prevent tool menu collapsed styles being applied when using a mobile sized screen - an issue
 // when switching between phone and non-phone sized screens.
@@ -51,7 +63,15 @@ body.is-logged-out{
 
 	// LHS tool menu collapsed to show icons only and not tool titles.
 	body.#{$namespace}toolMenu-collapsed:not(.tool-maximised) {
+		// logotext change
 		#toolMenuWrap{
+			.#{$namespace}logotext{
+				transform: rotate(-90deg);
+				-moz-transform: rotate(-90deg);
+				-webkit-transform: rotate(-90deg);
+				margin-bottom: 80px;
+				font-size : 35px;
+			}
 			max-width: #{ $tool-menu-width-collapsed };
 			min-width: #{ $tool-menu-width-collapsed };
 			width: #{ $tool-menu-width-collapsed };
@@ -133,7 +153,11 @@ body.is-logged-out{
 						button.js-toggle-nav {	// to override the non-collapsed version
 							padding: 0;
 							text-align: center;
-							background: #8c8c8c;
+							background: #6f8197;
+							&:hover, &:focus {
+								background-color: #f3f3f3;
+								color: #6f8197;
+							}
 						}
 						
 						.fa{
@@ -194,21 +218,30 @@ body.is-logged-out{
 }
 
 #toolMenuWrap{
+
+	.#{$namespace}logotext{
+		font-family: 'A Ghasem';
+		color:#ffffff;
+		margin-top: 42px;
+		margin-bottom: 42px;
+		font-size: 40px;
+	}
+
 	#toolMenu {
 		position: relative;
 	}
 	margin-left : 10px;
-	background: #646464;
+	background: #6f8197;
 	display: block;
-	min-width: $tool-menu-width;
-	width: $tool-menu-width;
+	min-width: 250px;
+	width: 250px;
 	min-height: 100vh;											// alternative for browswers who cannot do calculations
 	min-height: calc(100vh - (#{$banner-height} * 2));	// viewport minus the two top banners
-	border-top-left-radius: 20px;
+	//border-top-left-radius: 20px;
 	@include flex-basis( $tool-menu-width );
 	padding: $tool-menu-padding;
 	text-align: center;
-	border-left: 1px solid $tool-border-color;
+	//border-left: 1px solid $tool-border-color;
 	@include transition( left 0.25s linear 0s );
 
 	@media #{$phone}{
@@ -336,22 +369,28 @@ nav#subSites{
 				display:flex;
 				align-items:center;
 				justify-content:flex-end; /* right-align the arrows when expanded */
-				width: calc(#{$tool-menu-width} - 1px); /* width of sidebar minus border edge */
+				width: 249px; /* width of sidebar minus border edge */
 				padding: 0;
 				border-top: $tool-menu-collapse-border-top;
 				border-bottom: none;
 				cursor:pointer;
 				font-size: 1em;
-				color: $tool-menu-collapse-text-color;
-				background-color: #8c8c8c;;
-				box-shadow: $tool-menu-collapse-shadow;
+				color: #f3f3f3;
+				background-color: #6f8197;
+				//box-shadow: $tool-menu-collapse-shadow;
 
 				&:hover, &:focus
 				{
-					color: $tool-menu-collapse-hover-text-color;
-					border-top: $tool-menu-collapse-hover-border-top;
-					background-color: #52b387;
-					box-shadow: $tool-menu-collapse-hover-shadow;
+					color: #6f8197;
+					//border-top: $tool-menu-collapse-hover-border-top;
+					background-color: #f3f3f3;
+					//box-shadow: $tool-menu-collapse-hover-shadow;
+					button {
+						span.fa-angle-double-left
+						{
+							color: #6f8197;
+						}
+					}
 				}
 			
 				&:active 
@@ -363,17 +402,24 @@ nav#subSites{
 				{
 					justify-content:center; /* center the arrows when collapsed */
 					width: calc(#{$tool-menu-width-collapsed} - 1px); /* width of sidebar minus border edge */
-					color: $tool-menu-collapse-min-text-color;
-					border-top: $tool-menu-collapse-min-border-top;
-					background-color: $tool-menu-collapse-min-background-color;
-					box-shadow: $tool-menu-collapse-min-shadow;
+					color: #ffffff;
+					//border-top: $tool-menu-collapse-min-border-top;
+					background-color: #6f8197;
+					//box-shadow: $tool-menu-collapse-min-shadow;
 
 					&:hover, &:focus
 					{
-						color: $tool-menu-collapse-min-hover-text-color;
-						border-top: $tool-menu-collapse-min-hover-border-top;
-						background-color: $tool-menu-collapse-min-hover-background-color;
-						box-shadow: $tool-menu-collapse-min-hover-shadow;
+						color: #6f8197;
+						background-color: #f3f3f3;
+						//border-top: $tool-menu-collapse-min-hover-border-top;
+						//background-color: $tool-menu-collapse-min-hover-background-color;
+						//box-shadow: $tool-menu-collapse-min-hover-shadow;
+						button {
+							span.fa-angle-double-left
+							{
+								color: #6f8197;
+							}
+						}
 					}
 			
 					&:active 
@@ -394,6 +440,12 @@ nav#subSites{
 					&:focus 
 					{
 						outline-offset: -#{$focus-outline-width};	// to match the width of the default link focus to fit in the link container
+						color:#6f8197;
+						background-color: #f3f3f3;
+						span.fa-angle-double-left
+						{
+							color: #6f8197;
+						}
 					}
 				}
 
@@ -408,29 +460,38 @@ nav#subSites{
 	
 			// add a top border to the first tool to prevent jitter on hover when collapsed
 			&:first-of-type a {
-				border-top: 1px solid #646464;
+				border-top: 1px solid #6f8197;
 			}
-	
+	////
 			.Mrphs-toolsNav__menuitem--link{
+
 				position: relative;
 				@include display-flex;
 				@include align-items(center);
 				@if not($tool-menu-icon-on-left) {
 					@include flex-direction(column);
 				}
-				background-color: #646464;
+
+				background-color: #6f8197;
 				font-size: 1em;
 				line-height: 1.5;
 				font-weight: $tool-menu-item-text-weight;
 				text-decoration: none;
 				color: #FFFFFF;
+				font-family: 'Kalameh';
+				font-size: 20px;
+				height: 45px;
 				
 				@if $tool-menu-icon-on-left {
 					text-align: right;
+
 					border-top-left-radius: 50px;
 					border-bottom-left-radius: 50px;
-					margin-right: 0px;
-					margin-left: 12px;
+					border-top-right-radius: 50px;
+					border-bottom-right-radius: 50px;
+
+					margin-right: 11px;
+					margin-left: 11px;
 					margin-top : 5px;
 					margin-bottom: 5px; 
 					padding: 9px;
@@ -442,36 +503,36 @@ nav#subSites{
 				}
 				
 				&:before{
-					// content: '';
-					// height: 100%;
-					// display: inline-block;
-					// position: absolute;
-					// top: 0;
-					// left: 0;
-					// border-left: $tool-menu-item-border-left;
-
-					content: "";
+					content: '';
+					height: 100%;
+					display: inline-block;
 					position: absolute;
-					background: inherit;
-					top:-5px;
-					right:-5px;
-					left:-5px;
-					bottom:-5px;
-					border-radius: 50px;
-					filter: blur(20px);
-					opacity: 0;
-					transition: opacity 0.5s;
+					top: 0;
+					left: 0;
+					border-left: $tool-menu-item-border-left;
+
+					// content: "";
+					// position: absolute;
+					// background: inherit;
+					// top:-5px;
+					// right:-5px;
+					// left:-5px;
+					// bottom:-5px;
+					// border-radius: 50px;
+					// filter: blur(20px);
+					// opacity: 0;
+					// transition: opacity 0.5s;
 
 				}
 
 				&:hover {
-					// color: $tool-menu-item-hover-text-color;
-					// background: $tool-menu-item-hover-background-color;
+					color: #6f8197;
+					background: #f3f3f3;
 
-					background: linear-gradient(90deg, #03f498,#49a5da,#03f498,#49a5da,  #03f498);
-					background-size: 400%;
-					z-index : 1;
-					animation: glow 8s linear infinite;
+					// background: linear-gradient(90deg, #03f498,#49a5da,#03f498,#49a5da,  #03f498);
+					// background-size: 400%;
+					// z-index : 1;
+					// animation: glow 8s linear infinite;
 
 					&:before{
 						border-left: $tool-menu-item-hover-border-left;
@@ -494,8 +555,8 @@ nav#subSites{
 				}				
 
 				&:focus {
-					color: $tool-menu-item-hover-text-color;
-					background: $tool-menu-item-hover-background-color;
+					color: #6f8197;
+					background: #f3f3f3;
 
 					&:before{
 						border-left: $tool-menu-item-hover-border-left;
@@ -596,7 +657,7 @@ nav#subSites{
 						}
 
 						.#{$namespace}toolsNav__menuitem--icon{
-							color: $tool-menu-item-hidden-hover-icon-color;
+							color: #6f8197;
 						}
 					}
 					
@@ -610,15 +671,15 @@ nav#subSites{
 				margin-right: -1px;
 
 				.Mrphs-toolsNav__menuitem--link{
-					color: $tool-menu-item-selected-text-color;
-					background: $tool-menu-item-selected-background-color;
+					color: #6f8197;
+					background: #f3f3f3;
 
 					&:before{
 						border-left: $tool-menu-item-selected-border-left;
 					}
 
 					.#{$namespace}toolsNav__menuitem--icon{
-						color: $tool-menu-item-selected-icon-color;
+						color: #6f8197;;
 					}
 
 					.#{$namespace}toolsNav__menuitem--title{
@@ -664,8 +725,8 @@ nav#subSites{
 					}
 					&.is-current{
 						a{
-							background: $tool-sub-menu-current-background-color;
-							color: $tool-sub-menu-current-color;
+							background: #f3f3f3;
+							color: #6f8197;
 							.#{$namespace}toolsNav__menuitem--title{
 								font-weight: 700;
 							}

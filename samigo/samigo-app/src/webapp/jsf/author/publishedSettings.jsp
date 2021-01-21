@@ -45,8 +45,12 @@
       <title><h:outputText value="#{assessmentSettingsMessages.sakai_assessment_manager} #{assessmentSettingsMessages.dash} #{assessmentSettingsMessages.settings}" /></title>
       <script type="text/javascript" src="/samigo-app/jsf/widget/hideDivision/hideDivision.js"></script>
       <script type="text/javascript" src="/samigo-app/jsf/widget/colorpicker/colorpicker.js"></script>
-      <script type="text/javascript" src="/library/js/lang-datepicker/lang-datepicker.js"></script>
       <script type="text/javascript" src="/samigo-app/js/authoring.js"></script>
+
+        <link rel="stylesheet" href="/library/js/lang-datepicker/persian.datepicker.css"/>
+        <script src="/library/js/lang-datepicker/persian.date.js"></script>
+        <script src="/library/js/lang-datepicker/persian.datepicker.js"></script>
+        <script src="/library/js/lang-datepicker/new-datepicker.js"></script>
 
       <script type="text/javascript">
       if (needJQuery) {

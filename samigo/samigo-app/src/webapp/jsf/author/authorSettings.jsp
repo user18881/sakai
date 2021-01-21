@@ -45,10 +45,14 @@
       <script src="/samigo-app/jsf/widget/hideDivision/hideDivision.js"></script>
       <script src="/samigo-app/jsf/widget/colorpicker/colorpicker.js"></script>
       <script>includeWebjarLibrary('momentjs');</script>
-      <script src="/library/js/lang-datepicker/lang-datepicker.js"></script>
       <script src="/samigo-app/js/authoring.js"></script>
-      <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css"/>
       <script>includeWebjarLibrary('bootstrap-multiselect');</script>
+
+
+        <link rel="stylesheet" href="/library/js/lang-datepicker/persian.datepicker.css"/>
+        <script src="/library/js/lang-datepicker/persian.date.js"></script>
+        <script src="/library/js/lang-datepicker/persian.datepicker.js"></script>
+        <script src="/library/js/lang-datepicker/new-datepicker.js"></script>
 
       <script>
         $(document).ready(function() {
@@ -106,71 +110,70 @@
           $('#assessmentSettingsAction\\:itemNavigation\\:1').change(checkNav);
           checkNav();
 
-          // SAM-2323 jquery-UI datepicker
-          localDatePicker({
-              input: '#assessmentSettingsAction\\:startDate',
-              useTime: 1,
-              parseFormat: 'YYYY-MM-DD HH:mm:ss',
-              allowEmptyDate: false,
-              val: '<h:outputText value="#{assessmentSettings.startDate}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="#{author.userTimeZone}"/></h:outputText>',
-              ashidden: { iso8601: 'startDateISO8601' }
-          });
-          localDatePicker({
-              input: '#assessmentSettingsAction\\:endDate',
-              useTime: 1,
-              parseFormat: 'YYYY-MM-DD HH:mm:ss',
-              allowEmptyDate: true,
-              val: '<h:outputText value="#{assessmentSettings.dueDate}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="#{author.userTimeZone}"/></h:outputText>',
-              ashidden: { iso8601: 'endDateISO8601' }
-          });
-          localDatePicker({
-              input: '#assessmentSettingsAction\\:retractDate',
-              useTime: 1,
-              parseFormat: 'YYYY-MM-DD HH:mm:ss',
-              allowEmptyDate: true,
-              val: '<h:outputText value="#{assessmentSettings.retractDate}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="#{author.userTimeZone}"/></h:outputText>',
-              ashidden: { iso8601: 'retractDateISO8601' }
-          });
-          localDatePicker({
-              input: '#assessmentSettingsAction\\:feedbackDate',
-              useTime: 1,
-              parseFormat: 'YYYY-MM-DD HH:mm:ss',
-              allowEmptyDate: true,
-              val: '<h:outputText value="#{assessmentSettings.feedbackDate}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="#{author.userTimeZone}"/></h:outputText>',
-              ashidden: { iso8601: 'feedbackDateISO8601' }
-          });
-          localDatePicker({
-              input: '#assessmentSettingsAction\\:feedbackEndDate',
-              useTime: 1,
-              parseFormat: 'YYYY-MM-DD HH:mm:ss',
-              allowEmptyDate: true,
-              val: '<h:outputText value="#{assessmentSettings.feedbackEndDate}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="#{author.userTimeZone}"/></h:outputText>',
-              ashidden: { iso8601: 'feedbackEndDateISO8601' }
-          });
-          localDatePicker({
-              input: '#assessmentSettingsAction\\:newEntry-start_date',
-              useTime: 1,
-              parseFormat: 'YYYY-MM-DD HH:mm:ss',
-              allowEmptyDate: true,
-              val: '<h:outputText value="#{assessmentSettings.extendedTimeStartString}"/>',
-              ashidden: { iso8601: 'newEntry-start_date-iso8601' }
-          });
-          localDatePicker({
-              input: '#assessmentSettingsAction\\:newEntry-due_date',
-              useTime: 1,
-              parseFormat: 'YYYY-MM-DD HH:mm:ss',
-              allowEmptyDate: true,
-              val: '<h:outputText value="#{assessmentSettings.extendedTimeDueString}"/>',
-              ashidden: { iso8601: 'newEntry-due_date-iso8601' }
-          });
-          localDatePicker({
-              input: '#assessmentSettingsAction\\:newEntry-retract_date',
-              useTime: 1,
-              parseFormat: 'YYYY-MM-DD HH:mm:ss',
-              allowEmptyDate: true,
-              val: '<h:outputText value="#{assessmentSettings.extendedTimeRetractString}"/>',
-              ashidden: { iso8601: 'newEntry-retract_date-iso8601' }
-          });
+                    localDatePicker({
+                        input: '#assessmentSettingsAction\\:startDate',
+                        useTime: 1,
+                        parseFormat: 'YYYY-MM-DD HH:mm:ss',
+                        allowEmptyDate: false,
+                        val: '<h:outputText value="#{assessmentSettings.startDate}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="#{author.userTimeZone}"/></h:outputText>',
+                        ashidden: { iso8601: 'startDateISO8601' }
+                    });
+                    localDatePicker({
+                        input: '#assessmentSettingsAction\\:endDate',
+                        useTime: 1,
+                        parseFormat: 'YYYY-MM-DD HH:mm:ss',
+                        allowEmptyDate: true,
+                        val: '<h:outputText value="#{assessmentSettings.dueDate}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="#{author.userTimeZone}"/></h:outputText>',
+                        ashidden: { iso8601: 'endDateISO8601' }
+                    });
+                    localDatePicker({
+                        input: '#assessmentSettingsAction\\:retractDate',
+                        useTime: 1,
+                        parseFormat: 'YYYY-MM-DD HH:mm:ss',
+                        allowEmptyDate: true,
+                        val: '<h:outputText value="#{assessmentSettings.retractDate}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="#{author.userTimeZone}"/></h:outputText>',
+                        ashidden: { iso8601: 'retractDateISO8601' }
+                    });
+                    localDatePicker({
+                        input: '#assessmentSettingsAction\\:feedbackDate',
+                        useTime: 1,
+                        parseFormat: 'YYYY-MM-DD HH:mm:ss',
+                        allowEmptyDate: true,
+                        val: '<h:outputText value="#{assessmentSettings.feedbackDate}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="#{author.userTimeZone}"/></h:outputText>',
+                        ashidden: { iso8601: 'feedbackDateISO8601' }
+                    });
+                    localDatePicker({
+                        input: '#assessmentSettingsAction\\:feedbackEndDate',
+                        useTime: 1,
+                        parseFormat: 'YYYY-MM-DD HH:mm:ss',
+                        allowEmptyDate: true,
+                        val: '<h:outputText value="#{assessmentSettings.feedbackEndDate}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="#{author.userTimeZone}"/></h:outputText>',
+                        ashidden: { iso8601: 'feedbackEndDateISO8601' }
+                    });
+                    localDatePicker({
+                        input: '#assessmentSettingsAction\\:newEntry-start_date',
+                        useTime: 1,
+                        parseFormat: 'YYYY-MM-DD HH:mm:ss',
+                        allowEmptyDate: true,
+                        val: '<h:outputText value="#{assessmentSettings.extendedTimeStartString}"/>',
+                        ashidden: { iso8601: 'newEntry-start_date-iso8601' }
+                    });
+                    localDatePicker({
+                        input: '#assessmentSettingsAction\\:newEntry-due_date',
+                        useTime: 1,
+                        parseFormat: 'YYYY-MM-DD HH:mm:ss',
+                        allowEmptyDate: true,
+                        val: '<h:outputText value="#{assessmentSettings.extendedTimeDueString}"/>',
+                        ashidden: { iso8601: 'newEntry-due_date-iso8601' }
+                    });
+                    localDatePicker({
+                        input: '#assessmentSettingsAction\\:newEntry-retract_date',
+                        useTime: 1,
+                        parseFormat: 'YYYY-MM-DD HH:mm:ss',
+                        allowEmptyDate: true,
+                        val: '<h:outputText value="#{assessmentSettings.extendedTimeRetractString}"/>',
+                        ashidden: { iso8601: 'newEntry-retract_date-iso8601' }
+                    });
           
           var releaseToVal = $('#assessmentSettingsAction\\:releaseTo').val();
           lockdownAnonyGrading(releaseToVal);
@@ -813,7 +816,7 @@
 
  <!-- save & publish -->
   <h:commandButton  value="#{assessmentSettingsMessages.button_unique_save_and_publish}" type="submit" styleClass="active" rendered="#{assessmentSettings.hasQuestions}"
-      action="#{assessmentSettings.getOutcomePublish}" onclick="setBlockDivs();updateItemNavigation(false);" >
+      action="#{assessmentSettings.getOutcomePublish}" onclick="setBlockDivs();updateItemNavigation(false);updateDateBoxes();" >
       <f:actionListener type="org.sakaiproject.tool.assessment.ui.listener.author.ConfirmPublishAssessmentListener" />
       <f:actionListener type="org.sakaiproject.tool.assessment.ui.listener.author.PublishAssessmentListener" />
   </h:commandButton>
@@ -822,7 +825,7 @@
       action="#{assessmentSettings.getOutcomePublish}" disabled="true" />
       
   <!-- Save button -->
-  <h:commandButton type="submit" value="#{commonMessages.action_save}" action="#{assessmentSettings.getOutcomeSave}"  onclick="setBlockDivs();updateItemNavigation(false);">
+  <h:commandButton type="submit" value="#{commonMessages.action_save}" action="#{assessmentSettings.getOutcomeSave}"  onclick="setBlockDivs();updateItemNavigation(false);updateDateBoxes();">
       <f:param name="assessmentId" value="#{assessmentSettings.assessmentId}"/>
       <f:actionListener type="org.sakaiproject.tool.assessment.ui.listener.author.SaveAssessmentSettingsListener"/>
   </h:commandButton>

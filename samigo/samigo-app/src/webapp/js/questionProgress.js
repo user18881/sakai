@@ -37,14 +37,14 @@
 
 		$("#qpOpen").toggle();
 		$("#qpClose").toggle();
-		$("#questionProgressPanel").toggle("slide", {direction: "right"});
+		$("#questionProgressPanel").toggle("slide", {direction: "left"});
 
 		// Position the clickTab
 		if (!QPToggleOn) {
-			$("#questionProgressClick").animate({marginTop: 0, right: panelWidth}, animateTimer);
+			$("#questionProgressClick").animate({marginTop: 0, left: panelWidth}, animateTimer);
 		}
 		else {
-			$("#questionProgressClick").animate({marginTop: 0, right: 0}, animateTimer);
+			$("#questionProgressClick").animate({marginTop: 0, left: 0}, animateTimer);
 		}
 	}
 
@@ -152,7 +152,7 @@
 				document.getElementById('qpOpen').style.display = "none";
 				document.getElementById('qpClose').style.display = "block";
 				document.getElementById('questionProgressPanel').style.display = "none";
-				document.getElementById('questionProgressClick').style.right = 0;
+				document.getElementById('questionProgressClick').style.left = 0;
 				newWrapWidth = newWrapWidth + CLICK_PANEL_WIDTH;
 			} else {
 				document.getElementById('qpOpen').style.display = "block";

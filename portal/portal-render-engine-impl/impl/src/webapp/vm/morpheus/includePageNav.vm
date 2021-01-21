@@ -2,6 +2,10 @@
 
 <div id="toolMenuWrap" class="Mrphs-container Mrphs-container--nav-tools" #if($scrollingToolbarEnabled) scrollingToolbarEnabled #end>
 
+	<div class="Mrphs-logotext">
+		${rloader.sakai_name}
+	</div>
+	
     #if ($sitePages.siteHTMLInclude)
 
         <div id="siteHTMLInclude" class="Mrphs-siteHTMLInclude">

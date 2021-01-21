@@ -100,45 +100,6 @@
                                 #end ## END of IF (${tool.toolJSR168Edit} )
 
 				                    <span class="Mrphs-toolTitleNav__addRight"></span>
-                                #if ( $toolDirectUrlEnabled && ${tool.showDirectToolUrl} )
-
-                                    <button class="Mrphs-toolTitleNav__link Mrphs-toolTitleNav__link--directurl" rel="#${tool.toolPlacementIDJS}_directurl" title="${rloader.tool_direct_link}" aria-haspopup="dialog">
-                                        <span class="Mrphs-itemTitle">${rloader.tool_direct_button_link}</span>
-                                    </button>
-                                    <div id="${tool.toolPlacementIDJS}_directurl" role="dialog" aria-labelledby="${tool.toolPlacementIDJS}_directurl__title" class="Mrphs-directUrl Mrphs-directUrl__dropDown">
-                                        <i class="fa fa-times dropDown_close" aria-hidden="true" tabindex="0"></i>
-                                        <label for="${tool.toolPlacementIDJS}_urlholder" id="${tool.toolPlacementIDJS}_directurl__title" class="dropDown_title">${rloader.tool_direct_link}</label>
-                                        #if($toolShortUrlEnabled)
-
-                                            <input tabindex="0" type="checkbox" id="directToolUrl-${i}" onclick="toggleShortUrlOutput('${tool.directToolUrl}', this, '${tool.toolPlacementIDJS}_urlholder');" class="Mrphs-directUrl__checkbox"><label for="directToolUrl-${i}">${rloader.short_url}</label>
-
-                                        #end ## END of IF ($toolShortUrlEnabled)
-
-                                        <textarea name="${tool.toolPlacementIDJS}_urlholder" id="${tool.toolPlacementIDJS}_urlholder" tabindex="0" class="Mrphs-directUrl__textarea ${tool.toolPlacementIDJS}_urlholder" >${tool.directToolUrl}</textarea>
-                                    </div>
-
-                                #end ## END of IF ( $toolDirectUrlEnabled && ${tool.showDirectToolUrl} )
-
-                                #if (${tool.toolShowHelpButton})
-
-                                    #if (${tool.toolJSR168Help})
-
-                                        <a class="Mrphs-toolTitleNav__link Mrphs-toolTitleNav__link--help" accesskey="h" href="${tool.toolJSR168Help}" title="$rloader.getFormattedMessage("sit_helpfor", $tool.toolRenderResult.title)">
-                                            <span class="Mrphs-itemTitle">${rloader.sit_help}</span>
-                                            <span class="skip">${rloader.site_newwindow}</span>
-                                        </a>
-
-                                    #else
-
-                                        <a class="Mrphs-toolTitleNav__link Mrphs-toolTitleNav__link--help-popup" href="${tool.toolHelpActionUrl}" title="$rloader.getFormattedMessage("sit_helpfor", $tool.toolRenderResult.title)" target="_blank" onclick="openWindow('${tool.toolHelpActionUrl}', 'Help', 'resizable=yes,toolbar=no,scrollbars=yes,menubar=yes,width=1024,height=768'); return false">
-                                            <span class="Mrphs-itemTitle">${rloader.sit_help}</span>
-                                            <span class="skip">${rloader.site_newwindow}</span>
-                                        </a>
-
-                                    #end ## END of IF (${tool.toolJSR168Help})
-
-                                #end ## END of IF (${tool.toolShowHelpButton})
-
                                     <sakai-maximise-button #if (${toolMaximised}) full-screen #end></sakai-maximise-button>
 
                                 </div>
@@ -253,43 +214,7 @@
                                     <a class="Mrphs-toolTitleNav__link Mrphs-toolTitleNav__link--edit" accesskey="e" id="jsr-edit" href="${tool.toolJSR168Edit}" title="${rloader.sit_edit}">
                                         <span class="Mrphs-itemTitle">${rloader.sit_edit}</span>
                                     </a>
-                                #end ## END of IF (${tool.toolJSR168Edit})
-                                 
-                                #if ( $toolDirectUrlEnabled && ${tool.showDirectToolUrl} )
-                                	<!-- TO-DO: let same as the other -->
-                                	
-                                	<button class="Mrphs-toolTitleNav__link Mrphs-toolTitleNav__link--directurl" rel="#${tool.toolPlacementIDJS}_directurl" title="${rloader.tool_direct_link}" aria-haspopup="dialog">
-                                        <span class="Mrphs-itemTitle">${rloader.tool_direct_button_link}</span>
-                                    </button>
-                                    <div id="${tool.toolPlacementIDJS}_directurl" role="dialog" aria-labelledby="${tool.toolPlacementIDJS}_directurl__title" class="Mrphs-directUrl Mrphs-directUrl__dropDown">
-                                        <i class="fa fa-times dropDown_close" aria-hidden="true" tabindex="0"></i>
-                                        <label for="${tool.toolPlacementIDJS}_urlholder" id="${tool.toolPlacementIDJS}_directurl__title" class="dropDown_title">${rloader.tool_direct_link}</label>
-                                        #if($toolShortUrlEnabled)
-
-                                            <input tabindex="0" type="checkbox" id="directToolUrl-${i}" onclick="toggleShortUrlOutput('${tool.directToolUrl}', this, '${tool.toolPlacementIDJS}_urlholder');" class="Mrphs-directUrl__checkbox"><label for="directToolUrl-${i}">${rloader.short_url}</label>
-
-                                        #end ## END of IF ($toolShortUrlEnabled)
-
-                                        <textarea name="${tool.toolPlacementIDJS}_urlholder" id="${tool.toolPlacementIDJS}_urlholder" tabindex="0" class="Mrphs-directUrl__textarea ${tool.toolPlacementIDJS}_urlholder" >${tool.directToolUrl}</textarea>
-                                    </div>
-                                #end ## END of IF ( $toolDirectUrlEnabled && ${tool.showDirectToolUrl} )
-                                
-                                #if (${tool.toolShowHelpButton})
-                                
-                                    #if (${tool.toolJSR168Help})
-                                        <a class="Mrphs-toolTitleNav__link Mrphs-toolTitleNav__link--help" accesskey="h" href="${tool.toolJSR168Help}" title="$rloader.getFormattedMessage("sit_helpfor", $tool.toolRenderResult.title)">
-                                            <span class="Mrphs-itemTitle">${rloader.sit_help}</span>
-                                            <span class="skip">${rloader.site_newwindow}</span>
-                                        </a>
-                                    #else
-                                        <a class="Mrphs-toolTitleNav__link Mrphs-toolTitleNav__link--help-popup" href="${tool.toolHelpActionUrl}" title="$rloader.getFormattedMessage("sit_helpfor", $tool.toolRenderResult.title)" target="_blank" onclick="openWindow('${tool.toolHelpActionUrl}', 'Help',  'resizable=yes,toolbar=no,scrollbars=yes,menubar=yes,width=1024,height=768'); return false">
-                                            <span class="Mrphs-itemTitle">${rloader.sit_help}</span>
-                                            <span class="skip">${rloader.site_newwindow}</span>
-                                        </a>
-                                    #end ## END of IF (${tool.toolJSR168Help})
-                                     
-                                #end ## END of IF (${tool.toolShowHelpButton})
-
+                                #end ## END of IF (${tool.toolJSR168Edit})                             
                                 </div>
                                 
                             </nav> ## END nav.Mrphs-toolTitleNav.Mrphs-container.Mrphs-container--toolTitleNav

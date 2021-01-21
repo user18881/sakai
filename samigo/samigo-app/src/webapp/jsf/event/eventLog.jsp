@@ -136,7 +136,7 @@
 
 	 <h:panelGroup styleClass="#{eventLog.isDeleted(log.assessmentId) ? 'eventLogDeleted' : ''}">
 	  <h:outputText value="#{log.startDate}">
-	    <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
+	    <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" /> 
 	  </h:outputText>
      </h:panelGroup>
 	</h:column>
@@ -156,7 +156,7 @@
 
 	 <h:panelGroup styleClass="#{eventLog.isDeleted(log.assessmentId) ? 'eventLogDeleted' : ''}">
 	  <h:outputText value="#{log.endDate}">
-	    <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
+	    <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" /> 
 	  </h:outputText>
      </h:panelGroup>
 	</h:column>

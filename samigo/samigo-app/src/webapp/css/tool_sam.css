@@ -117,7 +117,7 @@ h4.samigo-category-subhead-2 {
 */
 .navViewAction {
 background-color:#CCC;
-text-align:left;
+text-align:right;
 padding:.3em;
 vertical-align: bottom;
 font-size:1.2em
@@ -158,7 +158,7 @@ font-size:1.2em
 
 
 .navList{
-        text-align: right;
+        text-align: left;
 }
 .navView{
         text-align: left;
@@ -1199,11 +1199,11 @@ td.feedbackColumn2 {
 	max-height:auto;
 	width: 300px;
 	background: #eaf1fb;
-	right:0px;
+	left:0px;
 	display: none;
 	position: absolute;
 	padding-bottom: 1em;
-	top:20px;
+	top:100px;
        color: #022f6a;
         border: 1px solid #022f6a;
         border-bottom-left-radius: 10px;
@@ -1216,18 +1216,18 @@ div#questionProgressPanel div.tier1 {
 #questionProgressClick {
 	height: 200px;
 	width: 40px;
-	background: #022f6a;
-	right:299px;
+	background: #589dc2;
+	left: 0px;
 	margin-top: 200px;
 	position: absolute;
 	display: none;
 	font-weight: bold;
-	-moz-border-radius-topleft: 15px;
-	border-top-left-radius: 15px;
-	-moz-border-radius-bottomleft: 15px;
-	border-bottom-left-radius: 15px;
+	-moz-border-radius-topright: 15px;
+	border-top-right-radius: 15px;
+	-moz-border-radius-bottomright: 15px;
+	border-bottom-right-radius: 15px;
 	cursor: pointer;
-	top: 20px
+	top: 100px
 }
 .currentQuestion {
 	border: 1px solid #74acde;
@@ -1274,16 +1274,16 @@ p.progressItem img {
 	margin-top:154px;
 
 	/* Safari */
-	-webkit-transform: rotate(-90deg);
+	-webkit-transform: rotate(90deg);
 
 	/* Firefox */
-	-moz-transform: rotate(-90deg);
+	-moz-transform: rotate(90deg);
 
 	/* IE */
-	-ms-transform: rotate(-90deg);
+	-ms-transform: rotate(90deg);
 
 	/* Opera */
-	-o-transform: rotate(-90deg);
+	-o-transform: rotate(90deg);
 
 	/* Internet Explorer */
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);

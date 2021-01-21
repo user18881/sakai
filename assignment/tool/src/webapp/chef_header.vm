@@ -8,5 +8,7 @@
 
 #header_append("<script type=${quote}text/javascript${quote}>includeWebjarLibrary(${quote}bootstrap-multiselect${quote});</script>")
 #header_append("<script type=${quote}text/javascript${quote}>includeWebjarLibrary(${quote}momentjs${quote});</script>")
+#header_append("<link rel=${quote}stylesheet${quote} href=${quote}/library/js/lang-datepicker/persian.datepicker.css${quote}/>")
+
 
 #chef_start()

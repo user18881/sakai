@@ -236,6 +236,27 @@
                 return true   
             }
         }
+
+        function convertTimePersian(){
+            var rawdate;
+            var x;
+            for(i = 0 ; ; i++){
+                if(document.getElementById("authorIndexForm:coreAssessments:"+i+":changeStartDate") == null){
+                    break;
+                }
+                rawdate = document.getElementById("authorIndexForm:coreAssessments:"+i+":changeStartDate").innerHTML;
+                x = moment(rawdate, "YYYYMMDDhhmmss").toDate().toLocaleString("fa-IR");
+                document.getElementById("authorIndexForm:coreAssessments:"+i+":changeStartDateMain").innerHTML = x;
+
+                rawdate = document.getElementById("authorIndexForm:coreAssessments:"+i+":changeDueDate").innerHTML;
+                x = moment(rawdate, "YYYYMMDDhhmmss").toDate().toLocaleString("fa-IR");
+                document.getElementById("authorIndexForm:coreAssessments:"+i+":changeDueDateMain").innerHTML = x;
+
+                rawdate = document.getElementById("authorIndexForm:coreAssessments:"+i+":changeModifiedDate").innerHTML;
+                x = moment(rawdate, "YYYYMMDDhhmmss").toDate().toLocaleString("fa-IR");
+                document.getElementById("authorIndexForm:coreAssessments:"+i+":changeModifiedDateMain").innerHTML = x;
+            }
+        }
     </script>
 
     <!-- content... -->
@@ -556,11 +577,10 @@
                         </h:panelGroup>
                     </f:facet>
 
-                    <h:outputText value="#{assessment.startDate}" >
+                    <h:outputText id="changeStartDateMain" value="#{assessment.startDate}" >
                         <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
                     </h:outputText>
-
-                    <h:outputText value="#{assessment.startDate}" styleClass="hidden spanValue">
+                    <h:outputText id="changeStartDate" value="#{assessment.startDate}" styleClass="hidden spanValue">
                         <f:convertDateTime pattern="yyyyMMddHHmmss" />
                     </h:outputText>
                 </t:column>
@@ -575,11 +595,10 @@
                         </h:panelGroup>
                     </f:facet>
 
-                    <h:outputText value="#{assessment.dueDate}">
+                    <h:outputText  id="changeDueDateMain" value="#{assessment.dueDate}">
                         <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
                     </h:outputText>
-
-                    <h:outputText value="#{assessment.dueDate}" styleClass="hidden spanValue">
+                    <h:outputText id="changeDueDate" value="#{assessment.dueDate}" styleClass="hidden spanValue">
                         <f:convertDateTime pattern="yyyyMMddHHmmss" />
                     </h:outputText>
                 </t:column>
@@ -607,11 +626,10 @@
                         </h:panelGroup>
                     </f:facet>
 
-                    <h:outputText value="#{assessment.lastModifiedDate}">
+                    <h:outputText id="changeModifiedDateMain" value="#{assessment.lastModifiedDate}">
                         <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
                     </h:outputText>
-
-                    <h:outputText value="#{assessment.lastModifiedDate}" styleClass="hidden spanValue">
+                    <h:outputText id="changeModifiedDate" value="#{assessment.lastModifiedDate}" styleClass="hidden spanValue">
                         <f:convertDateTime pattern="yyyyMMddHHmmss" />
                     </h:outputText>
                 </t:column>
@@ -648,5 +666,8 @@
     </h:form>
 <!-- end content -->
 </div>
+<script>
+        convertTimePersian();
+</script>
 </body>
 </html>

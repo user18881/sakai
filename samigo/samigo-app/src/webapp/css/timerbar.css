@@ -39,11 +39,12 @@
 	position: absolute;
 	top: 0px;
 	width: 75%;
-	background-color: #000036; 
+	background-color: #346784;
 	margin: 0;
 	margin-left: 15px;
 	padding: 0;
 	z-index: 2;
+	left: 0px;
 }
 
 #timerBlank {
@@ -114,7 +115,7 @@ tr.timerSubmission:nth-child(even) {
 		position: absolute;
 		top: 0px;
 		width: 100%;
-		background-color: #022f6a;
+		background-color: #76acca;
 		margin: 0;
 		padding: 0;
 		z-index: 2;

@@ -116,6 +116,7 @@ public class EventLogBean implements Serializable {
 	public List<EventLogData> getEventLogDataList() {
 		return eventLogDataList;
 	}
+
 	public void setEventLogDataList(List<EventLogData> eventLogDataList) {
 		this.eventLogDataList = eventLogDataList;		
 	}
