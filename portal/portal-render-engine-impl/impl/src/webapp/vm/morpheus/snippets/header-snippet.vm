@@ -1,8 +1,10 @@
 ## Header that shows institution and/or banner logos
 
 <header role="banner" class="Mrphs-headerLogo">
-    <span class="Mrphs-headerLogo--institution"></span>
-    <span class="Mrphs-headerLogo--banner"></span>
-
+    #if($loggedIn)
+        <script src="/library/js/custom/siteviewbutton.js"></script>
+        <a class="Mrphs-siteviewbutton" title="${rloader.siteviewbutton}" onclick="changemenu();">&#8801;</a>
+    #end
+        <span class="Mrphs-headerLogo--banner"></span>
     #parse("/vm/morpheus/includeLoginNav.vm")
 </header>

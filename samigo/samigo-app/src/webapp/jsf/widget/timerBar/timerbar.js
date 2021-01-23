@@ -61,7 +61,8 @@
       var timerBlock = $("#timerBlock");
 
       function setScrolling() {
-          headerHeight = $("header").height();
+          //headerHeight = $("header").height();
+          headerHeight = 0;
           while (topWindow !== window.top) {
               var frameName = topWindow.name;
               topWindow = topWindow.parent.self;

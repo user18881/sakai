@@ -129,7 +129,7 @@ code {
 	color: #555;
 	white-space: nowrap;
 	vertical-align: top;
-	text-align: left;
+	text-align: right;
 	padding: .3em 1em .3em .3em;
 }
 
@@ -138,7 +138,7 @@ code {
 }
 
 table.itemSummary td, td.itemSummaryLite{
-	text-align: left;
+	text-align: right;
 	padding: .3em 1em;
 	vertical-align: top;
 }
@@ -161,7 +161,7 @@ table.listHier{
 
 table.listHier th{
 	font-weight: normal;
-	text-align: left;
+	text-align: right;
 	white-space: nowrap;
 	padding: .3em;
 }
@@ -732,7 +732,7 @@ td table.checkbox td{
 
 .sidebyside th{
 	padding: .3em;
-	text-align: left;
+	text-align: right;
 	font-weight: normal;
 }
 

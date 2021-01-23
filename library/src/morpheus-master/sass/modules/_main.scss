@@ -20,6 +20,7 @@
 	@include align-items(stretch);
 	@include display-flex;
 	@include flex-direction(row);
+	min-height: 1200px;
 	
 	> .#{$namespace}pagebody{
 		@include display-flex;
@@ -85,7 +86,7 @@
 // Note: this is the footer container; see _footer.scss for the rest of the design of the footer
 .#{$namespace}container--footer {
 	margin-top: auto; 	// push the footer to the bottom of the page
-	background-color: #646464;
+	background-color: #fafafa;
 	border-top: 1px solid $footer-border-color;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;

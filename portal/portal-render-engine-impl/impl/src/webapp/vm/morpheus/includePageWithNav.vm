@@ -16,6 +16,21 @@
     #end ## END of IF ( $sitePages.pageNavToolsCount > 1 || ! $sitePages.pageMaxIfSingle )
 
     <div class="Mrphs-pagebody">
+
+        <div #if ( ${tabsSites} ) class="Mrphs-mainHeader is-maximized" #else class="Mrphs-mainHeader is-minimized" #end>
+
+                ## Header
+                <div class="Mrphs-topHeader">
+                    #parse("/vm/morpheus/snippets/header-snippet.vm")
+                </div>
+
+                #if (${tabsSites})
+                    ## tabs
+                    #parse("/vm/morpheus/includeTabs.vm")
+                #end ## END of IF (${tabsSites})
+
+        </div>
+
         #parse("/vm/morpheus/snippets/siteStatus-snippet.vm")
 
         #parse("/vm/morpheus/includeSiteHierarchy.vm")

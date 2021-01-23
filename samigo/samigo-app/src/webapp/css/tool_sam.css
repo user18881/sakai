@@ -1201,11 +1201,11 @@ td.feedbackColumn2 {
 	background: #eaf1fb;
 	left:0px;
 	display: none;
-	position: absolute;
+	position: fixed;
 	padding-bottom: 1em;
-	top:100px;
+	top: 300px;
        color: #022f6a;
-        border: 1px solid #022f6a;
+        border: 1px solid #589dc2;
         border-bottom-left-radius: 10px;
 }
 
@@ -1219,7 +1219,7 @@ div#questionProgressPanel div.tier1 {
 	background: #589dc2;
 	left: 0px;
 	margin-top: 200px;
-	position: absolute;
+	position: fixed;
 	display: none;
 	font-weight: bold;
 	-moz-border-radius-topright: 15px;
@@ -1227,7 +1227,7 @@ div#questionProgressPanel div.tier1 {
 	-moz-border-radius-bottomright: 15px;
 	border-bottom-right-radius: 15px;
 	cursor: pointer;
-	top: 100px
+	top: 300px;
 }
 .currentQuestion {
 	border: 1px solid #74acde;

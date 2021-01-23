@@ -28,6 +28,7 @@
 		// TODO : get best box shad
 		-webkit-box-shadow: 4px 7px 25px -9px rgba(0,0,0,0.7); 
 		box-shadow: 4px 7px 25px -9px rgba(0,0,0,0.7);
+		margin-right : 20px;
 
 		&.#{$namespace}toolTitleNav.#{$namespace}container.#{$namespace}container--toolTitleNav {
 			border-top: 0;

@@ -1,6 +1,11 @@
 /* Global namespace */
 @import "customization"; //it is copied from the user supplied file by maven
 
+@font-face{
+    font-family : Vazir;
+    src : url('/library/fonts/Vazir.ttf');
+}
+
 $namespace : "Mrphs-" !default;
 $skin-name : "morpheus-default" !default; // This is used for bootstrap font behaviour.
 
@@ -30,7 +35,8 @@ $font-family-url: "https://fonts.googleapis.com/css?family=Open+Sans:400,600,700
 @import url(#{$font-family-url});
 
 //Typography variables
-$font-family: "Open Sans",sans-serif;
+//$font-family: "Open Sans",sans-serif;
+$font-family: Vazir;
 $default-font-size: 14px !default;
 $default-font-size-small: 12px;
 $default-font-weight: 400 !default;										// 400 or 700 as you wish
@@ -42,7 +48,8 @@ $header-font-weight: 700 !default;										// 400 or 700 as you wish
 $background-color: 			 #FFFFFF !default;
 $background-color-secondary: #000036 !default;
 
-$primary-color:    			 #15597e !default;
+//$primary-color:    			 #15597e !default;
+$primary-color:    			 #616f80 !default;
 $primary-color-highContrast: darken( $primary-color, 4% ) !default;	// for use of primary on non-white light backgrounds, such as greys
 $primary-color-shadow:			 adjust-hue( $primary-color, 5 ) !default;	// To give primary a darker shadow
 $secondary-color:  			 #F00 !default;
@@ -143,7 +150,8 @@ $button-primary-text-color:                 #fff;
 $button-primary-background:                 $primary-color;
 $button-primary-border-color:               #326b97;
 $button-primary-text-transform:             none !default;
-$button-primary-font-weight:                400 !default;
+//$button-primary-font-weight:                400 !default;
+$button-primary-font-weight:                normal !default;
 $button-primary-shadow:                     $button-shadow !default;
 // hover and focus states for primary action button:
 $button-primary-hover-text-color:           $button-primary-text-color;

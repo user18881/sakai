@@ -25,16 +25,31 @@ body.is-logged-out{
 
 .#{$namespace}mainHeader{
 
-		box-shadow: $divider-shadow-fixed;		
+		//box-shadow: $divider-shadow-fixed;		
 		position: relative;
 		background: #f5f5f5;
 
 	.#{$namespace}headerLogo{
-		width: 100%;
+		//width: 100%;
+
 		padding: 0 $standard-spacing;
-		height: $banner-height;
+		height: 75px;
 		background: #ffffff;
 		border-radius: 10px;
+		// TODO : get best box shad
+		-webkit-box-shadow: 4px 7px 25px -9px rgba(0,0,0,0.7); 
+		box-shadow: 4px 7px 25px -9px rgba(0,0,0,0.7);
+		margin : 15px;
+
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+
+		@media #{$phone} {
+			margin : 0;
+			width : 100%;
+			height: 52px;
+		}
 
 		text-align: center;
 		@include transition( width 0.5s linear 0s );
@@ -45,6 +60,30 @@ body.is-logged-out{
 			float: right;
 			background-size: $logo-width $logo-height;
 		}
+
+		.#{$namespace}siteviewbutton{
+			@media #{$phone}{
+				display: none;
+			}
+			border-radius: 40%;
+			height: 30px;
+			width: 35px;
+			background-color: #fff;
+			font-size: 30px;
+			text-align: center;
+			align-content: center;
+			display: grid;
+			color: #6e8096;
+			font-weight: bold;
+			margin-left: auto;
+			padding-top: 3px;
+			&:hover{
+				cursor: pointer;
+				background : #cccccc;
+				color : #fff;
+			}
+		}
+
 	}
 
 	.#{$namespace}loginUser{
@@ -87,16 +126,18 @@ body.is-logged-out{
 	}
 
 	&.is-fixed {
-		.#{$namespace}topHeader {
-			padding-top: $banner-height;
-		}
-		.#{$namespace}headerLogo {
-			position: fixed;
-			top: 0;
-			width: 100%;
-			box-shadow: $divider-shadow;
-			z-index: 1000;
-			overflow: visible;
+		@media #{$phone}{
+			.#{$namespace}topHeader {
+				padding-top: $banner-height;
+			}
+			.#{$namespace}headerLogo {
+				position: fixed;
+				top: 0;
+				width: 100%;
+				box-shadow: $divider-shadow;
+				z-index: 1000;
+				overflow: visible;
+			}
 		}
 	}
 
@@ -213,19 +254,19 @@ body.is-logged-out{
 }
 
 .#{$namespace}topHeader{
-	background: #bdbdbd;
+	background: #f5f5f5;
 	color: $background-color;
 	font-size: 1em;
 	height: auto;
 	width: 100%;
-	box-shadow: $divider-shadow;
-	border-bottom-left-radius: 20px;
+	//box-shadow: $divider-shadow;
+	//border-bottom-left-radius: 20px;
 	a
 	{
 		@include display-flex;
 		@include align-items( center );
 
-		color: $topNav-text-color;
+		color: #6e8096;
 		@media #{$phone} {
 			line-height: 1;
 		}
@@ -365,7 +406,7 @@ body.is-logged-out{
 				}
 
 				&.#{$namespace}roleSwitch__exit {
-					color: $topNav-text-color;
+					color: #6f8197;
 				}
 			}
 		}
@@ -462,6 +503,9 @@ body.is-logged-out{
 			margin-left: 10px;
 
 			background : #00d170;
+			font-weight: bold;
+			font-size: 17px;
+			margin-right: 33px;
 
 
 			@media #{$phone}
@@ -566,6 +610,7 @@ body.is-logged-out{
 			padding: 0 !important;
 		}
 		.#{$namespace}userNav__submenuitem--profilepicture{
+
 			width: 2.3em;
 			height: 2.3em;
 			display:inline-block;
@@ -573,13 +618,20 @@ body.is-logged-out{
 			background-position: 50%;
 			border-radius:50%;
 			margin: 0 4px 0 0;
-			border: $top-header-profile-border-thickness solid $top-header-profile-border-color-top;			
-			border-right-color: $top-header-profile-border-color-right;
-			border-bottom-color: $top-header-profile-border-color-bottom;
-			border-left-color: $top-header-profile-border-color-left;
-			border-radius: 50%;
-			box-shadow:inset 0 0 0 2px $top-header-profile-border-color-inner;
+			// border: $top-header-profile-border-thickness solid $top-header-profile-border-color-top;			
+			// border-right-color: $top-header-profile-border-color-right;
+			// border-bottom-color: $top-header-profile-border-color-bottom;
+			// border-left-color: $top-header-profile-border-color-left;
+			// box-shadow:inset 0 0 0 2px $top-header-profile-border-color-inner;
+
 			position: relative;
+			border-radius: 50%;
+
+			@media #{$nonPhone} {
+				width : 60px;
+				height: 60px;
+				//margin-top : 23px;
+			}
 
 			&:hover, &:active
 			{
@@ -871,11 +923,20 @@ body.is-logged-out{
 }
 #topnav_container
 {
-	@include display-flex;
+	//@include display-flex;
+	display : none;
 	@include align-items(center);
-	background-color: #bdbdbd;
+	background-color: #ffffff;
 	min-height: $banner-height;
 	padding: 0 $standard-spacing;		// space on the sides; top and bottom spacing will be determined by children
+
+	border-radius: 10px;
+	margin-right: 15px;
+	margin-left: 15px;	
+
+	// TODO : get best box shad
+	-webkit-box-shadow: 4px 7px 25px -9px rgba(0,0,0,0.7); 
+	box-shadow: 4px 7px 25px -9px rgba(0,0,0,0.7);
 }
 
 #linkNav{
@@ -893,7 +954,7 @@ body.is-logged-out{
 			margin: 0 $standard-spacing $standard-spacing 0;	// space the items apart, and space vertically if wrapped
 			padding: 0;
 			border-radius: $sites-nav-menu-item-border-radius;
-			background: #cadae3;
+			background: #f1f1f1;
 			.link-container{
 				@include display-flex;
 				@include align-items( center );
@@ -914,11 +975,11 @@ body.is-logged-out{
 				}
 				
 				.link-container, .#{$namespace}sitesNav__dropdown, .#{$namespace}sitesNav__favbtn {
-						border-top: 1px solid #cadae3;
-						border-right: 1px solid #cadae3;
-						border-bottom: 1px solid #cadae3;
-						border-left: 1px solid #cadae3;
-						background: #cadae3;
+						border-top: 1px solid #f1f1f1;
+						border-right: 1px solid #f1f1f1;
+						border-bottom: 1px solid #f1f1f1;
+						border-left: 1px solid #f1f1f1;
+						background: #f1f1f1;
 				}
 			}
 
@@ -1017,15 +1078,15 @@ body.is-logged-out{
 			
 			// Current site is selected:
 			&.is-selected {
-				background: #52b387;
+				background: #6f8197;
 				.link-container, .#{$namespace}sitesNav__dropdown, .#{$namespace}sitesNav__favbtn {
 
-					background: #52b387;
-					border-top: 1px solid #52b387;
-					border-right: 1px solid #52b387;
-					border-bottom: 1px solid #52b387;
-					border-left: 1px solid #52b387;
-					color: $sites-nav-menu-item-selected-color;
+					background: #6f8197;
+					border-top: 1px solid #6f8197;
+					border-right: 1px solid #6f8197;
+					border-bottom: 1px solid #6f8197;
+					border-left: 1px solid #6f8197;
+					color: #f1f1f1;
 					font-weight: $sites-nav-menu-item-selected-font-weight;
 
 					&:hover, &:focus {
@@ -1034,6 +1095,7 @@ body.is-logged-out{
 						border-bottom: $sites-nav-menu-item-selected-hover-border-bottom;
 						border-left: $sites-nav-menu-item-selected-hover-border-left;
 						background: $sites-nav-menu-item-selected-hover-background;
+						color : #6f8197;
 					}
 				}
 
@@ -1044,11 +1106,11 @@ body.is-logged-out{
 					}
 					
 					.link-container, .#{$namespace}sitesNav__dropdown, .#{$namespace}sitesNav__favbtn {
-						border-top: 1px solid #cadae3;
-						border-right: 1px solid #cadae3;
-						border-bottom: 1px solid #cadae3;
-						border-left: 1px solid #cadae3;
-						background:#cadae3;
+						border-top: 1px solid #f1f1f1;
+						border-right: 1px solid #f1f1f1;
+						border-bottom: 1px solid #f1f1f1;
+						border-left: 1px solid #f1f1f1;
+						background:#f1f1f1;
 					}
 				}
 

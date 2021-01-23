@@ -1,10 +1,10 @@
 @mixin sitesNavStyling() {
 	padding: ($standard-space * 2);
-	border-top: 1px solid #cadae3;
-	border-right: 1px solid #cadae3;
-	border-bottom: 1px solid #cadae3;
-	border-left: 1px solid #cadae3;
-	background: #cadae3;
+	border-top: 1px solid #f1f1f1;
+	border-right: 1px solid #f1f1f1;
+	border-bottom: 1px solid #f1f1f1;
+	border-left: 1px solid #f1f1f1;
+	background: #f1f1f1;
 	text-align: center;
 	text-decoration: none;
 	color: $sites-nav-menu-item-color;

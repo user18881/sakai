@@ -19,25 +19,10 @@
 
             ## Skip Nav
             #parse("/vm/morpheus/snippets/skipNav-snippet.vm")
-
-            <div #if ( ${tabsSites} ) class="Mrphs-mainHeader is-maximized" #else class="Mrphs-mainHeader is-minimized" #end>
-
-                ## Header
-                <div class="Mrphs-topHeader">
-                    #parse("/vm/morpheus/snippets/header-snippet.vm")
-                </div>
-
-                #if (${tabsSites})
-                    ## tabs
-                    #parse("/vm/morpheus/includeTabs.vm")
-                #end ## END of IF (${tabsSites})
-
-            </div>
-
             #parse("/vm/morpheus/moresites.vm")
             #parse("/vm/morpheus/includePageWithNav.vm")
-
-        </div> <!-- end Mrphs-portalWrapper -->
+        </div>
+  <!-- end Mrphs-portalWrapper -->
         <!-- END VM site.vm -->
 
         <!-- Viewport helpers -->
