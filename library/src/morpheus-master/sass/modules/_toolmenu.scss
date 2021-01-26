@@ -70,6 +70,7 @@ body.is-logged-out{
 				-moz-transform: rotate(-90deg);
 				-webkit-transform: rotate(-90deg);
 				margin-bottom: 80px;
+				margin-top : 80px;
 				font-size : 35px;
 			}
 			max-width: #{ $tool-menu-width-collapsed };
@@ -84,6 +85,7 @@ body.is-logged-out{
 				li{
 					.Mrphs-toolsNav__menuitem--icon {
 						padding: 0;	
+						margin-left: 0px;
 					}
 					.Mrphs-toolsNav__menuitem--link{
 						min-height: 1.7em;
@@ -91,8 +93,13 @@ body.is-logged-out{
 						border-radius: 10px;
 						margin: $tool-menu-item-collapsed-margin; 
 						padding: $tool-menu-item-collapsed-padding;
+
 						&:hover, &:focus {
 							position: relative;
+
+							border-top-right-radius: 0px;
+							border-bottom-right-radius : 0px;
+
 							.#{$namespace}toolsNav__menuitem--title{
 								display: block;
 								position: absolute;
@@ -230,7 +237,7 @@ body.is-logged-out{
 	#toolMenu {
 		position: relative;
 	}
-	margin-left : 10px;
+	// margin-left : 10px; // this is for persian
 	background: #6f8197;
 	display: block;
 	min-width: 250px;
@@ -364,7 +371,7 @@ nav#subSites{
 			{
 				position: fixed;
 				bottom: 0;
-				right: 0;
+				left: 0;
 				z-index: 1;
 				display:flex;
 				align-items:center;
@@ -483,7 +490,7 @@ nav#subSites{
 				height: 45px;
 				
 				@if $tool-menu-icon-on-left {
-					text-align: right;
+					text-align: left;
 
 					border-top-left-radius: 50px;
 					border-bottom-left-radius: 50px;
@@ -510,29 +517,11 @@ nav#subSites{
 					top: 0;
 					left: 0;
 					border-left: $tool-menu-item-border-left;
-
-					// content: "";
-					// position: absolute;
-					// background: inherit;
-					// top:-5px;
-					// right:-5px;
-					// left:-5px;
-					// bottom:-5px;
-					// border-radius: 50px;
-					// filter: blur(20px);
-					// opacity: 0;
-					// transition: opacity 0.5s;
-
 				}
 
 				&:hover {
 					color: #6f8197;
 					background: #f3f3f3;
-
-					// background: linear-gradient(90deg, #03f498,#49a5da,#03f498,#49a5da,  #03f498);
-					// background-size: 400%;
-					// z-index : 1;
-					// animation: glow 8s linear infinite;
 
 					&:before{
 						border-left: $tool-menu-item-hover-border-left;
@@ -590,6 +579,7 @@ nav#subSites{
 				.#{$namespace}toolsNav__menuitem--icon{
 					@extend .fa-fw;
 					color: #FFFFFF;
+					margin-left: 20px;
 					
 					@if $tool-menu-icon-on-left {
 						display: inline-block;
@@ -604,9 +594,9 @@ nav#subSites{
 				}
 				
 				.#{$namespace}toolsNav__menuitem--title{
-					text-align : right;
+					text-align : left;
 					@if $tool-menu-icon-on-left {
-						text-align : right;
+						text-align : left;
 						display: inline-block;
 						width: calc(#{$tool-menu-width} - #{$tool-menu-width-collapsed} - #{$standard-spacing});
 						vertical-align: middle;

@@ -75,7 +75,7 @@ body.is-logged-out{
 			display: grid;
 			color: #6e8096;
 			font-weight: bold;
-			margin-left: auto;
+			margin-right: auto;
 			padding-top: 3px;
 			&:hover{
 				cursor: pointer;
@@ -475,7 +475,7 @@ body.is-logged-out{
 			margin: 0 1em 0 0;
 			padding: 0.25em;
 			padding-right : 8px;
-			text-align: right;
+			text-align: left;
 			background: #ebecf0;
 			@media #{$phone}{
 				width: 40%;
@@ -1378,7 +1378,7 @@ body.is-logged-out #linkNav .#{$namespace}sitesNav__menuitem .#{$namespace}sites
 .#{$namespace}siteHierarchy .manage-overview-link {
 	@include sakai_secondary_button();
 	position: absolute;
-	left : 16px;
+	right : 20px;
 	margin-top: -4px;
 	
 	> span {
