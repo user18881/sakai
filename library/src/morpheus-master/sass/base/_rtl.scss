@@ -230,4 +230,14 @@ html[dir="rtl"]{
 		}
 	}
 
+	.pasystem-banner-alert 
+	{
+		&:before{
+			float : right;
+		}
+		.pasystem-banner-alert-close{
+			left : 10px;
+		}
+	}
+
 }
