@@ -83,7 +83,7 @@
     <h:panelGroup rendered="#{delivery.firstTimeTaking}">
         <h:panelGroup rendered="#{(delivery.dueDate != null && delivery.dueDate ne '')}">
             <h:outputText value="#{deliveryMessages.begin_assessment_msg_due} " escape="false"/>
-            <h:outputText value="#{delivery.dueDate}">
+            <h:outputText value="#{delivery.dueDatePersian}">
                 <f:convertDateTime dateStyle="full" timeStyle="short" timeZone="#{delivery.userTimeZone}" />
             </h:outputText>
             <h:outputText value="." />

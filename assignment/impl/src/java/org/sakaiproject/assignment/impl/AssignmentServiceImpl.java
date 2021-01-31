@@ -61,6 +61,8 @@ import java.util.zip.ZipOutputStream;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import com.ghasemkiani.util.icu.PersianCalendar;
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.BooleanUtils;
@@ -4212,13 +4214,16 @@ public class AssignmentServiceImpl implements AssignmentService, EntityTransferr
 
     public String getUsersLocalDateTimeString(Instant date, FormatStyle dateStyle, FormatStyle timeStyle) {
         if (date == null) return "";
-        if (dateStyle == null) { dateStyle = FormatStyle.MEDIUM; }
-        if (timeStyle == null) { timeStyle = FormatStyle.SHORT; }
-        ZoneId zone = userTimeService.getLocalTimeZone().toZoneId();
-        DateTimeFormatter df = DateTimeFormatter.ofLocalizedDateTime(dateStyle, timeStyle)
-                                                .withZone(zone)
-                                                .withLocale(resourceLoader.getLocale());
-        return df.format(date);
+//        if (dateStyle == null) { dateStyle = FormatStyle.MEDIUM; }
+//        if (timeStyle == null) { timeStyle = FormatStyle.SHORT; }
+//        ZoneId zone = userTimeService.getLocalTimeZone().toZoneId();
+//        DateTimeFormatter df = DateTimeFormatter.ofLocalizedDateTime(dateStyle, timeStyle)
+//                                                .withZone(zone)
+//                                                .withLocale(resourceLoader.getLocale());
+//        return df.format(date);
+        PersianDateFormat df = new PersianDateFormat("yyyy-MM-dd HH:mm:ss", resourceLoader.getLocale() );
+        return df.format(Date.from(date));
+        //return "hello";
     }
 
     private String removeReferencePrefix(String referenceId) {

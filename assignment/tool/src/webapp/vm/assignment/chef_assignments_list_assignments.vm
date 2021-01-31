@@ -497,13 +497,13 @@
 									#end
 								#end
 							</td>
-							<td headers="openDate" class="hidden-xs">
+							<td headers="openDate" class="hidden-xs dt">
 								$!service.getUsersLocalDateTimeString($!assignment.OpenDate)
 							</td>
 							<td headers="dueDate">
 							#if (!$assignment.HideDueDate || $!allowUpdateAssignment)
 								##Instructors can still see the due date
-								<span class="highlight">$!service.getUsersLocalDateTimeString($!assignment.DueDate)</span>
+								<span class="highlight dt">$!service.getUsersLocalDateTimeString($!assignment.DueDate)</span>
 							#end
 
 							</td>

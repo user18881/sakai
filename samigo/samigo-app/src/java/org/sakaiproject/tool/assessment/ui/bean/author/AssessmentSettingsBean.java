@@ -1166,7 +1166,7 @@ public class AssessmentSettingsBean implements Serializable {
   }
 
   public String getStartDateInClientTimezoneString() {
-    PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy hh:mm aaa");
+    PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
     if (!this.isValidStartDate) {
       return formatter.format(originalStartDateString);
     }
@@ -1207,11 +1207,18 @@ public class AssessmentSettingsBean implements Serializable {
   }
 
   public String getDueDateInClientTimezoneString() {
-    if (!this.isValidDueDate) {
-      return this.originalDueDateString;
+//    if (!this.isValidDueDate) {
+//      return this.originalDueDateString;
+//    }
+//    else {
+//      return userTimeService.dateTimeFormat(dueDate, new ResourceLoader().getLocale(), DateFormat.MEDIUM);
+//    }
+    PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+    if (!this.isValidStartDate) {
+      return formatter.format(originalDueDateString);
     }
     else {
-      return userTimeService.dateTimeFormat(dueDate, new ResourceLoader().getLocale(), DateFormat.MEDIUM);
+      return formatter.format(dueDate);
     }
   }
 
@@ -1288,6 +1295,13 @@ public class AssessmentSettingsBean implements Serializable {
     else {
       return userTimeService.dateTimeFormat(feedbackDate, new ResourceLoader().getLocale(), DateFormat.MEDIUM);
     }
+//    PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+//    if (!this.isValidStartDate) {
+//      return formatter.format(originalFeedbackDateString);
+//    }
+//    else {
+//      return formatter.format(feedbackDate);
+//    }
   }
 
   public String getFeedbackDateString() {
@@ -1327,6 +1341,13 @@ public class AssessmentSettingsBean implements Serializable {
     else {
       return userTimeService.dateTimeFormat(feedbackEndDate, new ResourceLoader().getLocale(), DateFormat.MEDIUM);
     }
+//    PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+//    if (!this.isValidStartDate) {
+//      return formatter.format(originalFeedbackEndDateString);
+//    }
+//    else {
+//      return formatter.format(feedbackEndDate);
+//    }
   }
 
   public String getFeedbackEndDateString() {

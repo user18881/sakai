@@ -37,8 +37,6 @@ import java.util.LinkedHashMap;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import com.ghasemkiani.util.icu.PersianCalendar;
-import com.ghasemkiani.util.icu.PersianDateFormat;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
@@ -215,11 +213,11 @@ public class CalendarUtil
 	 * Set the calendar to the next day, and return this.
 	 * @return the next day.
 	 */
-
 	public String getNextDate()
 	{
 		m_calendar.set (Calendar.DAY_OF_MONTH, getDayOfMonth() + 1);
 		return getTodayDate ();
+
 	}	// getNextDate
 
 
@@ -453,9 +451,7 @@ public class CalendarUtil
 
 		if (longNames) {
 
-			//SimpleDateFormat longMonth = new SimpleDateFormat("MMMM", currentLocale);
-
-			PersianDateFormat longMonth = new PersianDateFormat("MMMM", currentLocale);
+			SimpleDateFormat longMonth = new SimpleDateFormat("MMMM", currentLocale);
 
 			months = new String[] {
 					longMonth.format(dateJanuary),
@@ -476,8 +472,7 @@ public class CalendarUtil
 
 		}
 
-		//SimpleDateFormat shortMonth = new SimpleDateFormat("MMM", currentLocale);
-		PersianDateFormat shortMonth = new PersianDateFormat("MMM", currentLocale);
+		SimpleDateFormat shortMonth = new SimpleDateFormat("MMM", currentLocale);
 
 		months = new String[] {
 				shortMonth.format(dateJanuary),
@@ -500,8 +495,8 @@ public class CalendarUtil
 
 	public String getDayOfWeekName(int index) {
 		Locale currentLocale = rb.getLocale();
-		//SimpleDateFormat longDay = new SimpleDateFormat("EEEE", currentLocale);
-		PersianDateFormat longDay = new PersianDateFormat("EEEE", currentLocale);
+		SimpleDateFormat longDay = new SimpleDateFormat("EEEE", currentLocale);
+
 		switch(index) {
 			case 0:
 				return longDay.format(dateSunday);
@@ -531,10 +526,8 @@ public class CalendarUtil
 		int firstDayOfWeek = getFirstDayOfWeek();
 
 		Locale currentLocale = rb.getLocale();
-//		SimpleDateFormat longDay = new SimpleDateFormat("EEEE", currentLocale);
-//		SimpleDateFormat shortDay = new SimpleDateFormat("EEE", currentLocale);
-		PersianDateFormat longDay = new PersianDateFormat("EEEE", currentLocale);
-		PersianDateFormat shortDay = new PersianDateFormat("EEE", currentLocale);
+		SimpleDateFormat longDay = new SimpleDateFormat("EEEE", currentLocale);
+		SimpleDateFormat shortDay = new SimpleDateFormat("EEE", currentLocale);
 
 		String[] weekDays;
 		String[] longWeekDays = new String[]
@@ -573,7 +566,6 @@ public class CalendarUtil
 
 		return localeDays;
 	}
-
 
 	/** Returns the locale-specific first day of the week (numeric)
 	 **/

@@ -107,6 +107,7 @@
 			
 			&.calOtherDayWithNoActivity, &.calOtherDayWithActivity {
 				border: 0 none;		// to distinguish current month days from non-current month days
+				display : none;
 			}
 		}
 

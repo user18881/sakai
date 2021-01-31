@@ -132,6 +132,7 @@ var localDatePicker = function(opts) {
     });
 
     datepickerapi.options.toolbox.submitButton.onSubmit = function(){
+      
       var d = datepickerapi.getState().selected.dateObject.toDate();
       setHiddenFields(d, opts);
     }

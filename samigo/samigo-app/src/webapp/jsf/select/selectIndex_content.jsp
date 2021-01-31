@@ -236,11 +236,11 @@
                             </h:panelGroup>
                         </f:facet>
                         <h:outputText value="#{selectIndexMessages.na}" rendered="#{takeable.dueDate == null}" />
-                        <h:outputText value="#{takeable.dueDate}" styleClass="text-danger" rendered="#{takeable.pastDue}">
+                        <h:outputText value="#{takeable.dueDatePersian}" styleClass="text-danger" rendered="#{takeable.pastDue}">
                             <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
                         </h:outputText>
                         <h:outputText value=" #{selectIndexMessages.late} " styleClass="text-danger" rendered="#{takeable.pastDue}" />
-                        <h:outputText value="#{takeable.dueDate}" rendered="#{!takeable.pastDue}">
+                        <h:outputText value="#{takeable.dueDatePersian}" rendered="#{!takeable.pastDue}">
                             <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
                         </h:outputText>
                     </t:column>

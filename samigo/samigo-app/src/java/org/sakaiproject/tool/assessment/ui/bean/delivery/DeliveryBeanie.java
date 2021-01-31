@@ -24,6 +24,7 @@ package org.sakaiproject.tool.assessment.ui.bean.delivery;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -76,6 +77,16 @@ public class DeliveryBeanie
   private int timeLimit_minute;
   private String finalScore;
   private boolean isAssessmentBeanie=false;
+
+    public String getDueDatePersian() {
+        return dueDatePersian;
+    }
+
+    public void setDueDatePersian(String dueDatePersian) {
+        this.dueDatePersian = dueDatePersian;
+    }
+
+    private String dueDatePersian;
 
   // display * and notes for multiple submissions 
   private boolean multipleSubmissions;
@@ -353,6 +364,8 @@ public class DeliveryBeanie
   public void setDueDate(java.util.Date dueDate)
   {
     this.dueDate = dueDate;
+    PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+    setDueDatePersian(formatter.format(dueDate));
   }
 
   public boolean getPastDue()

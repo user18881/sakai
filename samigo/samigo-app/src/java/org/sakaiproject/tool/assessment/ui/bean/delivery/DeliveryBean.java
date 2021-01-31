@@ -43,6 +43,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import org.apache.commons.lang3.StringUtils;
 import org.sakaiproject.component.cover.ComponentManager;
 import org.sakaiproject.component.cover.ServerConfigurationService;
@@ -205,9 +206,17 @@ public class DeliveryBean implements Serializable {
   private String errorMessage;
   @Setter
   private SettingsDeliveryBean settings;
-  @Getter @Setter
+  @Getter
   private Date dueDate;
+  public void setDueDate(Date dueDate){
+    this.dueDate = dueDate;
+    PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+    setDueDatePersian(formatter.format(dueDate));
+  }
   @Getter @Setter
+  private String dueDatePersian;
+  @Getter @Setter
+
   private Date adjustedTimedAssesmentDueDate;
   @Setter
   private Date retractDate;

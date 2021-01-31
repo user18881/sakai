@@ -12,7 +12,7 @@
   var formatDate = function (instant) {
 
     var m = moment.unix(instant.epochSecond);
-    return m.format('L LT');
+    return m.toDate().toLocaleString("fa-IR", {timeZone: "Asia/Tehran"});
   };
 
   portal.wrapNoAlertsString = function (noAlertsString) {
@@ -97,15 +97,26 @@
 
     const formattedStartDate = formatDate({epochSecond: startDate});
 
-    var toolName = "Announcements";
+    // var toolName = "Announcements";
+    // if ("assignments" === tool) {
+    //   toolName = "Assignments";
+    // } else if ("commons" === tool) {
+    //   toolName = "Commons";
+    // } else if ("lessonbuilder" === tool) {
+    //   toolName = "Lessons";
+    // } else if ("profile" === tool) {
+    //   toolName = "Social Alerts";
+    // }
+
+    var toolName = "اطلاعیه ها";
     if ("assignments" === tool) {
-      toolName = "Assignments";
+      toolName = "تمرینات";
     } else if ("commons" === tool) {
-      toolName = "Commons";
+      toolName = "اجتماعات";
     } else if ("lessonbuilder" === tool) {
-      toolName = "Lessons";
+      toolName = "دروس";
     } else if ("profile" === tool) {
-      toolName = "Social Alerts";
+      toolName = "اطلاعیه های اجتماعی";
     }
 
     return `
@@ -114,7 +125,7 @@
             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#${tool}-${startDate}-panel"
                             aria-expanded="true" aria-controls="${tool}-${startDate}-panel">
               <div class="portal-bullhorn-icon fa fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa ${faClass} fa-stack-1x fa-inverse"></i></div>
-              <div class="portal-bullhorn-bunch-title">${toolName} ${i18n.alertsFrom} ${formattedStartDate}</div>
+              <div class="portal-bullhorn-bunch-title">${toolName} : ${formattedStartDate}</div>
             </button>
         </div>
         <div id="${tool}-${startDate}-panel" class="collapse" aria-labelledby="${tool}-${startDate}-header" data-parent="#academic-alerts">
@@ -224,7 +235,8 @@
 
     portal.bullhorn.qtip({
       suppress: false,
-      position: { adjust: { scroll: false }, my: 'top right', at: 'bottom left', target: portal.socialBullhorn },
+      //position: { adjust: { scroll: false }, my: 'top right', at: 'bottom left', target: portal.socialBullhorn },
+      position: { adjust: { scroll: false }, my: 'top left', ay: 'bottom right', target: portal.socialBullhorn },
       show: { event: 'click', delay: 0, solo: portal.socialBullhorn },
       style: { classes: 'portal-bullhorns' },
       hide: { event: 'click unfocus' },
