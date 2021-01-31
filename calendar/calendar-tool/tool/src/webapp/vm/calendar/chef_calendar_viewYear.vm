@@ -56,11 +56,11 @@
                                     ## If there is at least one activity, then the background is yellow
 				    #if ($flag == "true")
 					<td class="borderTodayWithActivity">
-                                           <a href="#toolLinkParam("$action" "doDay" "day=$mu.getDay()&month=$mu.getMonth()&year=$mu.getYear()")">$mu.getDay()</a>
+                                           <a href="#toolLinkParam("$action" "doDay" "day=$mu.getDay()&month=$mu.getMonth()&year=$mu.getYear()")">$mu.getDayPersian()</a>
 					</td>                
 				    #else
 					<td class="borderTodayWithoutActivity">
-                                            <a href="#toolLinkParam("$action" "doDay" "day=$mu.getDay()&month=$mu.getMonth()&year=$mu.getYear()")">$mu.getDay()</a>
+                                            <a href="#toolLinkParam("$action" "doDay" "day=$mu.getDay()&month=$mu.getMonth()&year=$mu.getYear()")">$mu.getDayPersian()</a>
 					</td>
 				    #end
                                 #elseif ($mu.getFlag()== 0)    ## JS comment -- it is out of this month
@@ -69,13 +69,13 @@
 				    #if ($flag == "true")
 					<td class="bgActivity">
                                             <a href="#toolLinkParam("$action" "doDay" "day=$mu.getDay()&month=$mu.getMonth()&year=$mu.getYear()")">
-					    $mu.getDay()
+					    $mu.getDayPersian()
 					    </a>
 					</td> 
 				    #else
 					<td class="bgWithoutActivity">
                                             <a href="#toolLinkParam("$action" "doDay" "day=$mu.getDay()&month=$mu.getMonth()&year=$mu.getYear()")">
-					    $mu.getDay()
+					    $mu.getDayPersian()
 					    </a>
 					</td> 
 				    #end

@@ -241,4 +241,25 @@ html[dir="rtl"]{
 		}
 	}
 
+	.Mrphs-sakai-schedule{
+		.calendarDayView-event{
+			background-color : #d8d8d9;
+			text-align: right;
+		}
+		table.calendar{
+			.borderWhite{
+				font-size: 11px;
+			}
+		} 
+	} 
+
+	.sakai-table-toolBar{
+		.sakai-table-filterContainer{
+			margin : 0;
+		}
+	} 
+
+	select {
+		text-align : right;
+	}
 }

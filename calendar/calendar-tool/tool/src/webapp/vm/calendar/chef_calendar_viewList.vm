@@ -171,7 +171,7 @@
 																		#if ($dayShown == "false")
 																				#set ($monthNumber = $m.Range.firstTime().breakdownLocal().Month - 1)
 				## (gsilver: not sure what this </a> is doing here, comment for now - as it does not validate </a>
-																				<a href="#toolLinkParam("$action" "doDay" "day=$mu.getDay()&month=$mu.Month&year=$mu.Year")">$mu.DayName $aMonth.MonthName.charAt(0)$aMonth.MonthName.substring(1).toLowerCase() $mu.Day</a>
+																				<a href="#toolLinkParam("$action" "doDay" "day=$mu.getDay()&month=$mu.Month&year=$mu.Year")">$mu.DayName $mu.getDayPersian() $mu.getMonthNamePersian() </a>
 																		#else
 																			&nbsp;
 																		#end
@@ -187,23 +187,23 @@
 																		#else
 																				$startTime - $endTime
 																		#end
-                                                      $timezone
+                                                    ##  $timezone
 																		</td>
 
-## For Column																	
-#if (!$canViewAudience)
-<td #if ($counter == 1) #else #if ($dayShown == "false") class="chefTopline" #end #end>
-#set ($dr = $m.getGroupRangeForDisplay($cal))
-#if ($!dr && ($dr.equals(""))) $tlang.getString("gen.site") #else $formattedText.escapeHtml($dr) #end
-</td>
-#end
-## From Column
-#if ($fromColExist)
-#set ($calObj = $CalendarService.getCalendar($m.CalendarReference))
-## #if ($calObj.getContext() != $PortalService.CurrentSiteId )
-#set ($site = $SiteService.getSite($calObj.getContext()))
-<td #if ($counter == 1) #else #if ($dayShown == "false") class="chefTopline" #end #end>$!site.Title</td>
-#end
+																		## For Column																	
+																		#if (!$canViewAudience)
+																		<td #if ($counter == 1) #else #if ($dayShown == "false") class="chefTopline" #end #end>
+																		#set ($dr = $m.getGroupRangeForDisplay($cal))
+																		#if ($!dr && ($dr.equals(""))) $tlang.getString("gen.site") #else $formattedText.escapeHtml($dr) #end
+																		</td>
+																		#end
+																		## From Column
+																		#if ($fromColExist)
+																		#set ($calObj = $CalendarService.getCalendar($m.CalendarReference))
+																		## #if ($calObj.getContext() != $PortalService.CurrentSiteId )
+																		#set ($site = $SiteService.getSite($calObj.getContext()))
+																		<td #if ($counter == 1) #else #if ($dayShown == "false") class="chefTopline" #end #end>$!site.Title</td>
+																		#end
 																		
 																		## description column
 																		<td #if ($counter == 1) #else #if ($dayShown == "false") class="chefTopline" #end #end>

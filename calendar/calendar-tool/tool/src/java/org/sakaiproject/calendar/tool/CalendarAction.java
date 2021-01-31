@@ -26,25 +26,12 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-import java.util.TimeZone;
-import java.util.Vector;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.Map.Entry;
 
+import com.ghasemkiani.util.icu.PersianCalendar;
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang3.StringUtils;
@@ -706,6 +693,19 @@ public class CalendarAction
 		public int getDay()
 		{
 			return day.getDay();
+		}
+
+		//CHANGE
+		public int getDayPersian(){
+			Date date = new Date(year.getYear(), month.getMonth() - 1, day.getDay());
+			PersianCalendar p_calendar = new PersianCalendar(date);
+			return p_calendar.get(PersianCalendar.DAY_OF_MONTH);
+		}
+
+		public String getMonthNamePersian(){
+			Date date = new Date(year.getYear(), month.getMonth() - 1, day.getDay());
+			PersianDateFormat formatter = new PersianDateFormat("MMMM");
+			return formatter.format(date);
 		}
 
 		public int getMonth()
@@ -3137,6 +3137,7 @@ public class CalendarAction
 		monthObj1.setMonth(calObj.getMonthInteger());
 		dayObj.setDay(calObj.getDayOfMonth());
 
+
 		if (CalendarService.allowGetCalendar(state.getPrimaryCalendarReference())== false)
 		{
 			context.put(ALERT_MSG_KEY,rb.getString("java.alert.younotallowsee"));
@@ -3185,7 +3186,7 @@ public class CalendarAction
 		calObj.setDay(dateObj1.getYear(),dateObj1.getMonth(),dateObj1.getDay());
 		context.put("tlang",rb);
 		context.put("yearArray",yearObj);
-		SimpleDateFormat formatter = new SimpleDateFormat(rb.getString("viewy.date_format"), rb.getLocale());
+		PersianDateFormat formatter = new PersianDateFormat("yyyy", new Locale("fa-IR"));
 		context.put("year", formatter.format(calObj.getTime()));
 		context.put("date",dateObj1);
 		state.setState("year");
@@ -3270,7 +3271,9 @@ public class CalendarAction
 		calObj.setDay(dateObj1.getYear(),dateObj1.getMonth(),dateObj1.getDay());
 
 		// retrieve the information from day, month and year to calObj again since calObj changed during the process of CalMonth().
-		SimpleDateFormat formatter = new SimpleDateFormat(rb.getString("viewm.date_format"), rb.getLocale());
+		//SimpleDateFormat formatter = new SimpleDateFormat(rb.getString("viewm.date_format"), rb.getLocale());
+		PersianDateFormat formatter = new PersianDateFormat("MMMM yyyy", new Locale("fa-IR"));
+
 		context.put("viewingDate", formatter.format(calObj.getTime()));
 		context.put("monthArray",monthObj2);
 		context.put("tlang",rb);
@@ -3456,6 +3459,7 @@ public class CalendarAction
 		context.put("todayMonth", Integer.valueOf(stateMonth));
 		context.put("todayDay", Integer.valueOf(stateDay));
 
+
 		if ((sstate.getAttribute(STATE_YEAR) != null) && (sstate.getAttribute(STATE_MONTH) != null) && (sstate.getAttribute(STATE_DAY) != null))
 		{
 			stateYear = ((Integer)sstate.getAttribute(STATE_YEAR)).intValue();
@@ -3585,7 +3589,8 @@ public class CalendarAction
 		state.setState("day");
 		context.put("message", state.getState());
 
-		DateFormat formatter = DateFormat.getDateInstance(DateFormat.FULL, new ResourceLoader().getLocale());
+		//DateFormat formatter = DateFormat.getDateInstance(DateFormat.FULL, new ResourceLoader().getLocale());
+		PersianDateFormat formatter = new PersianDateFormat("EEE d MMMM yyyy", new Locale("fa-IR"));
 		try{
 			context.put("today",formatter.format(calObj.getTime()));
 		}catch(Exception e){
@@ -3739,7 +3744,6 @@ public class CalendarAction
 				// Reminder: weekview vm is using 0..6
 				pageStartTime[i-1] = TimeService.newTimeLocal(calObj.getYear(),calObj.getMonthInteger(),calObj.getDayOfMonth(), THIRD_PAGE_START_HOUR, 0, 0, 0);
 				pageEndTime[i-1] = TimeService.newTimeLocal(calObj.getYear(),calObj.getMonthInteger(),calObj.getDayOfMonth(), THIRD_PAGE_START_HOUR+NUMBER_HOURS_PER_PAGE, 59, 0, 0);
-
 			}
 			else if (state.getCurrentPage().equals("second"))
 			{
@@ -3779,8 +3783,10 @@ public class CalendarAction
 		context.put("numberOfSections",NUMBER_OF_SECTIONS);
 		context.put("message",state.getState());
 
-		DateFormat formatter = DateFormat.getDateInstance(DateFormat.FULL, new ResourceLoader().getLocale());
-		formatter.setTimeZone(TimeService.getLocalTimeZone());
+		//DateFormat formatter = DateFormat.getDateInstance(DateFormat.FULL, new ResourceLoader().getLocale());
+		//formatter.setTimeZone(TimeService.getLocalTimeZone());
+		PersianDateFormat formatter = new PersianDateFormat("EEE d MMMM yyyy", new Locale("fa-IR"));
+
 		try{
 			context.put("beginWeek", formatter.format(calObj.getPrevTime(calObj.getDay_Of_Week(true)-1)));
 		}catch(Exception e){
@@ -4207,6 +4213,7 @@ public class CalendarAction
 					numberOfDays--;
 					monthObj.setDay(dateObj,row,col);
 					monthObj.setRow(row);
+
 				}
 				else // if it is not the end of week , complete the week wih days from next month.
 				{

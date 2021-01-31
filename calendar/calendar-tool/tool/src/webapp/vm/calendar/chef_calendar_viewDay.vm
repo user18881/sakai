@@ -14,7 +14,7 @@
 			#calendarView()
 		</div>
 		<div class="sakai-table-pagerContainer">
-			<div class="sakai-table-pagerLabel">$today $timezone</div>
+			<div class="sakai-table-pagerLabel">$today</div>
 				#set($isToday = ( ($date.Year == $todayYear) && ($monthInt == $todayMonth) && ($date.Day == $todayDay) ))
 				<form name="dayform" action="#toolForm("$action")" method="post">
 					<input type="submit" name="eventSubmit_doPrev" value="$tlang.getString('view.lasday')" title="$tlang.getString('view.gotopd')" />

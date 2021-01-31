@@ -29,7 +29,7 @@
 			#calendarView()
 		</div>
 		<div class="sakai-table-pagerContainer">
-			<div class="sakai-table-pagerLabel">$beginWeek - $endWeek $timezone</div>
+			<div class="sakai-table-pagerLabel">$beginWeek - $endWeek</div>
 			<form name="weekform" action="#toolForm("$action")" method="post" class="inlineForm">
 				<input type="submit" name="eventSubmit_doPrev" value="$tlang.getString('vieww.laswk')" title="$tlang.getString('vieww.gotop')" />
 				<input type="submit" name="eventSubmit_doToday" value="$tlang.getString('view.today')" title ="$tlang.getString('view.gotoday')" #if ($todayIsVisible) disabled="disabled" #end />
@@ -439,7 +439,7 @@
 
     #set ($j=2*$i+1) 
     <th class="$border" colspan="$vec.elementAt($j)" scope="col">
-        <a href="#toolLinkParam("$action" "doDay" "day=$week.getWeek($i).getDay()&month=$week.getWeek($i).getMonth()&year=$week.getWeek($i).getYear()")">$dayName $week.getWeek($i).getDay()</a>
+        <a href="#toolLinkParam("$action" "doDay" "day=$week.getWeek($i).getDay()&month=$week.getWeek($i).getMonth()&year=$week.getWeek($i).getYear()")">$dayName $week.getWeek($i).getDayPersian()</a>
     </th>
     #set ($i=$i+1)
 #end

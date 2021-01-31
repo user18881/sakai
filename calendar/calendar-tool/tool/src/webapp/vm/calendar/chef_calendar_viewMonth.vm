@@ -55,7 +55,7 @@
                 #end  ## -- end of if-elseif-else                          
                 <div class="squareCalendarDays">
                     <a href="#toolLinkParam("$action" "doDay" "day=$mu.getDay()&month=$mu.getMonth()&year=$mu.getYear()")" class="calendarMonthView-date">
-                    $mu.getDay()</a>
+                    $mu.getDayPersian()</a>
 
                     <div class="calendarMonthView-event">
                     #foreach ($m in $eventsn)

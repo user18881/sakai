@@ -37,6 +37,8 @@ import java.util.LinkedHashMap;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import com.ghasemkiani.util.icu.PersianCalendar;
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
@@ -50,6 +52,7 @@ public class CalendarUtil
 
 	/** The calendar object this is based upon. */
 	Calendar m_calendar = null;
+	PersianDateFormat df;
 	DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
 	ResourceLoader rb;
 
@@ -86,7 +89,6 @@ public class CalendarUtil
 		Locale locale = rb.getLocale();
 		m_calendar = Calendar.getInstance(locale);
 		initDates();
-
 	}	// CalendarUtil
 
 	/**
@@ -216,7 +218,7 @@ public class CalendarUtil
 	public String getNextDate()
 	{
 		m_calendar.set (Calendar.DAY_OF_MONTH, getDayOfMonth() + 1);
-		return getTodayDate ();
+		return getTodayDate();
 
 	}	// getNextDate
 
@@ -371,9 +373,12 @@ public class CalendarUtil
 	public int getDayOfMonth()
 	{
 		return m_calendar.get(Calendar.DAY_OF_MONTH);
-
 	}	// getDayOfMonth
 
+	public int getPersianDayofMonth(){
+		PersianCalendar p_calendar = new PersianCalendar(m_calendar.getTime());
+		return p_calendar.get(Calendar.DAY_OF_MONTH);
+	}
 	/**
 	 * Get the current date, formatted.
 	 * @return the current date, formatted.
@@ -381,7 +386,6 @@ public class CalendarUtil
 	public String getTodayDate()
 	{
 		return dateFormat.format(m_calendar.getTime());
-
 	}	// getTodayDate
 
 	/**
@@ -451,7 +455,8 @@ public class CalendarUtil
 
 		if (longNames) {
 
-			SimpleDateFormat longMonth = new SimpleDateFormat("MMMM", currentLocale);
+//			SimpleDateFormat longMonth = new SimpleDateFormat("MMMM", currentLocale);
+			PersianDateFormat longMonth = new PersianDateFormat("MMMM", currentLocale);
 
 			months = new String[] {
 					longMonth.format(dateJanuary),
@@ -472,7 +477,8 @@ public class CalendarUtil
 
 		}
 
-		SimpleDateFormat shortMonth = new SimpleDateFormat("MMM", currentLocale);
+//		SimpleDateFormat shortMonth = new SimpleDateFormat("MMM", currentLocale);
+		PersianDateFormat shortMonth = new PersianDateFormat("MMM", currentLocale);
 
 		months = new String[] {
 				shortMonth.format(dateJanuary),
@@ -495,7 +501,8 @@ public class CalendarUtil
 
 	public String getDayOfWeekName(int index) {
 		Locale currentLocale = rb.getLocale();
-		SimpleDateFormat longDay = new SimpleDateFormat("EEEE", currentLocale);
+//		SimpleDateFormat longDay = new SimpleDateFormat("EEEE", currentLocale);
+		PersianDateFormat longDay = new PersianDateFormat("EEEE", currentLocale);
 
 		switch(index) {
 			case 0:
@@ -526,8 +533,10 @@ public class CalendarUtil
 		int firstDayOfWeek = getFirstDayOfWeek();
 
 		Locale currentLocale = rb.getLocale();
-		SimpleDateFormat longDay = new SimpleDateFormat("EEEE", currentLocale);
-		SimpleDateFormat shortDay = new SimpleDateFormat("EEE", currentLocale);
+//		SimpleDateFormat longDay = new SimpleDateFormat("EEEE", currentLocale);
+//		SimpleDateFormat shortDay = new SimpleDateFormat("EEE", currentLocale);
+		PersianDateFormat longDay = new PersianDateFormat("EEEE", currentLocale);
+		PersianDateFormat shortDay = new PersianDateFormat("EEE", currentLocale);
 
 		String[] weekDays;
 		String[] longWeekDays = new String[]
@@ -594,10 +603,11 @@ public class CalendarUtil
 	// Used for tests
 	static String getLocalAMString(DateTime now) {
 		//we need an AM date
-		DateTime dt = now.withTimeAtStartOfDay();
-		Locale locale= new ResourceLoader("calendar").getLocale();
-		DateTimeFormatter df = new DateTimeFormatterBuilder().appendHalfdayOfDayText().toFormatter().withLocale(locale);
-		return df.print(dt);
+//		DateTime dt = now.withTimeAtStartOfDay();
+//		Locale locale= new ResourceLoader("calendar").getLocale();
+//		DateTimeFormatter df = new DateTimeFormatterBuilder().appendHalfdayOfDayText().toFormatter().withLocale(locale);
+//		return df.print(dt);
+		return new ResourceLoader("calendar").getString("persian.am");
 	}
 
 	/**
@@ -610,11 +620,12 @@ public class CalendarUtil
 
 	// Used for tests
 	static String getLocalPMString(DateTime now) {
-		//we need an PM date
-		DateTime dt = now.withTimeAtStartOfDay().plusHours(14);
-		Locale locale = new ResourceLoader("calendar").getLocale();
-		DateTimeFormatter df = new DateTimeFormatterBuilder().appendHalfdayOfDayText().toFormatter().withLocale(locale);
-		return df.print(dt);
+//		//we need an PM date
+//		DateTime dt = now.withTimeAtStartOfDay().plusHours(14);
+//		Locale locale = new ResourceLoader("calendar").getLocale();
+//		DateTimeFormatter df = new DateTimeFormatterBuilder().appendHalfdayOfDayText().toFormatter().withLocale(locale);
+//		return df.print(dt);
+		return new ResourceLoader("calendar").getString("persian.pm");
 	}
 
 	// Non-static event type methods to get localized event names

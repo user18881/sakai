@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import org.sakaiproject.time.api.Time;
 import org.sakaiproject.time.api.TimeBreakdown;
 
@@ -262,7 +263,8 @@ public class MyTime implements Time
 	public String toStringLocalShort()
 	{
 		String s = null;
-		DateFormat fmtCl = timeService.getLocalTzFormat(timeService.getUserTimezoneLocale()).M_fmtCl;
+		///DateFormat fmtCl = timeService.getLocalTzFormat(timeService.getUserTimezoneLocale()).M_fmtCl;
+		PersianDateFormat fmtCl = new PersianDateFormat("HH:mm");
 		synchronized (fmtCl)
 		{
 			// format
@@ -270,7 +272,7 @@ public class MyTime implements Time
 		}
 
 		// lower the case of AM/PM
-		s = fix(s);
+		///s = fix(s);
 
 		return s;
 	}

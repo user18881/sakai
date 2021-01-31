@@ -161,12 +161,12 @@ function SaveFormContentAsync(toUrl, formId, buttonName, updateVar, updateVar2, 
         if (i >= 0) {
             j = text.indexOf('"', i+7);
         }
-        if (j >= 0) {
-            var dueDateorRetractDate = text.substring(i+7, j);
-            if (dueDateorRetractDate - timeNow <= repeatMilliseconds) {
-                $("#autosave-timeleft-warning").show();
-            }
-        }
+        // if (j >= 0) {
+        //     var dueDateorRetractDate = text.substring(i+7, j);
+        //     if (dueDateorRetractDate - timeNow <= repeatMilliseconds) {
+        //         $("#autosave-timeleft-warning").show();
+        //     }
+        // }
     }
 
         // when the request is done the scope of the function can be garbage collected...
