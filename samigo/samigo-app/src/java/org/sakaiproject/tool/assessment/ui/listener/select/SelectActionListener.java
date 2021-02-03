@@ -857,16 +857,16 @@ public class SelectActionListener implements ActionListener {
   }
 
   private String getTimeElapsed(Integer s){
-    String timeElapsedInString = "n/a";
+    String timeElapsedInString = "غیر کاربردی";
     if (s!=null && s.intValue() >0){
       int totalSec = s.intValue();
       int hr = totalSec / 3600;
       int min = (totalSec % 3600)/60;
       int sec = (totalSec % 3600)%60;
       timeElapsedInString = "";
-      if (hr > 0) timeElapsedInString = hr + " hr ";
-      if (min > 0) timeElapsedInString = timeElapsedInString + min + " min ";
-      if (sec > 0) timeElapsedInString = timeElapsedInString + sec + " sec ";
+      if (hr > 0) timeElapsedInString = hr + " ساعت ";
+      if (min > 0) timeElapsedInString = timeElapsedInString + min + " دقیقه ";
+      if (sec > 0) timeElapsedInString = timeElapsedInString + sec + " ثانیه ";
     }
     return timeElapsedInString;
   }

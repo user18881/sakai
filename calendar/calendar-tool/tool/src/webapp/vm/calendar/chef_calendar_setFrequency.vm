@@ -1,6 +1,9 @@
 ## $Header: /cvs/sakai2/legacy/tools/src/webapp/vm/calendar/chef_calendar_setFrequency.vm,v 1.3 2005/05/23 16:00:56 gsilver.umich.edu Exp $
 <script>includeLatestJQuery('chef_calendar_setFrequency.vm');</script>
-#javascript("/library/js/lang-datepicker/lang-datepicker.js")
+#javascript("/library/js/lang-datepicker/persian.date.js")
+#javascript("/library/js/lang-datepicker/persian.datepicker.js")
+#javascript("/library/js/lang-datepicker/new-datepicker.js")
+<link rel="stylesheet" href="/library/js/lang-datepicker/persian.datepicker.css"/>
 <div class="portletBody">
 	<div class="page-header">
 		<h1>$tlang.getString("set.setting")</h1>

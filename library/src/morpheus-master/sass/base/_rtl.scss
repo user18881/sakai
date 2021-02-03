@@ -262,4 +262,13 @@ html[dir="rtl"]{
 	select {
 		text-align : right;
 	}
+
+	#gradeTableWrapper{
+		direction : ltr;
+	}
+
+	.datepicker-container{
+		z-index : 150010;
+	}
+
 }

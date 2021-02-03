@@ -28,6 +28,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import lombok.extern.slf4j.Slf4j;
@@ -62,6 +63,17 @@ public class ItemGradingData implements java.io.Serializable {
 	private Boolean isCorrect;
 	private List mediaArray;
 	private Set<ItemGradingAttachment> itemGradingAttachmentSet = new HashSet<>();
+
+//	public String getSubmittedDatePersian() {
+//		return submittedDatePersian;
+//	}
+//
+//	public void setSubmittedDatePersian(String submittedDatePersian) {
+//		this.submittedDatePersian = submittedDatePersian;
+//	}
+
+	// Newly added
+	//private String submittedDatePersian;
 
 	public ItemGradingData() {
 	}
@@ -141,6 +153,15 @@ public class ItemGradingData implements java.io.Serializable {
 
 	public void setSubmittedDate(Date submittedDate) {
 		this.submittedDate = submittedDate;
+//		if(submittedDate != null){
+//			try{
+//				PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+//				setSubmittedDatePersian(formatter.format(submittedDate));
+//			}
+//			catch (Exception e){
+//				log.warn(e.getMessage());
+//			}
+//		}
 	}
 
 	public Double getAutoScore() {

@@ -63,7 +63,6 @@
 						#else
 							$startTime - $endTime
 						#end
-						$timezone
 					</td>
 			</tr>
 			#if (!$event.DescriptionFormatted.equals(""))

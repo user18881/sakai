@@ -762,8 +762,7 @@ $Id$
         <f:param name="sortAscending" value="true"/>
         </h:commandLink>
      </f:facet>
-        <h:outputText value="#{description.submittedDate}">
-          <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
+        <h:outputText value="#{description.submittedDatePersian}">
         </h:outputText>
     </h:column>
 
@@ -779,8 +778,7 @@ $Id$
            type="org.sakaiproject.tool.assessment.ui.listener.evaluation.QuestionScoreListener" />
           </h:commandLink>    
       </f:facet>
-        <h:outputText value="#{description.submittedDate}">
-          <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
+        <h:outputText value="#{description.submittedDatePersian}">
         </h:outputText>
     </h:column>    
     
@@ -796,8 +794,7 @@ $Id$
            type="org.sakaiproject.tool.assessment.ui.listener.evaluation.QuestionScoreListener" />
           </h:commandLink>    
       </f:facet>
-        <h:outputText value="#{description.submittedDate}">
-          <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
+        <h:outputText value="#{description.submittedDatePersian}">
         </h:outputText>
     </h:column>    
 

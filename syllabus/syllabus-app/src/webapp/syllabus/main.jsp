@@ -25,7 +25,12 @@
 
 <script>includeLatestJQuery('main.jsp');</script>
 <script src="js/syllabus.js"></script>
-<script src="/library/js/lang-datepicker/lang-datepicker.js"></script>
+
+<link rel="stylesheet" href="/library/js/lang-datepicker/persian.datepicker.css"/>
+<script src="/library/js/lang-datepicker/persian.date.js"></script>
+<script src="/library/js/lang-datepicker/persian.datepicker.js"></script>
+<script src="/library/js/lang-datepicker/new-datepicker.js"></script>
+
 <link rel="stylesheet" href="/library/webjars/jquery-ui/1.12.1/jquery-ui.min.css" type="text/css" />
 
 <script type="text/javascript">

@@ -1,6 +1,10 @@
 ## $Header: /cvs/sakai2/legacy/tools/src/webapp/vm/calendar/chef_calendar_viewList.vm,v 1.9 2005/05/31 19:04:02 suiyy.umich.edu Exp $
 <script>includeLatestJQuery('chef_calendar_viewList.vm');</script>
-#javascript("/library/js/lang-datepicker/lang-datepicker.js")
+#javascript("/library/js/lang-datepicker/persian.date.js")
+#javascript("/library/js/lang-datepicker/persian.datepicker.js")
+#javascript("/library/js/lang-datepicker/new-datepicker.js")
+<link rel="stylesheet" href="/library/js/lang-datepicker/persian.datepicker.css"/>
+
 <script>
   function openCopyrightWindow(theURL,winName,winSettings) {
     window.open(theURL,winName,winSettings);

@@ -1836,39 +1836,39 @@ $.datepicker._gotoToday = function (id) {
 		 */
          var userLocale = 'en-US';
          var userLang = 'en';
-         if(window.top.sakai){
-             if(window.top.sakai.locale){
-                 if(window.top.sakai.locale.userLocale){
-                     userLocale = window.top.sakai.locale.userLocale.replace("_", "-");
-                 }
-                 if(window.top.sakai.locale.userLanguage){
-                     userLang = window.top.sakai.locale.userLanguage;
-                 }
-             }
-         }
+        //  if(window.top.sakai){
+        //      if(window.top.sakai.locale){
+        //          if(window.top.sakai.locale.userLocale){
+        //              userLocale = window.top.sakai.locale.userLocale.replace("_", "-");
+        //          }
+        //          if(window.top.sakai.locale.userLanguage){
+        //              userLang = window.top.sakai.locale.userLanguage;
+        //          }
+        //      }
+        //  }
 
          // First try the full locale (fr-CA) then try just the language (fr)
-         if (typeof $.datepicker.regional[userLocale] !== "undefined") {
-           $.datepicker.setDefaults($.datepicker.regional[userLocale]);
-         } else if (typeof $.datepicker.regional[userLang] !== "undefined") {
-           $.datepicker.setDefaults($.datepicker.regional[userLang]);
-         } else {
-           $.datepicker.setDefaults($.datepicker.regional[""]);
-         }
+ 
+           $.datepicker.setDefaults($.datepicker.regional["en-US"]);
+         
 
          // Load the localization for the timepicker if the timepicker is being used
          if (typeof $.timepicker !== "undefined") {
-           if (userLocale == "en-US") {
+        //    if (userLocale == "en-US") {
              // Special case for the USA and AM/PM
-             $.timepicker.setDefaults({timeFormat: "hh:mm tt"});
-           } else if (typeof $.timepicker.regional[userLocale] !== "undefined") {
-             $.timepicker.setDefaults($.timepicker.regional[userLocale]); 
-           } else if (typeof $.timepicker.regional[userLang] !== "undefined") {
-             $.timepicker.setDefaults($.timepicker.regional[userLang]); 
-           } 
-           else {
-             $.timepicker.setDefaults($.timepicker.regional[""]); 
-           }
+			 $.timepicker.setDefaults({timeFormat: "HH:mm"});
+			 $.timepicker.setDefaults($.timepicker.regional["en-US"]); 
+			 if(userLocale == "fa-IR"){
+				$.timepicker.setDefaults({timeFormat: "HH:mm"});
+			 }
+        //    } else if (typeof $.timepicker.regional[userLocale] !== "undefined") {
+        //      $.timepicker.setDefaults($.timepicker.regional[userLocale]); 
+        //    } else if (typeof $.timepicker.regional[userLang] !== "undefined") {
+        //      $.timepicker.setDefaults($.timepicker.regional[userLang]); 
+        //    } 
+        //    else {
+        //      $.timepicker.setDefaults($.timepicker.regional[""]); 
+        //    }
          }
 
          init();

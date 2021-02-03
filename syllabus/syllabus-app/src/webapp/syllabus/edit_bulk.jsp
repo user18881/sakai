@@ -12,8 +12,11 @@
 
 <script>includeLatestJQuery('edit_bulk.jsp');</script>
 <link rel="stylesheet" href="/library/webjars/jquery-ui/1.12.1/jquery-ui.min.css" type="text/css" />
-<script type="text/javascript" src="/library/js/lang-datepicker/lang-datepicker.js"></script>
 
+<link rel="stylesheet" href="/library/js/lang-datepicker/persian.datepicker.css"/>
+<script src="/library/js/lang-datepicker/persian.date.js"></script>
+<script src="/library/js/lang-datepicker/persian.datepicker.js"></script>
+<script src="/library/js/lang-datepicker/new-datepicker.js"></script>
 
 	<script>
 		jQuery(document).ready(function() {
@@ -42,13 +45,13 @@
 		$(function() {
 			$('.timeInput').timepicker({
 		    	hour: 8,
-		    	defaultValue: "08:00 <h:outputText value="#{msgs.am}"/>",
+		    	defaultValue: "08:00",
 		    	timeOnlyTitle: "<h:outputText value="#{msgs.choose_time}"/>",
-				timeFormat: "hh:mm tt",
+				timeFormat: "HH:mm",
 				currentText: "<h:outputText value="#{msgs.now}"/>",
 				closeText: "<h:outputText value="#{msgs.done}"/>",
-				amNames: ['<h:outputText value="#{msgs.am}"/>', '<h:outputText value="#{msgs.am2}"/>'],
-				pmNames: ['<h:outputText value="#{msgs.pm}"/>', '<h:outputText value="#{msgs.pm2}"/>'],
+				amNames: [""],
+				pmNames: [""],
 				timeText: "<h:outputText value="#{msgs.time}"/>",
 				hourText: "<h:outputText value="#{msgs.hour}"/>",
 				minuteText: "<h:outputText value="#{msgs.minute}"/>",

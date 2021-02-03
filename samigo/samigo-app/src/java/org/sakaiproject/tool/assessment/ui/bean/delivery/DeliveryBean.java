@@ -210,8 +210,15 @@ public class DeliveryBean implements Serializable {
   private Date dueDate;
   public void setDueDate(Date dueDate){
     this.dueDate = dueDate;
-    PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
-    setDueDatePersian(formatter.format(dueDate));
+    if(dueDate != null){
+      try{
+        PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+        setDueDatePersian(formatter.format(dueDate));
+      }
+      catch(Exception e){
+        log.warn(e.getMessage());
+      }
+    }
   }
   @Getter @Setter
   private String dueDatePersian;
@@ -239,8 +246,12 @@ public class DeliveryBean implements Serializable {
   private String rawScore;
   @Getter @Setter
   private String grade;
-  @Getter @Setter
+
+
+  @Getter
   private Date submissionDate;
+  @Getter @Setter
+  private String submissionDatePersian;
   @Getter @Setter
   private Date submissionTime;
   @Getter @Setter
@@ -509,9 +520,35 @@ public class DeliveryBean implements Serializable {
       return userTimeService.dateTimeFormat(beginTime, new ResourceLoader().getLocale(), DateFormat.MEDIUM);
   }
 
+  public String getBeginTimeStringPersian(){
+    if (beginTime == null){
+      return "";
+    }
+    try{
+      PersianDateFormat df = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+      return df.format(beginTime);
+    } catch (Exception e){
+      log.warn(e.getMessage());
+      return "";
+    }
+  }
+
   public String getCurrentTimeElapse() {
     syncTimeElapsedWithServer();
     return timeElapse;
+  }
+
+  public void setSubmissionDate(Date submissionDate) {
+    this.submissionDate = submissionDate;
+    if(submissionDate != null){
+      try{
+        PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+        setSubmissionDatePersian(formatter.format(submissionDate));
+      }
+      catch(Exception e){
+        log.warn(e.getMessage());
+      }
+    }
   }
 
   public void setTimeElapse(String timeElapse) {
@@ -619,6 +656,20 @@ public class DeliveryBean implements Serializable {
     }
 
     return userTimeService.dateTimeFormat(adjustedTimedAssesmentDueDate, new ResourceLoader().getLocale(), DateFormat.MEDIUM);
+  }
+
+  public String getAdjustedTimedAssesmentDueDateStringPersian(){
+    if (adjustedTimedAssesmentDueDate == null) {
+      return "";
+    }
+    try{
+      PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+      return formatter.format(adjustedTimedAssesmentDueDate);
+    }
+    catch(Exception e){
+      log.warn(e.getMessage());
+      return "";
+    }
   }
 
   public Date getRetractDate() {
@@ -2297,6 +2348,20 @@ public class DeliveryBean implements Serializable {
 
 		    return userTimeService.dateTimeFormat(deadline, new ResourceLoader().getLocale(), DateFormat.MEDIUM);
 	  }
+
+	  public String getDeadlineStringPersian(){
+        if (deadline == null) {
+          return "";
+        }
+        try{
+          PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+          return formatter.format(deadline);
+        }
+        catch(Exception e){
+          log.warn(e.getMessage());
+          return "";
+        }
+      }
 
 	  public void setDeadline() {
 		  if (this.firstTimeTaking) {

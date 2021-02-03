@@ -84,7 +84,7 @@
         <h:panelGroup rendered="#{(delivery.dueDate != null && delivery.dueDate ne '')}">
             <h:outputText value="#{deliveryMessages.begin_assessment_msg_due} " escape="false"/>
             <h:outputText value="#{delivery.dueDatePersian}">
-                <f:convertDateTime dateStyle="full" timeStyle="short" timeZone="#{delivery.userTimeZone}" />
+              <!-- <f:convertDateTime dateStyle="full" timeStyle="short" timeZone="#{delivery.userTimeZone}" /> -->  
             </h:outputText>
             <h:outputText value="." />
         </h:panelGroup>
@@ -101,7 +101,7 @@
     <h:panelGroup rendered="#{delivery.hasTimeLimit && delivery.firstTimeTaking}">
     	<h:outputFormat value="#{deliveryMessages.begin_assessment_msg_timed_w_due_date}" escape="false" rendered="#{delivery.deadline != null && delivery.deadline != ''}">
                 <f:param value="#{delivery.timeLimitString}"/>
-                <f:param value="#{delivery.deadlineString}"/>
+                <f:param value="#{delivery.deadlineStringPersian}"/>
         </h:outputFormat>
         
         <h:outputFormat value="#{deliveryMessages.begin_assessment_msg_timed_wo_due_date}" escape="false" rendered="#{delivery.deadline == null}">
@@ -110,8 +110,8 @@
     </h:panelGroup>
     
     <h:outputFormat value="#{deliveryMessages.begin_assessment_msg_timed_continue}" escape="false" rendered="#{delivery.hasTimeLimit && !delivery.firstTimeTaking}">
-                <f:param value="#{delivery.beginTimeString}"/>
-                <f:param value="#{delivery.adjustedTimedAssesmentDueDateString}"/>
+                <f:param value="#{delivery.beginTimeStringPersian}"/>
+                <f:param value="#{delivery.adjustedTimedAssesmentDueDateStringPersian}"/>
     </h:outputFormat>
     
     <h:outputFormat value="#{deliveryMessages.time_expired2}" escape="false" rendered="#{delivery.hasTimeLimit && !delivery.firstTimeTaking && delivery.timeExpired}" />
@@ -149,26 +149,26 @@
     
     	<h:outputText value="#{deliveryMessages.begin_assessment_msg_unlimited_submission} " rendered="#{delivery.settings.unlimitedAttempts && !delivery.anonymousLogin && (delivery.deadline == null || delivery.deadline == '')}" escape="false"/>
     	
-    	<h:outputFormat value="#{deliveryMessages.begin_assessment_msg_unlimited_submission_continue}" escape="false" rendered="#{delivery.settings.unlimitedAttempts && !delivery.anonymousLogin && delivery.deadlineString != null && delivery.deadlineString != ''}">
-                <f:param value="#{delivery.deadlineString}"/>
+    	<h:outputFormat value="#{deliveryMessages.begin_assessment_msg_unlimited_submission_continue}" escape="false" rendered="#{delivery.settings.unlimitedAttempts && !delivery.anonymousLogin && delivery.deadlineStringPersian != null && delivery.deadlineStringPersian != ''}">
+                <f:param value="#{delivery.deadlineStringPersian}"/>
     	</h:outputFormat>
     	
-    	<h:outputFormat value="#{deliveryMessages.submission_allowed_1}" escape="false" rendered="#{!delivery.settings.unlimitedAttempts && delivery.totalSubmissions==0 && !delivery.anonymousLogin && (delivery.deadlineString == null || delivery.deadlineString == '')}">
+    	<h:outputFormat value="#{deliveryMessages.submission_allowed_1}" escape="false" rendered="#{!delivery.settings.unlimitedAttempts && delivery.totalSubmissions==0 && !delivery.anonymousLogin && (delivery.deadlineStringPersian == null || delivery.deadlineStringPersian == '')}">
                 <f:param value="#{delivery.settings.maxAttempts}"/>
     	</h:outputFormat>
     	
-    	<h:outputFormat value="#{deliveryMessages.submission_allowed_2}" escape="false" rendered="#{!delivery.settings.unlimitedAttempts && delivery.totalSubmissions!=0 && !delivery.anonymousLogin && (delivery.deadlineString == null || delivery.deadlineString == '')}">
+    	<h:outputFormat value="#{deliveryMessages.submission_allowed_2}" escape="false" rendered="#{!delivery.settings.unlimitedAttempts && delivery.totalSubmissions!=0 && !delivery.anonymousLogin && (delivery.deadlineStringPersian == null || delivery.deadlineStringPersian == '')}">
                 <f:param value="#{delivery.submissionsRemaining}"/>
     	</h:outputFormat>
     	
-    	<h:outputFormat value="#{deliveryMessages.submission_allowed_1_continue}" escape="false" rendered="#{!delivery.settings.unlimitedAttempts && delivery.totalSubmissions==0 && !delivery.anonymousLogin && delivery.deadlineString != null && delivery.deadlineString != ''}">
+    	<h:outputFormat value="#{deliveryMessages.submission_allowed_1_continue}" escape="false" rendered="#{!delivery.settings.unlimitedAttempts && delivery.totalSubmissions==0 && !delivery.anonymousLogin && delivery.deadlineStringPersian != null && delivery.deadlineStringPersian != ''}">
                 <f:param value="#{delivery.settings.maxAttempts}"/>
-                <f:param value="#{delivery.deadlineString}"/>
+                <f:param value="#{delivery.deadlineStringPersian}"/>
     	</h:outputFormat>
     	
-    	<h:outputFormat value="#{deliveryMessages.submission_allowed_2_continue}" escape="false" rendered="#{!delivery.settings.unlimitedAttempts && delivery.totalSubmissions!=0 && !delivery.anonymousLogin && delivery.deadlineString != null && delivery.deadlineString != ''}">
+    	<h:outputFormat value="#{deliveryMessages.submission_allowed_2_continue}" escape="false" rendered="#{!delivery.settings.unlimitedAttempts && delivery.totalSubmissions!=0 && !delivery.anonymousLogin && delivery.deadlineStringPersian != null && delivery.deadlineStringPersian != ''}">
                 <f:param value="#{delivery.submissionsRemaining}"/>
-                <f:param value="#{delivery.deadlineString}"/>
+                <f:param value="#{delivery.deadlineStringPersian}"/>
     	</h:outputFormat>
     </h:panelGroup>
     

@@ -31,7 +31,7 @@
 --%>
 -->
   <f:view>
-    <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" style="direction: rtl;">
       <head><%= request.getAttribute("html.head") %>
       <title> <h:outputText value="#{delivery.assessmentTitle}"/> </title>
       <%@ include file="/jsf/delivery/deliveryjQuery.jsp" %>

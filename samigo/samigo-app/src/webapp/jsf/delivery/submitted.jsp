@@ -126,8 +126,7 @@ function closeWindow() {alert("1"); self.opener=this; self.close(); }
     <h:outputText value="#{delivery.confirmation}" />
 
     <h:outputLabel value="#{deliveryMessages.submission_dttm}" />
-    <h:outputText value="#{delivery.submissionDate}">
-        <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{delivery.userTimeZone}" />
+    <h:outputText value="#{delivery.submissionDatePersian}">
     </h:outputText>
 	
     <h:outputLabel rendered="#{delivery.submissionFiles.values().size() > 0}" value="#{deliveryMessages.submission_files}" />

@@ -28,6 +28,7 @@ import java.util.*;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -98,7 +99,21 @@ public class AgentResults
   private Double scoreSummation=new Double("0");
   private Double averageScore= new Double("0");
 
+
+
+    // New
+    private String submittedDatePersian;
+
   public AgentResults() {
+  }
+
+  // New
+  public String getSubmittedDatePersian() {
+      return submittedDatePersian;
+  }
+
+  public void setSubmittedDatePersian(String submittedDatePersian) {
+      this.submittedDatePersian = submittedDatePersian;
   }
 
   public Double getScoreSummation(){
@@ -205,6 +220,14 @@ public class AgentResults
   }
   public void setSubmittedDate(Date submittedDate) {
     this.submittedDate = submittedDate;
+    if(submittedDate != null){
+        try{
+            PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+            setSubmittedDatePersian(formatter.format(submittedDate));
+        }catch(Exception e){
+            log.warn(e.getMessage());
+        }
+    }
   }
 
   public Date getAttemptDate() {
@@ -518,7 +541,7 @@ public class AgentResults
 	}
 	
 	public String getFormatedTimeElapsed() {
-	    String timeElapsedInString = "n/a";
+	    String timeElapsedInString = "-";
 	    if (this.timeElapsed!=null && this.timeElapsed >0)
 	    {
 	      int totalSec = this.timeElapsed;
@@ -526,9 +549,9 @@ public class AgentResults
 	      int min = (totalSec % 3600)/60;
 	      int sec = (totalSec % 3600)%60;
 	      timeElapsedInString = "";
-	      if (hr > 0) timeElapsedInString = hr + " hr ";
-	      if (min > 0) timeElapsedInString = timeElapsedInString + min + " min ";
-	      if (sec > 0) timeElapsedInString = timeElapsedInString + sec + " sec ";
+	      if (hr > 0) timeElapsedInString = hr + " ساعت ";
+	      if (min > 0) timeElapsedInString = timeElapsedInString + min + " دقیقه ";
+	      if (sec > 0) timeElapsedInString = timeElapsedInString + sec + " ثانیه ";
 	    }
 	    return timeElapsedInString;	
 	}

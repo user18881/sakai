@@ -62,6 +62,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
 
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import org.apache.commons.lang3.StringUtils;
 import org.sakaiproject.authz.api.AuthzGroup;
 import org.sakaiproject.authz.api.AuthzGroupService;
@@ -582,9 +583,10 @@ public class ShowPageProducer implements ViewComponentProducer, DefaultView, Nav
 		// check two parts of isitemvisible where we want to give specific errors
 		// potentially need time zone for setting release date
 		if (!canSeeAll && currentPage.getReleaseDate() != null && currentPage.getReleaseDate().after(new Date()) && !currentPage.isHidden()) {
-			DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, M_locale);
-			TimeZone tz = userTimeService.getLocalTimeZone();
-			df.setTimeZone(tz);
+//			DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, M_locale);
+//			TimeZone tz = userTimeService.getLocalTimeZone();
+//			df.setTimeZone(tz);
+			PersianDateFormat df = new PersianDateFormat("d MMMM yyyy HH:mm", new Locale("fa-IR"));
 			String releaseDate = df.format(currentPage.getReleaseDate());
 			String releaseMessage = messageLocator.getMessage("simplepage.not_yet_available_releasedate").replace("{}", releaseDate);
 
@@ -1190,9 +1192,10 @@ public class ShowPageProducer implements ViewComponentProducer, DefaultView, Nav
 					showBreak = true;
 					// similarly warn them if it isn't released yet
 				} else if (currentPage.getReleaseDate() != null && currentPage.getReleaseDate().after(new Date())) {
-					DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, M_locale);
-					TimeZone tz = userTimeService.getLocalTimeZone();
-					df.setTimeZone(tz);
+//					DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT, M_locale);
+//					TimeZone tz = userTimeService.getLocalTimeZone();
+//					df.setTimeZone(tz);
+					PersianDateFormat df = new PersianDateFormat("d MMMM yyyy HH:mm");
 					String releaseDate = df.format(currentPage.getReleaseDate());
 					UIOutput.make(tofill, "hiddenAlert").decorate(new UIFreeAttributeDecorator("title", messageLocator.getMessage("simplepage.notreleased")));
 					UIVerbatim.make(tofill, "hidden-text", messageLocator.getMessage("simplepage.notreleased.text").replace("{}", releaseDate));

@@ -349,7 +349,7 @@ $Id$
         <f:param name="sortBy" value="submittedDate" />
         </h:commandLink>
      </f:facet>
-        <h:outputText rendered="#{description.submittedDate !=null && description.submittedDate ne ''}" value="#{description.submittedDate}">
+        <h:outputText rendered="#{description.submittedDate !=null && description.submittedDate ne ''}" value="#{description.submittedDatePersian}">
           <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
         </h:outputText>
 		<h:outputText rendered="#{description.submittedDate == null || description.submittedDate eq ''}" value="#{evaluationMessages.no_submission}"/>
@@ -365,7 +365,7 @@ $Id$
              type="org.sakaiproject.tool.assessment.ui.listener.evaluation.SubmissionStatusListener" />
           </h:commandLink>    
       </f:facet>
-        <h:outputText rendered="#{description.submittedDate !=null && description.submittedDate ne ''}" value="#{description.submittedDate}">
+        <h:outputText rendered="#{description.submittedDate !=null && description.submittedDate ne ''}" value="#{description.submittedDatePersian}">
            <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
         </h:outputText>
 		<h:outputText rendered="#{description.submittedDate == null || description.submittedDate eq ''}" value="#{evaluationMessages.no_submission}"/>
@@ -381,7 +381,7 @@ $Id$
              type="org.sakaiproject.tool.assessment.ui.listener.evaluation.SubmissionStatusListener" />
           </h:commandLink>    
       </f:facet>
-        <h:outputText rendered="#{description.submittedDate !=null && description.submittedDate ne ''}" value="#{description.submittedDate}">
+        <h:outputText rendered="#{description.submittedDate !=null && description.submittedDate ne ''}" value="#{description.submittedDatePersian}">
            <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
         </h:outputText>
 		<h:outputText rendered="#{description.submittedDate == null || description.submittedDate eq ''}" value="#{evaluationMessages.no_submission}"/>

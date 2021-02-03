@@ -615,8 +615,7 @@ $(document).ready(function(){
         <f:param name="sortAscending" value="true"/>
         </h:commandLink>
      </f:facet>
-        <h:outputText value="#{description.submittedDate}" rendered="#{description.attemptDate != null && (totalScores.anonymous eq 'false'  || description.assessmentGradingId ne '-1')}" >
-          <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
+        <h:outputText value="#{description.submittedDatePersian}" rendered="#{description.attemptDate != null && (totalScores.anonymous eq 'false'  || description.assessmentGradingId ne '-1')}" >
         </h:outputText>
         <h:panelGroup rendered="#{description.attemptDate != null && (totalScores.anonymous eq 'false' || description.assessmentGradingId ne '-1')}">
           <h:panelGroup rendered="#{description.isLate == 'true' && ((description.isAutoSubmitted == 'false' && !(totalScores.isTimedAssessment eq 'true' && totalScores.acceptLateSubmission eq 'false'))
@@ -644,8 +643,7 @@ $(document).ready(function(){
              type="org.sakaiproject.tool.assessment.ui.listener.evaluation.TotalScoreListener" />
           </h:commandLink>    
       </f:facet>
-        <h:outputText value="#{description.submittedDate}" rendered="#{description.attemptDate != null && (totalScores.anonymous eq 'false'  || description.assessmentGradingId ne '-1')}" >
-          <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
+        <h:outputText value="#{description.submittedDatePersian}" rendered="#{description.attemptDate != null && (totalScores.anonymous eq 'false'  || description.assessmentGradingId ne '-1')}" >
         </h:outputText>
         <h:panelGroup rendered="#{description.attemptDate != null && (totalScores.anonymous eq 'false' || description.assessmentGradingId ne '-1')}">
           <h:panelGroup rendered="#{description.isLate == 'true' && ((description.isAutoSubmitted == 'false' && !(totalScores.isTimedAssessment eq 'true' && totalScores.acceptLateSubmission eq 'false'))
@@ -674,8 +672,7 @@ $(document).ready(function(){
              type="org.sakaiproject.tool.assessment.ui.listener.evaluation.TotalScoreListener" />
       </h:commandLink> 
       </f:facet>
-        <h:outputText value="#{description.submittedDate}" rendered="#{description.attemptDate != null && (totalScores.anonymous eq 'false'  || description.assessmentGradingId ne '-1')}" >
-          <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
+        <h:outputText value="#{description.submittedDatePersian}" rendered="#{description.attemptDate != null && (totalScores.anonymous eq 'false'  || description.assessmentGradingId ne '-1')}" >
         </h:outputText>
         <h:panelGroup rendered="#{description.attemptDate != null && (totalScores.anonymous eq 'false' || description.assessmentGradingId ne '-1')}">
           <h:panelGroup rendered="#{description.isLate == 'true' && ((description.isAutoSubmitted == 'false' && !(totalScores.isTimedAssessment eq 'true' && totalScores.acceptLateSubmission eq 'false'))

@@ -6,7 +6,7 @@
     <parent>
         <artifactId>kernel</artifactId>
         <groupId>org.sakaiproject</groupId>
-        <version>20-SNAPSHOT</version>
+        <version>20.1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -23,13 +23,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>ir.ghasemkiani</groupId>
+            <artifactId>persiancalendar</artifactId>
+            <version>2.1.7</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-commons</artifactId>
-            <version>2.4.3</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
         </dependency>
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -98,11 +98,6 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>1.9.6.RELEASE</version>
         </dependency>
     </dependencies>
 </project>

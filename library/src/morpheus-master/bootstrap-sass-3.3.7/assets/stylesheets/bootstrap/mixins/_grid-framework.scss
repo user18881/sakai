@@ -25,7 +25,9 @@
     $list: "#{$list}, .col-#{$class}-#{$i}";
   }
   #{$list} {
-    float: left;
+    /* CHANGE */
+    float: right;
+    font-family: "Vazir";
   }
 }
 

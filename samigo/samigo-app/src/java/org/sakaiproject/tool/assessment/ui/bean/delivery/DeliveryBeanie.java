@@ -76,17 +76,10 @@ public class DeliveryBeanie
   private int timeLimit_hour;
   private int timeLimit_minute;
   private String finalScore;
+
   private boolean isAssessmentBeanie=false;
-
-    public String getDueDatePersian() {
-        return dueDatePersian;
-    }
-
-    public void setDueDatePersian(String dueDatePersian) {
-        this.dueDatePersian = dueDatePersian;
-    }
-
-    private String dueDatePersian;
+  private String dueDatePersian;
+  private String submissionDatePersian;
 
   // display * and notes for multiple submissions 
   private boolean multipleSubmissions;
@@ -105,6 +98,21 @@ public class DeliveryBeanie
    */
   public DeliveryBeanie()
   {
+  }
+
+  public String getDueDatePersian() {
+        return dueDatePersian;
+    }
+
+  public void setDueDatePersian(String dueDatePersian) {
+        this.dueDatePersian = dueDatePersian;
+    }
+
+  public void setSubmissionDatePersian(String submissionDatePersian){
+      this.submissionDatePersian = submissionDatePersian;
+  }
+  public String getSubmissionDatePersian(){
+      return this.submissionDatePersian;
   }
 
   public String getAssessmentId()
@@ -215,6 +223,15 @@ public class DeliveryBeanie
   public void setSubmissionDate(java.util.Date submissionDate)
   {
     this.submissionDate = submissionDate;
+    try{
+        if(submissionDate != null){
+            PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+            setSubmissionDatePersian(formatter.format(submissionDate));
+        }
+    }
+    catch(Exception e){
+        log.warn(e.getMessage());
+    }
   }
 
   public long getSubTime()
@@ -364,8 +381,10 @@ public class DeliveryBeanie
   public void setDueDate(java.util.Date dueDate)
   {
     this.dueDate = dueDate;
-    PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
-    setDueDatePersian(formatter.format(dueDate));
+    if(dueDate != null){
+        PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
+        setDueDatePersian(formatter.format(dueDate));
+    }
   }
 
   public boolean getPastDue()

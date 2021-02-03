@@ -405,11 +405,11 @@
                                 </h:panelGroup>
                             </f:facet>
 
-                            <h:outputText value="#{reviewable.submissionDate}" styleClass="currentSort" rendered="#{reviewable.isRecordedAssessment}">
-                                <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
+                            <h:outputText value="#{reviewable.submissionDatePersian}" styleClass="currentSort" rendered="#{reviewable.isRecordedAssessment}">
+                              <!-- <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />--> 
                             </h:outputText>
-                            <h:outputText value="#{reviewable.submissionDate}" rendered="#{!reviewable.isRecordedAssessment}">
-                                <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />
+                            <h:outputText value="#{reviewable.submissionDatePersian}" rendered="#{!reviewable.isRecordedAssessment}">
+                              <!-- <f:convertDateTime dateStyle="medium" timeStyle="short" timeZone="#{author.userTimeZone}" />-->  
                             </h:outputText>
                         </t:column>
                     </t:dataTable>
