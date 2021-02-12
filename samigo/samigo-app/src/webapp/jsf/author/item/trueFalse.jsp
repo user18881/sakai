@@ -35,6 +35,7 @@
       <head><%= request.getAttribute("html.head") %>
       <title><h:outputText value="#{authorMessages.item_display_author}"/></title>
       <script type="text/javascript" src="/samigo-app/js/authoring.js"></script>
+      <link href="/samigo-app/css/question-forms.css" type="text/css" rel="stylesheet" media="all" />
       </head>
 <body onload="countNum();;<%= request.getAttribute("html.body.onload") %>">
 
@@ -47,29 +48,7 @@
 <!-- HEADING -->
 <%@ include file="/jsf/author/item/itemHeadings.jsp" %>
 <h:form id="itemForm">
-<p class="act">
-  <h:commandButton rendered="#{itemauthor.target=='assessment'}" value="#{commonMessages.action_save}" action="#{itemauthor.currentItem.getOutcome}" styleClass="active">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ItemAddListener" />
-  </h:commandButton>
-  <h:commandButton rendered="#{itemauthor.target=='questionpool'}" value="#{commonMessages.action_save}" action="#{itemauthor.currentItem.getPoolOutcome}" styleClass="active">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ItemAddListener" />
-  </h:commandButton>
 
-
-  <h:commandButton rendered="#{itemauthor.target=='assessment'}" value="#{commonMessages.cancel_action}" action="editAssessment" immediate="true">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ResetItemAttachmentListener" />
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.EditAssessmentListener" />
-  </h:commandButton>
-
- <h:commandButton rendered="#{itemauthor.target=='questionpool'}" value="#{commonMessages.cancel_action}" action="editPool" immediate="true">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ResetItemAttachmentListener" />
- </h:commandButton>
-</p>
 
     <!-- QUESTION PROPERTIES -->
     <!-- 1 POINTS -->

@@ -49,11 +49,11 @@
       <script>includeWebjarLibrary('bootstrap-multiselect');</script>
 
 
-        <link rel="stylesheet" href="/library/js/lang-datepicker/persian.datepicker.css"/>
-        <script src="/library/js/lang-datepicker/persian.date.js"></script>
-        <script src="/library/js/lang-datepicker/persian.datepicker.js"></script>
-        <script src="/library/js/lang-datepicker/new-datepicker.js"></script>
-
+      <link rel="stylesheet" href="/library/js/lang-datepicker/persian.datepicker.css"/>
+      <script src="/library/js/lang-datepicker/persian.date.js"></script>
+      <script src="/library/js/lang-datepicker/persian.datepicker.js"></script>
+      <script src="/library/js/lang-datepicker/new-datepicker.js"></script> 
+      
       <script>
         $(document).ready(function() {
           // set up the accordion for settings

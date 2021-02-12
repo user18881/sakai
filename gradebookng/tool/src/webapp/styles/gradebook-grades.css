@@ -116,7 +116,7 @@
   margin-left: 20px;
   background-color: transparent;
   position: absolute;
-  left: -100000px;
+  right: -100000px;
 }
 #gradeItemsTogglePanel label {
   cursor: pointer;
@@ -148,7 +148,7 @@
   height: 1.2em;
   width: 1.2em;
   border: 1px solid #EEE;
-  background-color: #EEE;
+  background-color: #B0B0B0;
   position: absolute;
   right: 0;
   top: 50%;
@@ -525,7 +525,7 @@ div.wicket-modal div.w_right > div {
 .gb-summary-print {
   position: absolute;
   top: 15px;
-  right: 10px;
+  left: 10px;
 }
 .gb-summary-print:before {
   font-family: 'gradebook-icons';

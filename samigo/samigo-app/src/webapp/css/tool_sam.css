@@ -116,11 +116,14 @@ h4.samigo-category-subhead-2 {
 {background-color:#CCC;text-align:left;padding:.3em;vertical-align:middle font-size:1.2ems}
 */
 .navViewAction {
-background-color:#CCC;
-text-align:right;
-padding:.3em;
-vertical-align: bottom;
-font-size:1.2em
+	background-color:#F9F9F9;
+	text-align:right;
+	padding:.3em;
+	vertical-align: bottom;
+	font-size:1.2em;
+	padding: 8px;
+	margin-left: 13px;
+	border-top: 1px solid #ddd;
 }
 
 .textTable
@@ -158,10 +161,10 @@ font-size:1.2em
 
 
 .navList{
-        text-align: left;
+        text-align: left !important;
 }
 .navView{
-        text-align: left;
+        text-align: right;
 }
 
 .validate{
@@ -1271,7 +1274,7 @@ p.progressItem img {
 .rotateQP {
 	color:white;
 	white-space:nowrap;
-	margin-top:154px;
+	margin-top:110px;
 
 	/* Safari */
 	-webkit-transform: rotate(90deg);

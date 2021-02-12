@@ -74,6 +74,7 @@ import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+
 import org.sakaiproject.tool.assessment.jsf.convert.AnswerSurveyConverter;
 
 /* Print to PDF backing bean. */
@@ -318,6 +319,7 @@ public class PDFAssessmentBean implements Serializable {
 
 			//create a new part and empty list to fill with items
 			PDFPartBean pdfPart = new PDFPartBean();
+
 			pdfPart.setSectionId(section.getSectionId());
 
 			StringBuffer partIntros = new StringBuffer();
@@ -382,8 +384,7 @@ public class PDFAssessmentBean implements Serializable {
 				legacy.append("</h3>");
 
 				pdfItem.setItemId(item.getItemData().getItemId());
-
-				StringBuffer contentBuffer = new StringBuffer(); 
+				StringBuffer contentBuffer = new StringBuffer();
 
 				if (!(TypeIfc.FILL_IN_BLANK.equals(item.getItemData().getTypeId()) || TypeIfc.FILL_IN_NUMERIC.equals(item.getItemData().getTypeId())  
 					    || TypeIfc.CALCULATED_QUESTION.equals(item.getItemData().getTypeId()))) {
@@ -994,13 +995,17 @@ public class PDFAssessmentBean implements Serializable {
 
 			//head = head.replaceAll("[ \t\n\f\r]+", " ");
 
+
 			//parse out the elements from the html
 			List elementBuffer = HTMLWorker.parseToList(safeReader(head.toString()), style, props);
 			float[] singleWidth = {1f};
 			PdfPTable single = new PdfPTable(singleWidth);
 			single.setWidthPercentage(100f);
 			PdfPCell cell = new PdfPCell();
+
 			cell.setBorderWidth(0);
+			cell.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
+
 			for (int k = 0; k < elementBuffer.size(); k++) {    
 				cell.addElement((Element)elementBuffer.get(k));          
 			}
@@ -1026,6 +1031,7 @@ public class PDFAssessmentBean implements Serializable {
 					single = new PdfPTable(singleWidth);
 					single.setWidthPercentage(100f);
 					cell = new PdfPCell();
+					cell.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
 					cell.setBorderWidth(0);
 					for (int k = 0; k < elementBuffer.size(); k++) {    
 						cell.addElement((Element)elementBuffer.get(k));          
@@ -1046,6 +1052,8 @@ public class PDFAssessmentBean implements Serializable {
 					table.setWidthPercentage(100f);
 					PdfPCell leftCell = new PdfPCell();
 					PdfPCell rightCell = new PdfPCell();
+					leftCell.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
+					rightCell.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
 					leftCell.setBorderWidth(0);
 					leftCell.setPadding(0);
 					leftCell.setLeading(0.00f, 0.00f);

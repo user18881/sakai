@@ -43,19 +43,19 @@ public class LetterGradePlusMinusMapping extends GradeMapping {
         setGradeMap(new LinkedHashMap());
 
         grades = new ArrayList();
-        grades.add("A+");
-        grades.add("A");
-        grades.add("A-");
-        grades.add("B+");
-        grades.add("B");
-        grades.add("B-");
-        grades.add("C+");
-        grades.add("C");
-        grades.add("C-");
-        grades.add("D+");
-        grades.add("D");
-        grades.add("D-");
-        grades.add("F");
+        grades.add("\u0627\u0644\u0641+");
+        grades.add("\u0627\u0644\u0641");
+        grades.add("\u0627\u0644\u0641-");
+        grades.add("\u0628+");
+        grades.add("\u0628");
+        grades.add("\u0628-");
+        grades.add("\u062c+");
+        grades.add("\u062c");
+        grades.add("\u062c-");
+        grades.add("\u062f+");
+        grades.add("\u062f");
+        grades.add("\u062f-");
+        grades.add("\u0647");
 
         defaultValues = new ArrayList();
         defaultValues.add(Double.valueOf(100));
@@ -78,7 +78,7 @@ public class LetterGradePlusMinusMapping extends GradeMapping {
      */
     @Override
 	public String getName() {
-        return "Letter Grades with +/-";
+        return "\u0627\u0631\u0632\u0634\u06cc\u0627\u0628\u06cc \u0628\u0627 \u062d\u0631\u0648\u0641 \u0647\u0645\u0631\u0627\u0647 \u0645\u062b\u0628\u062a \u0648 \u0645\u0646\u0641\u06cc";
     }
 
 }

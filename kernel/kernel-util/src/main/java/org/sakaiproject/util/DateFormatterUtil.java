@@ -29,6 +29,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Locale;
 
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -99,7 +100,7 @@ public final class DateFormatterUtil {
 		}
 
 		try {
-			return new SimpleDateFormat(format, locale)
+			return new PersianDateFormat(format, locale)
 					.format(inputDate);
 		} catch(Exception ex) {
 			return DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT, Locale.US)

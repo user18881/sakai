@@ -47,18 +47,18 @@ public class GradePointsMapping extends GradeMapping {
 
         // If these values change, they also need to be updated in GradebookNG SettingsGradingSchemaPanel 
         grades = new ArrayList<String>();
-        grades.add("A (4.0)");
-        grades.add("A- (3.67)");
-        grades.add("B+ (3.33)");
-        grades.add("B (3.0)");
-        grades.add("B- (2.67)");
-        grades.add("C+ (2.33)");
-        grades.add("C (2.0)");
-        grades.add("C- (1.67)");
-        grades.add("D+ (1.33)");
-        grades.add("D (1.0)");
-        grades.add("D- (0.67)");
-        grades.add("F (0)");
+        grades.add("\u0627\u0644\u0641 (4.0)");
+        grades.add("\u0627\u0644\u0641- (3.67)");
+        grades.add("\u0628+ (3.33)");
+        grades.add("\u0628 (3.0)");
+        grades.add("\u0628- (2.67)");
+        grades.add("\u062c+ (2.33)");
+        grades.add("\u062c (2.0)");
+        grades.add("\u062c- (1.67)");
+        grades.add("\u062f+ (1.33)");
+        grades.add("\u062f (1.0)");
+        grades.add("\u062f- (0.67)");
+        grades.add("\u0647 (0)");
 
         defaultValues = new ArrayList<Double>();
         defaultValues.add(Double.valueOf(93));
@@ -80,7 +80,7 @@ public class GradePointsMapping extends GradeMapping {
      */
     @Override
 	public String getName() {
-        return "Grade Points";
+        return "\u0627\u0645\u062a\u06cc\u0627\u0632 \u0646\u0645\u0631\u0647";
     }
 
 }

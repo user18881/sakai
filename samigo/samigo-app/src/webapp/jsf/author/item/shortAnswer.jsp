@@ -37,6 +37,7 @@
     <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
       <head><%= request.getAttribute("html.head") %>
       <title><h:outputText value="#{authorMessages.item_display_author}"/></title>
+      <link href="/samigo-app/css/question-forms.css" type="text/css" rel="stylesheet" media="all" />
       <script src="/samigo-app/js/authoring.js"></script>
       <script src="/rubrics-service/webcomponents/sakai-rubrics-utils.js<h:outputText value="#{itemauthor.CDNQuery}" />"></script>
       <script type="module" src="/rubrics-service/webcomponents/rubric-association-requirements.js<h:outputText value="#{itemauthor.CDNQuery}" />"></script>
@@ -49,29 +50,7 @@
 <!-- HEADING -->
 <%@ include file="/jsf/author/item/itemHeadings.jsp" %>
 <h:form id="itemForm">
-<p class="act">
-  <h:commandButton rendered="#{itemauthor.target=='assessment'}" value="#{commonMessages.action_save}" action="#{itemauthor.currentItem.getOutcome}" styleClass="active">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ItemAddListener" />
-  </h:commandButton>
-  <h:commandButton rendered="#{itemauthor.target=='questionpool'}" value="#{commonMessages.action_save}" action="#{itemauthor.currentItem.getPoolOutcome}" styleClass="active">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ItemAddListener" />
-  </h:commandButton>
 
-
-  <h:commandButton rendered="#{itemauthor.target=='assessment'}" value="#{commonMessages.cancel_action}" action="editAssessment" immediate="true">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ResetItemAttachmentListener" />
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.EditAssessmentListener" />
-  </h:commandButton>
-
- <h:commandButton rendered="#{itemauthor.target=='questionpool'}" value="#{commonMessages.cancel_action}" action="editPool" immediate="true">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ResetItemAttachmentListener" />
- </h:commandButton>
-</p>
 <!-- QUESTION PROPERTIES -->
   <!-- 1 POINTS -->
   <div class="form-group row"> 

@@ -36,7 +36,7 @@
       <title><h:outputText value="#{authorMessages.item_display_author}"/></title>
       <!-- AUTHORING -->
       <script type="text/javascript" src="/samigo-app/js/authoring.js"></script>
-
+      <link href="/samigo-app/css/question-forms.css" type="text/css" rel="stylesheet" media="all" />
       </head>
 <body onload="<%= request.getAttribute("html.body.onload") %>;resetInsertAnswerSelectMenus();disablePartialCreditField();">
 
@@ -46,7 +46,7 @@
 <!-- HEADING -->
 <%@ include file="/jsf/author/item/itemHeadings.jsp" %>
 <h:form id="itemForm" onsubmit="return editorCheck();">
-<p class="act">
+<!-- <p class="act">
   <h:commandButton rendered="#{itemauthor.target=='assessment'}" value="#{commonMessages.action_save}" action="#{itemauthor.currentItem.getOutcome}" styleClass="active">
         <f:actionListener
            type="org.sakaiproject.tool.assessment.ui.listener.author.ItemAddListener" />
@@ -68,7 +68,7 @@
         <f:actionListener
            type="org.sakaiproject.tool.assessment.ui.listener.author.ResetItemAttachmentListener" />
  </h:commandButton>
-</p>
+</p> -->
   <!-- NOTE:  Had to call this.form.onsubmit(); when toggling between single  -->
   <!-- and multiple choice, or adding additional answer choices.  -->
   <!-- to invoke the onsubmit() function for htmlarea to save the htmlarea contents to bean -->
@@ -222,13 +222,12 @@
   <!-- 2 TEXT -->
   
    <div class="form-group row ">
-       <h:outputLabel value="#{authorMessages.q_text}" styleClass="col-md-2 form-control-label"/>
+       <h:outputLabel value="#{authorMessages.q_text}" styleClass="col-md-2 form-control-label"><br>
+        <a id="multiple_show_editor" onclick="javascript:show_multiple_text(this);" href="#">
+          <h:outputText id="text" value="#{authorMessages.show_editors}"/> 
+        </a>
+         </h:outputLabel>
        <div class="col-md-8 row">
-       <div class="col-md-12">
-            <a id="multiple_show_editor" onclick="javascript:show_multiple_text(this);" href="#">
-                 <h:outputText id="text" value="#{authorMessages.show_editors}"/> 
-            </a>
-       </div>
        <div class="col-md-12">
           <!-- WYSIWYG -->
           <h:panelGrid>

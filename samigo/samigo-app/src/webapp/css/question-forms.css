@@ -1,0 +1,75 @@
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{
+	width : auto !important;
+}
+
+.col-md-2, .col-md-4{
+    min-width: 200px !important;
+}
+.form-group{
+    background: #bbb3 !important;
+    margin: 10px 6px !important;
+    padding: 10px 5px !important;
+    border-radius: 11px !important;
+    line-height: 1.5em !important;
+}
+
+@media screen and (min-width : 1024px){
+    .form-group{
+        width: max-content !important;
+        min-width: 930px !important;
+    }
+}
+
+.breadcrumb a[href],.form-group label a[href]{
+    color: #2b6aff !important;
+}
+
+h1{
+    margin-right: 15px !important;
+}
+h2{
+    font-size: 14px !important;
+}
+
+h3, h2{
+    font-family: "Vazir", "Kalameh", "A Ghasem", unset !important;
+    margin : 20px 16px !important;
+}
+
+input[type="radio"]{
+    width: 19px !important;
+    height: 19px !important;
+    margin-left: 8px !important;
+}
+
+input[type="radio"]:checked{
+    background: radial-gradient(circle at center, #6f8197 0%, #6f8197 48%, #fff 58%) !important;
+}
+
+#itemForm:discountDiv{
+    margin-right: 10px !important;
+}
+
+.tier2, .indnt2{
+    margin-right: 2em;
+    margin-left: 0 !important;
+}
+
+.table > tbody > tr > td {
+    border-top: 3px solid #ddd !important;
+}
+
+textarea{
+    border-radius: 10px;
+}
+.form-control{
+    background-color: #d9dadd !important;
+    border-radius: 10px !important;
+}
+
+select, .select{
+    border-radius: 7px !important;
+    border: 1px solid #6f8197 !important;
+    font-weight: bold !important;
+    color: #485260 !important;
+}

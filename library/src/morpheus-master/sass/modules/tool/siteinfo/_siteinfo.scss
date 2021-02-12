@@ -51,11 +51,15 @@
 					&[aria-expanded=true] {
 						&::before {
 							content: "\f063";
+							margin-left: 8px;
 						}
 					}
 					&:not([aria-expanded=true]) {
 						&::before {
 							content: "\f061";
+							// Persian rtl change
+							rotate: 180deg;
+							margin-left: 8px;
 						}	
 					}
 

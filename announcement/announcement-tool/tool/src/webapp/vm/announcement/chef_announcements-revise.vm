@@ -321,8 +321,11 @@ function resizeFrame(){
 		        </fieldset>
 		        </div>
 		    </div>
-            
-            #javascript("/library/js/lang-datepicker/lang-datepicker.js")
+			
+            <link rel="stylesheet" href="/library/js/lang-datepicker/persian.datepicker.css"/>
+			#javascript("/library/js/lang-datepicker/persian.date.js")
+			#javascript("/library/js/lang-datepicker/persian.datepicker.js")
+            #javascript("/library/js/lang-datepicker/new-datepicker.js")
 
             #set( $H = '-' )
             <script type="text/javascript">

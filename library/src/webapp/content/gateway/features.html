@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="direction: rtl;">
 <head>
   <title>Features</title>
     <meta charset="utf-8">
@@ -40,9 +40,14 @@
 }
 
 .panel-body {
+	font-family: "Vazir";
 	font-size:14pt;
 	padding-bottom:0;
 	height:100%;
+}
+
+.panel-heading{
+	font-family: "Kalameh";
 }
 
 .panel-box {
@@ -68,22 +73,28 @@
 
 .jtop > h1 {
     font-size:36px;
+	font-family: "Kalameh";
 }
 
 .jtop > p {
     font-size:18px;
+	font-family: "Vazir";
+}
+
+strong{
+	font-family: "Vazir";
 }
 
 </style>
 
 <body>
 <div class="jumbotron jtop">
-	<h1>Features</h1>
-	<p>Sakai’s breadth of features means you can choose the tools that meet your needs. 
-	Out of the box, Sakai includes all of the standard online learning, teaching, 
-	and collaboration tools found in learning platforms today. In addition, Sakai has a 
-	wide range of community contributed tools and external integrations available as add-on components. 
-	Sakai’s open source flexibility allows you to configure or customize the system as much or as little as needed.</p>
+	<h1>قابلیت ها</h1>
+	<p>	وسیع بودن قابلیت های ساکای به معنی فراهم کردن تمامی ابزار هاییست که شما نیاز دارید.
+		با ویژگی هایی نوآورانه، ساکای شامل تمامی ابزار های استاندارد یادگیری آنلاین، تدریس،
+		و ابزار های کار تیمی که امروزه در پلتفرم های یادگیری استفاده میشوند می باشد. علاوه بر آن، ساکای
+		تعداد زیادی ابزار های ساخته شده توسط کمک کنندگان آن را دارا می باشد که به عنوان پلاگین های اضافه شونده در دسترس می باشند.
+		متن باز بودن ساکای اجازه میدهد که شما سیستم را هر چقدر که نیاز باشد تغییر دهید.</p>
 </div>
 
 <div class="container">
@@ -91,18 +102,15 @@
 	
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Communication and Collaboration</div>
+				<div class="panel-heading">ارتباطات و همکاری</div>
 				
 				<div class="panel-body">
-					Robust communication options
-					and group-aware tools make keeping
-					in touch and working together easier.
-					Choose from a variety of synchronous
-					and asynchronous tools for messaging,
-					discussions, social connections, and
-					collaborative work.
+					گزینه های مطمئن ارتباطی و ابزار های ارتباط تیمی
+					باعث میشود که در ارتباط بودن و کار با یکدیگر آسانتر شود.
+					شما میتوانید از ابزار های متنوع پیام رسانی همگام و ناهمگام برای بحث،
+					ارتباطات اجتماعی و کار های تیمی استفاده نمایید،
 					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#CaCmodal">More</button>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#CaCmodal">بیشتر</button>
 					</div>
 				</div>
 			</div>
@@ -110,21 +118,15 @@
 		
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Grading and Assessment</div>
+				<div class="panel-heading">ارزشیابی و نمره دهی</div>
 				
 				<div class="panel-body">
-					State of the art grading
-					and assessment features
-					make Sakai a great choice
-					for collecting student submissions
-					and providing rich feedback on their
-					work. Whether it is high stakes
-					testing, online assignments,
-					rubric-based scoring, or fast,
-					easy grade-entry capabilities,
-					Sakai’s got you covered.
+					قابلیت های نمره دهی و ارزشیابی مدرن ساکای را یک انتخاب عالی
+					برای جمع آوری اطلاعات ارسالی و فراهم کردن بازخوردی قوی بر عملکرد آن ها می سازد.
+					ارزشیابی شما چه آزمونی سرنوشت ساز باشد، چه یک امتحان آنلاین باشد و چه نیازمند یک سیستم نمره دهی سریع
+					و آسان باشید، ساکای تمامی نیاز های شما را پوشش میدهد.
 					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#GaAmodal">More</button>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#GaAmodal">بیشتر</button>
 					</div>
 				</div>
 			</div>
@@ -132,21 +134,16 @@
 		
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Content Development and Delivery</div>
+				<div class="panel-heading">تولید محتوا و اطلاع رسانی</div>
 				
 				<div class="panel-body">
-					Building your course has
-					never been easier! Sakai
-					lets you create and organize
-					text, resources, quizzes, tests,
-					assignments, links, video, 
-					and other media into lessons 
-					or modules; control access to
-					materials via conditional release;
-					upload, store, and share files
-					and other resources; and much more.
+					ساختن یک دوره آموزشی هیچگاه آسان تر از این نبوده!
+					ساکای به شما این اجازه را میدهد که متن ها، منابع، کوییز ها، آزمون ها، تکالیف، لینک ها، ویدیو و سایر رسانه ها را
+					به دروس و سرفصل هایتان اضافه کرده و دسته بندی کنید.
+					شما میتوانید برای محتوای خود محدودیت دسترسی به کاربرانی خاص تعریف کرده و همچنین فایل
+					های مورد نیاز خود را آپلود، نگه داری و به اشتراک بگذارید.
 					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#CDaDmodal">More</button>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#CDaDmodal">بیشتر</button>
 					</div>
 				</div>
 			</div>
@@ -154,20 +151,14 @@
 		
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Course and System Management</div>
+				<div class="panel-heading">مدیریت دوره و سیستم</div>
 				
 				<div class="panel-body">
-					Powerful course and system
-					administration features give
-					you the tools to manage courses
-					and users effectively and 
-					efficiently. Sakai’s highly
-					configurable system of roles 
-					and permissions lets you 
-					customize the platform to match
-					your business processes.
+					قابلیت های قدرتمند مدیریت دوره و سیستم ابزار هایی را به شما میدهد تا بتوانید
+					بصورت کارآمد دروس و کاربران را مدیریت کنید.
+					سیستم بسیار کارآمد نقش ها و دسترسی ها اجازه میدهد تا شما کاملا سیستم را با توجه به روند کاری خود شخصی سازی کنید.
 					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#CaSMmodal">More</button>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#CaSMmodal">بیشتر</button>
 					</div>
 				</div>
 			</div>
@@ -175,17 +166,15 @@
 		
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Community Contributed Tools</div>
+				<div class="panel-heading">ابزار های توسعه یافته توسط دیگران</div>
 				
 				<div class="panel-body">
-					Take advantage of open source,
-					Sakai-specific tools developed
-					by community members and then 
-					released for others to use outside
-					of the packaged Sakai release. 
-					You can even build your own if you like!
+					از متن باز بودن ساکای سود ببرید،
+					ابزار های مخصوص ساکای که توسط اعضای جامعه ساکای توسعه یافته اند سپس جهت استفاده خارج از پکیج خود ساکای توزیع شده اند
+					میتوانید استفاده نمایید.
+					شما حتی میتوانید ابزار مورد نظر خود را نیز بسازید،
 					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#CCTmodal">More</button>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#CCTmodal">بیشتر</button>
 					</div>
 				</div>
 				
@@ -194,18 +183,12 @@
 		
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
-				<div class="panel-heading">External App Integrations</div>
+				<div class="panel-heading">سازگاری با برنامه های خارجی</div>
 				
 				<div class="panel-body">
-					Sakai is a leader in the 
-					development and implementation 
-					of the IMS LTI specification. 
-					In addition, Sakai has an extensive
-					API which facilitates the development
-					of deep, native integrations with 
-					third party applications.
+					ساکای پرچمداری در توسعه و پیاده سازی تخصص IMS LTI میباشد. علاوه بر آن، ساکای دارای یک API گسترده است که سازگاری با برنامه های طرف ثالت (third party) را امکان پذیر می‌سازد.
 					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#EAImodal">More</button>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#EAImodal">بیشتر</button>
 					</div>
 				</div>
 			</div>
@@ -220,24 +203,24 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Communication and Collaboration</h4>
+				<h4 class="modal-title">ارتباطات و همکاری</h4>
 			</div>
 			<div class="modal-body">
 				<p>
-					<strong>Announcements</strong> - Post current, time-critical information for your site, and schedule notices to display at specific times throughout the term.<br><br>
-					<strong>Calendar</strong> - Schedule and maintain deadlines, activities and events related to a course or project; link to announcements, assignments, assessments, materials, etc.<br><br>
-					<strong>Chat</strong> - Engage in real-time, text-based conversations with course or project participants.<br><br>
-					<strong>Commons</strong> - Interact with site participants in a Facebook-inspired, asynchronous, social messaging tool.<br><br>
-					<strong>Contact Us</strong> - Quickly and easily direct questions and feedback to the correct source. With one click, the Contact Us tool can send an email to an institution’s helpdesk, with all relevant info automatically included.<br><br>
-					<strong>Email</strong> - Send mail to participants in your site using the institution’s official email system.<br><br>
-					<strong>Email Archive</strong> - Create a mailing list for your course or worksite, allowing for many-to-many broadcasting; access and search an archive of email sent to this address.<br><br>
-					<strong>Forums</strong> - Create, moderate and manage discussion topics and groups within a course and send private messages to participants; options to grade discussions, set word count, permissions, etc.<br><br>
-					<strong>Messages</strong> - Send, receive and reply to messages among site participants using Sakai’s internal email messaging.<br><br>
-					<strong>Sign-up</strong> - Create and manage electronic sign-up sheets for events or activities such as office hours, presentation slots, research topics, review sessions, etc.<br><br>
-					<strong>Wiki</strong> - Create, share and edit web content collaboratively.</p>
+					<strong>اطلاعیه ها</strong> - اطلاعات حال و زمان های مهم را برای سایت خود ذخیره کنید، و اعلامیه هایی که در زمان مشخص و در طول ترم نمایش داده خواهند شد را زمان بندی ریزی کنید.<br><br>
+					<strong>تقویم</strong> - دِدلاین ها ، فعالیت ها و رویداد های مربوط به یک دوره یا پروژه ذخیره و زمان بندی کنید.<br><br>
+					<strong>چت</strong> - در مکالمات در لحظه، مبتنی بر متن با اعضای دوره یا پروژه شرکت کنید.<br><br>
+					<strong>ابزار شبکه اجتماعی</strong> - با اعضای سایت در ابزار مبتنی بر شبکه اجتماعی و فیس بوک در ارتباط باشید <br><br>
+					<strong>تماس با ما</strong> - به آسانی و سریع سوالات و نظرات خود را با یک کلیک ارسال کنید. ابزار "تماس با ما" میتواند به مرکز پشتیبانی با تمام اطلاعات مربوطه ایمیل بفرستد.<br><br>
+					<strong>ایمیل</strong> - به اعضای سایت خود با استفاده از ایمیل رسمی موسسه، ایمیل ارسال کنید.<br><br>
+					<strong>آرشیو ایمیل</strong> - یک لیست ایمیل برای دوره خود با قابلیت دسترسی و جست و جوی یک ایمیل ارسال شده به این آدرس ایجاد کنید.<br><br>
+					<strong>انجمن ها</strong> - ایجاد و مدیریت موضوعات بحث شده درون یک دوره و ارسال پیام های خصوصی به اعضا، با قابلیت امتیاز دادن به بحث ها و تعیین سطح دسترسی کاربران.<br><br>
+					<strong>پیام ها</strong> - ارسال، دریافت و پاسخ به پیام ها میان اعضای سایت با استفاده از سیستم پیام رسانی داخلی ساکای.<br><br>
+					<strong>ثبت نام</strong> - ایجاد و مدیریت صفحات ثبت نام برای رویداد ها و فعالیت ها.<br><br>
+					<strong>ویکی</strong> - ایجاد، اشتراک و ویرایش مشترک محتوای وب.</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">خروج</button>
 			</div>
 		</div>
 	</div>
@@ -249,19 +232,18 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Grading and Assessment</h4>
+				<h4 class="modal-title">ارزیابی و نمره دهی</h4>
 			</div>
 			<div class="modal-body">
 				<p>
-					<strong>Assignments</strong> - Create and grade online or offline assignments with a variety of options and settings, including honor pledge, peer review, and group submissions.<br><br>
-					<strong>​Gradebook</strong> - Calculate, store and distribute grade information to students. Uses a  spreadsheet-style interface, and designed to provide faster, easier grade-entry capabilities.<br><br>
-					<strong>​Post’Em</strong> - Post, store, and distribute scores or non-numeric feedback and comments to students.<br><br>
-					<strong>​Rubrics</strong> - Create, manage, and share grading rubrics that work within Sakai’s Assignments, Forums, Gradebook, and Tests & Quizzes tools to provide rich feedback and automatically tabulated scoring.<br><br>
-					<strong>​Tests & Quizzes</strong> - Create and manage online assessments using a robust testing engine which includes a variety of question types, question pools, statistics, security options for high stakes testing, delivery time and date exceptions, and more.
+					<strong>تکالیف</strong> - تکالیف افلاین یا آنلاین با تنوعی از گزینه ها و تنظیمات ایجاد و نمره دهی کنید<br><br>
+					<strong>دفتر نمره</strong> - نمرات دانش آموزان را محاسبه و ذخیره کنید. دفتر نمره از ظاهری شطرنجی استفاده کرده و برای نمره دهی اسان و سریع طراحی شده است.<br><br>
+					<strong>​Post’Em</strong> - ارسال، ذخیره و توزیع نمره های دانش آموز ها یا بازخورد غیر عددی و پیام  به آنها.<br><br>
+					<strong>​آزمون و کوییز ها</strong> - ایجاد و مدیریت ارزیابی و آزمون آنلاین با استفاده از موتور آزمون مدرن، شامل تنوعی از نوع سوالات، گزینه های امنیتی برای مدت زمان امتحان و شروع و پایان آن.
 				</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">خروج</button>
 			</div>
 		</div>
 	</div>
@@ -272,23 +254,23 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Content Development and Delivery</h4>
+				<h4 class="modal-title">تحویل و توسعه محتوا</h4>
 			</div>
 			<div class="modal-body">
 				<p>
-					<strong>Dropbox</strong> - Share files privately with course, project, or site participants.​<br><br>
-					<strong>External Tool</strong> - Configure and launch external tools using IMS Learning Tools Interoperability.​<br><br>
-					<strong>Lessons</strong> - Create and organize text, resources, quizzes, tests, assignments, links, video, and other media into lessons or units. Lessons can be configured for conditional release of content, student-authored pages, group collaboration, and much more.<br><br>
-					<strong>News</strong> - Display custom news content from dynamic, online sources via RSS.​<br><br>
-					<strong>Overview</strong> - View the site description and recent announcements, messages, discussion posts, and calendar events on the Overview landing page.​<br><br>
-					<strong>Podcasts</strong> - Manage individual podcasts and podcast feed information for your site.<br><br>
-					<strong>Resources</strong> - Post, store and organize material related to the course or project site. Drag and drop and WebDAV functionality make bulk file uploads quick and easy.​<br><br>
-					<strong>Search</strong> - Search content in a site using Sakai’s Elasticsearch powered search tool.​<br><br>
-					<strong>Syllabus</strong> - Post a summary outline of course requirements.<br><br>
-					<strong>Web Content</strong> - Display external web pages as part of the site menu.</p>
+					<strong>دراپ باکس</strong> - فایل های خصوصی را با اعضای دوره یا اعضای سایت به اشتراک بگزارید.​<br><br>
+					<strong>ابزار های خارجی</strong> - اجرای ابزار های خارجی با استفاده از IMS​<br><br>
+					<strong>دروس</strong> - ایجاد و مدیریت متون، منابع، آزمون ها، تکالیف، لینک ها، ویدیو ها و فایل های دیگر در دروس و واحد ها.<br><br>
+					<strong>اخبار</strong> - نمایش اخبار مختلف با محتوای پویا با استفاده از ار اس اس.<br><br>
+					<strong>بررسی اجمالی</strong> - توضیحات سایت و اطلاعیه های اخیر، پیام ها، پست های مورد بحث، و رویداد های تقویم در صفحه بررسی اجمالی.<br><br>
+					<strong>پادکست ها</strong> - پادکست های جداگانه و پادکست های بازخورد به اطلاعات برای سایت خود را مدیریت کنید.<br><br>
+					<strong>منابع</strong> - منابع مورد نیاز برای درس یا دوره را ارسال، ذخیره و مدیریت کنید​<br><br>
+					<strong>جست و جو</strong> - محتوای خاصی را در سایت با استفاده از سیستم جست و جوی داخلی قدرتمند، جست و جو کنید.​<br><br>
+					<strong>سرفصل ها</strong> - یک توضیح مختصری از دوره یا ترم آموزشی به اشتراک بگزارید<br><br>
+					<strong>محتوا وب</strong> - نمایش صفحات وب به عنوان قسمتی از منو سایت.</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">خروج</button>
 			</div>
 		</div>
 	</div>
@@ -300,52 +282,48 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Course and System Management</h4>
+				<h4 class="modal-title">مدیریت دوره و سیستم</h4>
 			</div>
 			<div class="modal-body">
 				<p>
-					<strong>Polls</strong> - Easily create quick polls to collect and distribute data from site participants.<br><br>
-					<strong>Roster</strong> - View a list of course or project participants along with their pictures and profiles.<br><br>
-					<strong>Section Info</strong> - Manage multiple sections and assign teaching assistants to specific sections within a course.<br><br>
-					<strong>Site Info</strong> - View and update information about the site including site settings, tools, membership, groups, content imports, and more.<br><br>
-					<strong>Statistics</strong> - Use summary and custom reports to display site statistics regarding user visits, tool use, and course activity.<br><br>
+					<strong>نظرسنجی ها</strong> - به راحتی یک نظرسنجی ایجاد کنید و نظرات اعضای سایت را جمع اوری کنید.<br><br>
+					<strong>فهرست</strong> - لیستی از اعضای دوره یا ترم همراه با عکس و پروفایل آنها مشاهده کنید.<br><br>
+					<strong>قسمت اطلاعات</strong> - قسمت های مختلف را مدیریت کنید و تکلیف آموزشی به گروه خاصی از افراد در ترم و دوره بدهید.<br><br>
+					<strong>اطلاعات سایت</strong> - اطلاعات سایت را که شامل تنظیمات، ابزار، گروه ها، اضافه کردن محتوا و ... میباشد را مشاهده و آپدیت کنید.<br><br>
+					<strong>آمار ها</strong> - گزارش ها را برای نمایش آمار سایت استفاده کنید.<br><br>
 				</p>
-					<h4>User Tools</h4><br>
+					<h4>ابزار های کاربران</h4><br>
 				<p>
-					<strong>Account</strong> - View and update user account details.<br><br>
-					<strong>Help</strong> - Access context-sensitive help articles throughout the system.<br><br>
-					<strong>Membership</strong> - View and search for your enrolled sites or self-enroll in a joinable site.<br><br>
-					<strong>New Account</strong> - Create a new user account in the system.<br><br>
-					<strong>Preferences</strong> - Set your individual preferences for notifications, time zone, language,  active sites, and rich text editor mode.<br><br>
-					<strong>Profile</strong> - Create a personal profile and connect with other users in the system.<br><br>
-					<strong>Reset Password</strong> - Reset your Sakai password using the self-service reset option.<br><br>
-					<strong>Worksite Setup</strong> - View information about your sites, and (for users with appropriate permissions) create new sites and make changes to site settings.<br><br>
+					<strong>حساب کاربری</strong> - نمایش و بروز رسانی اطلاعات کاربری.<br><br>
+					<strong>کمک گرفتن</strong> - به مطالب کمکی برای استفاده از سایت دسترسی داشته باشد.<br><br>
+					<strong>عضویت</strong> - مشاهده و جست و جو دوره های فعال و شرکت کرده در یک سایت قابل عضو شدن.<br><br>
+					<strong>حساب کاربری جدید</strong> - ایجاد یک حساب کاربری جدید.<br><br>
+					<strong>تنظیمات</strong> - تنظیمات دلخواه خود را برای نوتیفکیشن، منطقه زمانی، زبان، سایت های فعال و حالت ادیتور را تنظیم کنید<br><br>
+					<strong>پروفایل</strong> - یک پروفایل شخصی برای خود ایجاد کرده و با دیگر کاربران سیستم ارتباط برقرار کنید.<br><br>
+					<strong>بازیابی کلمه عبور</strong> - کلمه عبور حساب کاربری خود را بازیابی کنید.<br><br>
+					<strong>تنطیم محل کار</strong> - اطلاعات درباره سایت خود را مشاهده کنید، ویا سایت های جدیدی ایجاد کرده یا تنظیمات آنها را تغیر دهید.<br><br>
 				</p>
-					<h4>System Administrator Tools</h4><br>
+					<h4>ابزار های مدیر سیستم</h4><br>
 				<p>
-					<strong>Admin Site Perms</strong> - Quickly and easily add or remove permissions across all sites for specified roles.<br><br>
-					<strong>Aliases</strong> - View, create, and edit alias strings for target items such as site email list addresses, friendly site urls, etc.<br><br>
-					<strong>Become User</strong> - Log in as another user to perform troubleshooting or diagnose issues without needing to know their password.<br><br>
-					<strong>Delegated Access</strong> - Distribute admin functions or course access for specific users by departments or organizational units.<br><br>
-					<strong>Email Templates</strong> - Create customized email notifications for users in your local Sakai instance to replace default system messages.<br><br>
-					<strong>External Tools</strong> - Configure LTI Apps at the system level for use in all sites, or just specific courses as needed.<br><br>
-					<strong>Job Scheduler</strong> - Create simple or complex schedules for executing Quartz jobs, from the smallest stand-alone application, to the largest e-commerce system.<br><br>
-					<strong>Memory</strong> - View system cache sizes in order to better optimize performance.<br><br>
-					<strong>Message Bundle Manager</strong> -  Locate and modify system message properties, which define the user interface text for Sakai components in all supported languages.<br><br>
-					<strong>MOTD/Announcements</strong> - Post system-wide announcements using the “Message of the Day” Announcement tool.<br><br>
-					<strong>Online</strong> - View information on currently running servers and sessions, as well as user IP address and browser information.<br><br>
-					<strong>PA System</strong> - Deliver customizable system-wide or targeted alerts to Sakai users as either popup alerts or text banners, color-coded by alert priority.<br><br>
-					<strong>Realms</strong> - View and customize roles and permissions for sites and site templates.<br><br>
-					<strong>Site Archive</strong> - Back up sites or import existing backups individually or in bulk.<br><br>
-					<strong>Sites</strong> - Create, modify, delete, and search for course, project, and user sites.<br><br>
-					<strong>Sitestats Admin</strong> - Display server-wide reports and to save custom reports which are available for instructors within all sites in the Statistics tool.<br><br>
-					<strong>Tags Service</strong> - Create and maintain tag collections either manually or by importing collections. Tags can be used in question pools and other areas of Sakai for search purposes.<br><br>
-					<strong>User Membership</strong> - Locate, view, and modify site and group membership information for Sakai users in the system.<br><br>
-					<strong>Users</strong> - Create, search, view, and update Sakai user account information.
+					<strong>سایت تنظیم دسترسی ها</strong> - سریع و اسان دسترسی ها را برای یک نقش خاص ایجاد یا حذف کنید.<br><br>
+					<strong>نام مستعار</strong> - نمایش، ایجاد و ویرایش نام مستعار برای قسمت های مختلف اعم از لیست آدرس ایمیل سایت ها.<br><br>
+					<strong>کاربر شوید</strong> - به عنوان کاربر دیگری وارد حساب آنها شوید و مشکلات آنهارا بر طرف کنید بدون دانستن کلمه عبور آنها<br><br>
+					<strong>دسترسی نماینده</strong> - قابلیت های مدیر را برای کاربران خاصی توسط دپارتمان و واحد های سازمانی توزیع کنید. <br><br>
+					<strong>قالب های ایمیل</strong> - نوتیفیکیشن های شخصی سازی شده برای کاربران خود جهت جایگزینی پیام های پیشفرض سیستم ایجاد کنید.<br><br>
+					<strong>حافظه</strong> - مشاهده میزان کش سیستم جهت بهبود عملکرد سیستم.<br><br>
+					<strong>مدیریت بسته پیام</strong> -  ردیابی و ویرایش خواص سیستم پیام، که تعریف میکند متن رابط کاربری برا ابزار ساکای در تمامی زبان های  پشتیبانی شده.<br><br>
+					<strong>اطلاع رسانی</strong> - اطلاعیه در طول سیستم با استفاده از ابزار "پیام روز" ارسال کنید <br><br>
+					<strong>آنلاین</strong> - مشاهده اطلاعات در سور در حال حاظر فعال و آی پی کاربران و اطلاعات مرورگر آنها.<br><br>
+					<strong>آرشیو سایت</strong> - پشتیبانی گرفتن از سایت ها یا استفاده از بکاپ های گرفته شده<br><br>
+					<strong>سایت ها</strong> - ایجاد، ویرایش، حذف و جست و جو برای دوره و سایت های کاربران.<br><br>
+					<strong>مدیریت آمار سایت</strong> - گزارش های سرور و ذخیره گزارش هایی که برای اساتید فعال هستند را نشان میدهد<br><br>
+					<strong>برچسب سرویس ها</strong> - ایجاد و نگه داری مجوعه ای از برچسب ها به صورت دستی یا وارد کردن به صورت یک جا. تگ ها در بانک سوالات و در جست و جو به کار میروند.<br><br>
+					<strong>عضویت کاربران</strong> - ردیابی، مشاهده و ویرایش اطلاعات اعضای سایت.<br><br>
+					<strong>کاربران</strong> - ایجاد، جست و جو، مشاهده و بروزرسانی اطلاعات کاربران.
 				</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">خروج</button>
 			</div>
 		</div>
 	</div>
@@ -357,20 +335,18 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Community Contributed Tools</h4>
+				<h4 class="modal-title">ابزار های همکاری انجمن ها</h4>
 			</div>
 			<div class="modal-body">
 				<p>
-					<strong>Attendance</strong> - Take attendance online, print sign-in sheets, and assign attendance grades.<br><br>
-					<strong>BlogWow</strong> - Post blog entries which can either be viewed by the rest of the site members or kept private to the author.  (Alternative to the Clog tool.)<br><br>
-					<strong>Certification</strong> - Award printable certificates to site participants based on successful demonstration of specific criteria.<br><br>
-					<strong>Clog</strong> - Post blog entries which can either be viewed by the rest of the site members or kept private to the author. (Alternative to the BlogWow tool.)<br><br>
-					<strong>Evaluation System</strong> - Create and deliver formative and summative (end of term) evaluations and surveys of Sakai course sites individually, hierarchically, or system-wide.<br><br>
-					<strong>Mneme</strong> - Create and deliver tests and surveys in Sakai. (Alternative to the Tests & Quizzes core tool.)
+					<strong>حضور و غیاب</strong> - حضور آنلاین داشته باشید و به حضور و غیاب ها نمره دهید.<br><br>
+					<strong>مدرک</strong> - به اعضای سایت مدرک قابل چاپ بر اساس موفقیت آنها اختصاص دهید.<br><br>
+					<strong>سیستم ارزیابی</strong> - ایجاد و تحویل ارزیابی های بازرسی های دوره های ساکای.<br><br>
+					<strong>Mneme</strong> - ایجاد و تحویل آزمون و کوییز در ساکای (جایگزینی برای ابزار پیشفرض آزمون)
 				</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">خروج</button>
 			</div>
 		</div>
 	</div>
@@ -382,11 +358,11 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">External App Integrations</h4>
+				<h4 class="modal-title">یک پارچه سازی برنامه های خارجی</h4>
 			</div>
 			<div class="modal-body">
 				<div class="container" style="width:100%;">
-					<h4>LTI Integrations</h4>
+					<h4>یکپارچه سازی LTI</h4>
 					<ul class="list-group row" style="width:100%;">
 						<li class="list-group-item col-lg-4 col-md-6 col-xs-12">Barnes & Noble</li>
 						<li class="list-group-item col-lg-4 col-md-6 col-xs-12">BigBlueButton</li>
@@ -427,7 +403,7 @@
 						<li class="list-group-item col-lg-4 col-md-6 col-xs-12">Zybooks</li>
 						<li class="list-group-item col-lg-4 col-md-6 col-xs-12">More...</li>
 					</ul>
-					<h4>API Integrations</h4>
+					<h4>یکپارچه سازی با API</h4>
 					<ul class="list-group row" style="width:100%;">	
 						<li class="list-group-item col-lg-4 col-md-6 col-xs-12">Big Blue Button</li>
 						<li class="list-group-item col-lg-4 col-md-6 col-xs-12">Turnitin</li>
@@ -440,7 +416,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">خروج</button>
 			</div>
 		</div>
 	</div>

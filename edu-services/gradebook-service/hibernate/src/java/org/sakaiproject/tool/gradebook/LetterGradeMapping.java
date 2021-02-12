@@ -46,11 +46,11 @@ public class LetterGradeMapping extends GradeMapping {
         setGradeMap(new LinkedHashMap());
 
         grades = new ArrayList();
-        grades.add("A");
-        grades.add("B");
-        grades.add("C");
-        grades.add("D");
-        grades.add("F");
+        grades.add("\u0627\u0644\u0641");
+        grades.add("\u0628");
+        grades.add("\u062c");
+        grades.add("\u062f");
+        grades.add("\u0647");
 
         defaultValues = new ArrayList();
         defaultValues.add(Double.valueOf(90));
@@ -64,7 +64,7 @@ public class LetterGradeMapping extends GradeMapping {
 
 	@Override
 	public String getName() {
-		return "Letter Grades";
+		return "\u0627\u0631\u0632\u0634\u06cc\u0627\u0628\u06cc \u0628\u0627 \u062d\u0631\u0648\u0641";
 	}
 }
 

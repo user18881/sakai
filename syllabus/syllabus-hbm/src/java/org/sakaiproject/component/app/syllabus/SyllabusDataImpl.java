@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -56,9 +57,11 @@ public class SyllabusDataImpl implements SyllabusData, Comparable {
     private String calendarEventIdEndDate;
     private SyllabusItem syllabusItem;
 
+
     public int compareTo(Object obj) {
         if (this.equals(obj)) return 0;
         if (this.position == null) return -1;
         return this.position.compareTo(((SyllabusData) obj).getPosition());
     }
+
 }

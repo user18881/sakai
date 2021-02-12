@@ -588,8 +588,15 @@ public class GradebookPage extends BasePage {
 
 		// Include Sakai Date Picker
 		response.render(JavaScriptHeaderItem
-				.forUrl(String.format("/library/js/lang-datepicker/lang-datepicker.js%s", version)));
+		.forUrl(String.format("/library/js/lang-datepicker/persian.date.js%s", version)));
+		response.render(JavaScriptHeaderItem
+		.forUrl(String.format("/library/js/lang-datepicker/persian.datepicker.js%s", version)));
+		response.render(JavaScriptHeaderItem
+				.forUrl(String.format("/library/js/lang-datepicker/new-datepicker.js%s", version)));
 
+		response.render(CssHeaderItem
+				.forUrl(String.format("/library/js/lang-datepicker/persian.datepicker.css%s", version)));
+				
 		// tablesorted used by student grade summary
 		response.render(JavaScriptHeaderItem.forScript("includeWebjarLibrary('jquery.tablesorter')", null));
 		response.render(

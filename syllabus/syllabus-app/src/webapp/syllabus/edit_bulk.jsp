@@ -42,16 +42,36 @@
 			menuLink.find('a').removeAttr('href');
 
 		});
+		// $(function() {
+		// 	$('.timeInput').timepicker({
+		//     	hour: 8,
+		//     	defaultValue: "08:00",
+		//     	timeOnlyTitle: "<h:outputText value="#{msgs.choose_time}"/>",
+		// 		timeFormat: "HH:mm",
+		// 		currentText: "<h:outputText value="#{msgs.now}"/>",
+		// 		closeText: "<h:outputText value="#{msgs.done}"/>",
+		// 		amNames: [""],
+		// 		pmNames: [""],
+		// 		timeText: "<h:outputText value="#{msgs.time}"/>",
+		// 		hourText: "<h:outputText value="#{msgs.hour}"/>",
+		// 		minuteText: "<h:outputText value="#{msgs.minute}"/>",
+		// 		beforeShow: function (textbox, instance) {
+		// 			            instance.dpDiv.css({
+		// 			                    marginLeft: textbox.offsetWidth + 'px'
+		// 						});
+		// 					}
+		// 	});
+
 		$(function() {
 			$('.timeInput').timepicker({
 		    	hour: 8,
-		    	defaultValue: "08:00",
+		    	defaultValue: "08:00 am",
 		    	timeOnlyTitle: "<h:outputText value="#{msgs.choose_time}"/>",
-				timeFormat: "HH:mm",
+				timeFormat: "hh:mm tt",
 				currentText: "<h:outputText value="#{msgs.now}"/>",
 				closeText: "<h:outputText value="#{msgs.done}"/>",
-				amNames: [""],
-				pmNames: [""],
+				amNames: ['am', 'am'],
+				pmNames: ['pm', 'pm'],
 				timeText: "<h:outputText value="#{msgs.time}"/>",
 				hourText: "<h:outputText value="#{msgs.hour}"/>",
 				minuteText: "<h:outputText value="#{msgs.minute}"/>",
@@ -134,6 +154,7 @@
 		        throw ("resizeFrame did not get the frame (using name=" + window.name + ")");
 		    }
 		}
+
 	</script>
 	<style>
 		.radioOption{

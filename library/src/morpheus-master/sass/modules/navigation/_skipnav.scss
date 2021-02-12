@@ -47,7 +47,8 @@
 
 			// Sites row
 			&.#{$namespace}skipNav__menuitem.#{$namespace}skipNav__menuitem--worksite {
-				background: $sites-nav-background;
+				// background: $sites-nav-background;
+				background : #fff;
 				position: relative;
 				border-bottom: 1px solid $sites-nav-menu-item-border-color;
 
@@ -56,7 +57,7 @@
 					color: $sites-nav-menu-item-color;
 					padding: 0 10px 0 14px;
 					position: relative;
-					background: $sites-nav-background;
+					background: #fff;
 					border-bottom: 1px solid $sites-nav-menu-item-border-color;
 
 					&:before {

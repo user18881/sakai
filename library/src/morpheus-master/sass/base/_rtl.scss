@@ -271,4 +271,32 @@ html[dir="rtl"]{
 		z-index : 150010;
 	}
 
+	.edit-col{
+		left : -8px;
+		right : auto;
+	}
+
+	.addbottom{
+		left : 0;
+		right : auto;
+	}
+
+	#gradeItemsTogglePanel{
+		right : -100000px;
+		left : auto;
+	}
+	.dropdown-menu-right{
+		left : 0;
+		right : auto;
+	}
+	.gb-student-filter-clear-button{
+		left : 8px;
+		right : auto;
+	}
+	.glyphicon{
+		rotate : 180deg;
+	}
+	.clear_input{
+		left : 5px;
+	}
 }

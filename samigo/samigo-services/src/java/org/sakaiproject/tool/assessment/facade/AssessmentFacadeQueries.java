@@ -471,7 +471,7 @@ public class AssessmentFacadeQueries extends HibernateDaoSupport implements Asse
 			SectionData section = new SectionData(
 					null,
 					new Integer("1"), // FIRST section
-					"Default", "", TypeD.DEFAULT_SECTION,
+					"\u067e\u06cc\u0634 \u0641\u0631\u0636", "", TypeD.DEFAULT_SECTION,
 					SectionData.ACTIVE_STATUS, AgentFacade.getAgentString(),
 					new Date(), AgentFacade.getAgentString(), new Date());
 			section.setAssessment(assessment);

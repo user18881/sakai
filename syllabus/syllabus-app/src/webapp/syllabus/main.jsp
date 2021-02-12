@@ -26,9 +26,9 @@
 <script>includeLatestJQuery('main.jsp');</script>
 <script src="js/syllabus.js"></script>
 
-<link rel="stylesheet" href="/library/js/lang-datepicker/persian.datepicker.css"/>
-<script src="/library/js/lang-datepicker/persian.date.js"></script>
-<script src="/library/js/lang-datepicker/persian.datepicker.js"></script>
+<link rel="stylesheet" href="/library/js/lang-datepicker/.datepicker.css"/>
+<script src="/library/js/lang-datepicker/.date.js"></script>
+<script src="/library/js/lang-datepicker/.datepicker.js"></script>
 <script src="/library/js/lang-datepicker/new-datepicker.js"></script>
 
 <link rel="stylesheet" href="/library/webjars/jquery-ui/1.12.1/jquery-ui.min.css" type="text/css" />
@@ -184,25 +184,20 @@
 							<h:outputText styleClass="syllabusItemTitle" value="#{eachEntry.entry.title}" />
 							<f:subview id="dateStudent" rendered="#{!SyllabusTool.editAble && (eachEntry.entry.startDate != null || eachEntry.entry.endDate != null)}">
 								<f:verbatim><span style="float: right; padding-right: 1em; padding-left: 1em"></f:verbatim>
-									<h:outputText value="#{eachEntry.entry.startDate}">
-										<f:convertDateTime type="date" pattern="EEE MMM dd, yyyy hh:mm a"/>
+									<h:outputText value="#{eachEntry.startDatePersian}">
 									</h:outputText>
 									<h:outputText value=" - " rendered="#{eachEntry.entry.startDate != null && eachEntry.entry.endDate != null}"/>
-									<h:outputText value="#{eachEntry.entry.endDate}" rendered="#{!eachEntry.startAndEndDatesSameDay}">
-								  		<f:convertDateTime type="date" pattern="EEE MMM dd, yyyy hh:mm a"/>
+									<h:outputText value="#{eachEntry.endDatePersian}" rendered="#{!eachEntry.startAndEndDatesSameDay}">
 									</h:outputText>
-									&nbsp;|&nbsp;<h:outputText value="#{eachEntry.entry.endDate}" rendered="#{eachEntry.startAndEndDatesSameDay}">
-								  		<f:convertDateTime type="date" pattern="hh:mm a"/>
+									&nbsp;|&nbsp;<h:outputText value="#{eachEntry.endDatePersian}" rendered="#{eachEntry.startAndEndDatesSameDay}">
 									</h:outputText>
 								<f:verbatim></span></f:verbatim>
 							</f:subview>
 							<f:subview id="dateInstructor" rendered="#{SyllabusTool.editAble == 'true'}">
 								<f:verbatim><span style="float: right; padding-right:1em; padding-left:1em"></f:verbatim>
-									<h:outputText styleClass="" value="#{eachEntry.entry.startDate}">
-										<f:convertDateTime type="date" pattern="yyyy/MM/dd h:mm a"/>
+									<h:outputText styleClass="" value="#{eachEntry.startDatePersian}">
 									</h:outputText>
-									&nbsp;|&nbsp;<h:outputText styleClass="" value="#{eachEntry.entry.endDate}">
-								  		<f:convertDateTime type="date" pattern="yyyy/MM/dd h:mm a"/>
+									&nbsp;|&nbsp;<h:outputText styleClass="" value="#{eachEntry.endDatePersian}">
 									</h:outputText>
 								<f:verbatim></span></f:verbatim>
 							</f:subview>

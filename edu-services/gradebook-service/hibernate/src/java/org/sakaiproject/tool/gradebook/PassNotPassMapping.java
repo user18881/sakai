@@ -43,8 +43,8 @@ public class PassNotPassMapping extends GradeMapping {
         setGradeMap(new LinkedHashMap());
 
         grades = new ArrayList();
-        grades.add("P");
-        grades.add("NP");
+        grades.add("\u0642\u0628\u0648\u0644");
+        grades.add("\u0631\u062f");
 
         defaultValues = new ArrayList();
         defaultValues.add(Double.valueOf(75));
@@ -56,7 +56,7 @@ public class PassNotPassMapping extends GradeMapping {
 	 */
 	@Override
 	public String getName() {
-        return "Pass / Not Pass";
+        return "\u0642\u0628\u0648\u0644 \u002f \u0645\u0631\u062f\u0648\u062f";
 	}
 
 }

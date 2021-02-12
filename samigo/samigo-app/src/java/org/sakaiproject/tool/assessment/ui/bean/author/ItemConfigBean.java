@@ -359,6 +359,34 @@ private static final String msgResource =
     if (isShowAllMultipleChoice())
       list.add(new SelectItem(String.valueOf(TypeIfc.MULTIPLE_CHOICE),
         getResourceDisplayName("multiple_choice_type")));
+
+    if (isShowEssay())
+      list.add(new SelectItem(String.valueOf(TypeIfc.ESSAY_QUESTION),
+              getResourceDisplayName("short_answer_essay")));
+
+    if (isShowFileUpload())
+      list.add(new SelectItem(String.valueOf(TypeIfc.FILE_UPLOAD),
+              getResourceDisplayName("file_upload")));
+
+    if (isShowTrueFalse())
+      list.add(new SelectItem(String.valueOf(TypeIfc.TRUE_FALSE),
+              getResourceDisplayName("true_false")));
+
+    if (isShowFillInTheBlank())
+      list.add(new SelectItem(String.valueOf(TypeIfc.FILL_IN_BLANK),
+              getResourceDisplayName("fill_in_the_blank")));
+
+    if (isShowFillInNumeric())
+      list.add(new SelectItem(String.valueOf(TypeIfc.FILL_IN_NUMERIC),
+              getResourceDisplayName("fill_in_numeric")));
+
+    if (isShowMatching())
+      list.add(new SelectItem(String.valueOf(TypeIfc.MATCHING),
+              getResourceDisplayName("matching")));
+
+    if (isShowAudio())
+      list.add(new SelectItem(String.valueOf(TypeIfc.AUDIO_RECORDING),
+              getResourceDisplayName("audio_recording")));
     
     if (isShowSurvey())
       list.add(new SelectItem(String.valueOf(TypeIfc.MULTIPLE_CHOICE_SURVEY),
@@ -367,34 +395,6 @@ private static final String msgResource =
     if (isShowMatrixSurvey())
     	list.add(new SelectItem(String.valueOf(TypeIfc.MATRIX_CHOICES_SURVEY),
     			getResourceDisplayName("matrix_choices_surv")));
-
-    if (isShowEssay())
-      list.add(new SelectItem(String.valueOf(TypeIfc.ESSAY_QUESTION),
-    		  getResourceDisplayName("short_answer_essay")));
-
-    if (isShowFillInTheBlank())
-      list.add(new SelectItem(String.valueOf(TypeIfc.FILL_IN_BLANK),
-    		  getResourceDisplayName("fill_in_the_blank")));
-
-    if (isShowFillInNumeric())
-      list.add(new SelectItem(String.valueOf(TypeIfc.FILL_IN_NUMERIC),
-    		  getResourceDisplayName("fill_in_numeric")));
-    
-    if (isShowMatching())
-      list.add(new SelectItem(String.valueOf(TypeIfc.MATCHING),
-    		  getResourceDisplayName("matching")));
-
-    if (isShowTrueFalse())
-      list.add(new SelectItem(String.valueOf(TypeIfc.TRUE_FALSE),
-    		  getResourceDisplayName("true_false")));
-
-    if (isShowAudio())
-      list.add(new SelectItem(String.valueOf(TypeIfc.AUDIO_RECORDING),
-    		  getResourceDisplayName("audio_recording")));
-
-    if (isShowFileUpload())
-      list.add(new SelectItem(String.valueOf(TypeIfc.FILE_UPLOAD),
-    		  getResourceDisplayName("file_upload")));
 
     // resource display name in AuthorMessages.properties
     if (isShowExtendedMatchingItems())
@@ -436,7 +436,7 @@ private static final String msgResource =
         }
     };
     
-    Collections.sort(list, comparator);
+    /// Collections.sort(list, comparator);
     if (isSelectFromQuestionPool()) {
       list.add(new SelectItem("10", getResourceDisplayName("import_from_q")));
     }

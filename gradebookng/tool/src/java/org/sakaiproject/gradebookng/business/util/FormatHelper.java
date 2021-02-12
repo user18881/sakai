@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.DoubleValidator;
 import org.springframework.web.util.HtmlUtils;
@@ -190,7 +191,8 @@ public class FormatHelper {
 		try {
 			final BigDecimal d = convertStringToBigDecimal(grade, 2);
 
-			final DecimalFormat dfFormat = (DecimalFormat) NumberFormat.getInstance(rl.getLocale());
+//			final DecimalFormat dfFormat = (DecimalFormat) NumberFormat.getInstance(rl.getLocale());
+			final DecimalFormat dfFormat = (DecimalFormat) NumberFormat.getInstance();
 			dfFormat.setMinimumFractionDigits(0);
 			dfFormat.setMaximumFractionDigits(2);
 			dfFormat.setGroupingUsed(true);
@@ -227,7 +229,8 @@ public class FormatHelper {
 
 		String s;
 		try {
-			final DecimalFormat df = (DecimalFormat) NumberFormat.getInstance(locale);
+//			final DecimalFormat df = (DecimalFormat) NumberFormat.getInstance(locale);
+			final DecimalFormat df = (DecimalFormat) NumberFormat.getInstance();
 			final Double d = df.parse(grade).doubleValue();
 
 			df.setMinimumFractionDigits(0);
@@ -250,7 +253,7 @@ public class FormatHelper {
 	 */
 	private static String formatDate(final Date date) {
 		final String dateFormatString = MessageHelper.getString("format.date");
-		final SimpleDateFormat df = new SimpleDateFormat(dateFormatString);
+		final PersianDateFormat df = new PersianDateFormat(dateFormatString);
 		return df.format(date);
 	}
 
@@ -277,7 +280,7 @@ public class FormatHelper {
 	 */
 	public static String formatDateTime(final Date date) {
 		final String dateTimeFormatString = MessageHelper.getString("format.datetime");
-		final SimpleDateFormat df = new SimpleDateFormat(dateTimeFormatString);
+		final PersianDateFormat df = new PersianDateFormat(dateTimeFormatString);
 		return df.format(date);
 	}
 

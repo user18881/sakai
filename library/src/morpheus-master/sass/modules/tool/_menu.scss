@@ -1,6 +1,7 @@
 .navIntraTool{
 	margin: 0;
 	border-bottom: 1px solid $tool-border-color;
+	border-bottom-right-radius: 14px;
 	padding: 0 1em 0 0;
 	//max-width: calc(100% - 170px);
 	font-size: 0;
@@ -61,7 +62,7 @@
 				color: $tool-tab-active-text-color;
 				font-size: $tool-tab-active-text-size;
 				background-color: #c7c7c7;
-				border-top-right-radius: 22px;
+				//border-top-right-radius: 22px;
 				//border-top: 1px solid $tool-tab-border-color;
 				//border-left: 1px solid $tool-tab-border-color;
 				//border-right: 1px solid $tool-tab-border-color;
@@ -159,5 +160,25 @@
 
 	.floatRight {
 		float: right;
+	}
+}
+
+
+.navIntraTool{
+	li:first-child{
+		span{
+			border-bottom-right-radius: 14px;
+			a{
+				border-bottom-right-radius: 14px;
+			}
+		}
+	}
+	li:last-child{
+		span{
+			border-top-left-radius: 14px;
+			a{
+				border-top-left-radius: 14px;
+			}
+		}
 	}
 }

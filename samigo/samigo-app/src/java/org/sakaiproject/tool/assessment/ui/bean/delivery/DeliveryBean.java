@@ -212,8 +212,7 @@ public class DeliveryBean implements Serializable {
     this.dueDate = dueDate;
     if(dueDate != null){
       try{
-        PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
-        setDueDatePersian(formatter.format(dueDate));
+        setDueDatePersian(new PersianDateFormat("dd MMMM yyyy HH:mm aaa").format(dueDate));
       }
       catch(Exception e){
         log.warn(e.getMessage());
@@ -525,8 +524,7 @@ public class DeliveryBean implements Serializable {
       return "";
     }
     try{
-      PersianDateFormat df = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
-      return df.format(beginTime);
+      return new PersianDateFormat("dd MMMM yyyy HH:mm aaa").format(beginTime);
     } catch (Exception e){
       log.warn(e.getMessage());
       return "";
@@ -542,8 +540,7 @@ public class DeliveryBean implements Serializable {
     this.submissionDate = submissionDate;
     if(submissionDate != null){
       try{
-        PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
-        setSubmissionDatePersian(formatter.format(submissionDate));
+        setSubmissionDatePersian(new PersianDateFormat("dd MMMM yyyy HH:mm aaa").format(submissionDate));
       }
       catch(Exception e){
         log.warn(e.getMessage());
@@ -663,8 +660,7 @@ public class DeliveryBean implements Serializable {
       return "";
     }
     try{
-      PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
-      return formatter.format(adjustedTimedAssesmentDueDate);
+      return new PersianDateFormat("dd MMMM yyyy HH:mm aaa").format(adjustedTimedAssesmentDueDate);
     }
     catch(Exception e){
       log.warn(e.getMessage());
@@ -2354,8 +2350,7 @@ public class DeliveryBean implements Serializable {
           return "";
         }
         try{
-          PersianDateFormat formatter = new PersianDateFormat("dd MMMM yyyy HH:mm aaa");
-          return formatter.format(deadline);
+          return new PersianDateFormat("dd MMMM yyyy HH:mm aaa").format(deadline);
         }
         catch(Exception e){
           log.warn(e.getMessage());

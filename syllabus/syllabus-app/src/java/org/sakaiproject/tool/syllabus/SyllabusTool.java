@@ -25,20 +25,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
+import com.ghasemkiani.util.icu.PersianDateFormat;
 import com.sun.faces.util.MessageFactory;
 import lombok.extern.slf4j.Slf4j;
 import lombok.Getter;
@@ -116,6 +110,9 @@ public class SyllabusTool
     protected ArrayList attachmentList = null;
     private String startDateString;
     private String endDateString;
+
+    private String startDatePersian;
+    private String endDatePersian;
     
     public DecoratedSyllabusEntry(SyllabusData en)
     {
@@ -129,6 +126,16 @@ public class SyllabusTool
       this.orig_status = en.getStatus();
       this.startDateString = en.getStartDate() == null ? "" : DateFormatterUtil.format(en.getStartDate(), DATEPICKER_DATETIME_FORMAT, rb.getLocale());
       this.endDateString = en.getEndDate() == null ? "" : DateFormatterUtil.format(en.getEndDate(), DATEPICKER_DATETIME_FORMAT, rb.getLocale());
+      this.startDatePersian = en.getStartDate() == null ? "" : new PersianDateFormat("yyyy/mm/dd HH:mm", rb.getLocale()).format(en.getStartDate());
+      this.endDatePersian = en.getStartDate() == null ? "" : new PersianDateFormat("yyyy/mm/dd HH:mm", rb.getLocale()).format(en.getEndDate());
+    }
+
+    public String getStartDatePersian(){
+        return this.startDatePersian;
+    }
+
+    public String getEndDatePersian(){
+        return this.endDatePersian;
     }
 
     public SyllabusData getEntry()
@@ -323,7 +330,8 @@ public class SyllabusTool
 			getEntry().setStartDate(null);
 		}
 		this.startDateString = DateFormatterUtil.format(getEntry().getStartDate(), DATEPICKER_DATETIME_FORMAT, rb.getLocale());
-	}
+	    this.startDatePersian = new PersianDateFormat("yyyy/mm/dd HH:mm", rb.getLocale()).format(getEntry().getStartDate());
+    }
 
 	public String getEndDateString() {
 		return this.endDateString;
@@ -337,10 +345,12 @@ public class SyllabusTool
 		} else {
 			getEntry().setEndDate(null);
 		}
-		
+
 		this.endDateString = DateFormatterUtil.format(getEntry().getEndDate(), DATEPICKER_DATETIME_FORMAT, rb.getLocale());
+        this.endDatePersian = new PersianDateFormat("yyyy/mm/dd HH:mm", rb.getLocale()).format(getEntry().getEndDate());
 	}
   }
+
 
   protected SyllabusManager syllabusManager;
 
@@ -2686,7 +2696,8 @@ public class SyllabusTool
 					Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 					String startISODate = params.get(HIDDEN_START_ISO_DATE);
 					if(DateFormatterUtil.isValidISODate(startISODate)){
-					    syllabusData.setStartDate(DateFormatterUtil.parseISODate(startISODate));
+					    Date ed = DateFormatterUtil.parseISODate(startISODate);
+					    syllabusData.setStartDate(ed);
 					} else {
 						syllabusData.setStartDate(null);
 					}
@@ -2745,7 +2756,8 @@ public class SyllabusTool
 					Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 					String endISODate = params.get(HIDDEN_END_ISO_DATE);
 					if(DateFormatterUtil.isValidISODate(endISODate)){
-					    syllabusData.setEndDate(DateFormatterUtil.parseISODate(endISODate));
+					    Date ed = DateFormatterUtil.parseISODate(endISODate);
+					    syllabusData.setEndDate(ed);
 					} else {
 						syllabusData.setEndDate(null);
 					}

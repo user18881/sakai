@@ -36,11 +36,9 @@
 						<f:facet name="header">
 							<h:outputText value="#{msgs.delConfHeaderStartTime}"/>
 						</f:facet>
-						<h:outputText value="#{eachEntry.entry.startDate}" rendered="#{!eachEntry.startTimeChanged}">
-							<f:convertDateTime type="date" pattern="EEE MMM dd, yyyy hh:mm a"/>
+						<h:outputText value="#{eachEntry.startDatePersian}" rendered="#{!eachEntry.startTimeChanged}">
 						</h:outputText>
-						<h:outputText value="#{eachEntry.entry.startDate}" rendered="#{eachEntry.startTimeChanged}" styleClass="modified">
-							<f:convertDateTime type="date" pattern="EEE MMM dd, yyyy hh:mm a"/>
+						<h:outputText value="#{eachEntry.startDatePersian}" rendered="#{eachEntry.startTimeChanged}" styleClass="modified">
 						</h:outputText>
 						<h:outputText value="#{msgs.delConfRemoved}" rendered="#{eachEntry.startTimeChanged && eachEntry.entry.startDate == null}" styleClass="modified"/>
 					</h:column>
@@ -48,11 +46,9 @@
 						<f:facet name="header">
 							<h:outputText value="#{msgs.delConfHeaderEndTime}"/>
 						</f:facet>
-						<h:outputText value="#{eachEntry.entry.endDate}" rendered="#{!eachEntry.endTimeChanged}">
-							<f:convertDateTime type="date" pattern="EEE MMM dd, yyyy hh:mm a"/>
+						<h:outputText value="#{eachEntry.endDatePersian}" rendered="#{!eachEntry.endTimeChanged}">
 						</h:outputText>
-						<h:outputText value="#{eachEntry.entry.endDate}" rendered="#{eachEntry.endTimeChanged}" styleClass="modified">
-							<f:convertDateTime type="date" pattern="EEE MMM dd, yyyy hh:mm a"/>
+						<h:outputText value="#{eachEntry.endDatePersian}" rendered="#{eachEntry.endTimeChanged}" styleClass="modified">
 						</h:outputText>
 						<h:outputText value="#{msgs.delConfRemoved}" rendered="#{eachEntry.endTimeChanged && eachEntry.entry.endDate == null}" styleClass="modified"/>
 					</h:column>

@@ -1,4 +1,89 @@
-
+var default_opts = {
+  initialValue : false,
+  responsive : true,
+  observer: true,
+  calendar : {
+    persian : {
+      locale : "fa"
+    },
+    gregorian :{
+      locale : "fa"
+    }
+  },
+  format: 'DD/MM/YYYY',
+  toolbox : {
+    submitButton :{
+      enabled : true
+    },
+    calendarSwitch :{
+      enabled : false
+    },
+    todayButton : {
+      enabled : true
+    }
+  },
+  timePicker : {
+      enabled: false,
+      step: 1,
+      hour: {
+        enabled: true,
+        step: 1
+      },
+      minute: {
+          enabled: true,
+          step: 1
+        },
+      second: {
+          enabled: false
+      },
+      meridian: {
+          enabled: true
+        }
+  }
+}
+var date_opts = {
+  initialValue : false,
+  responsive : true,
+  observer: true,
+  calendar : {
+    persian : {
+      locale : "fa"
+    },
+    gregorian :{
+      locale : "fa"
+    }
+  },
+  format: 'DD/MM/YYYY',
+  toolbox : {
+    submitButton :{
+      enabled : true
+    },
+    calendarSwitch :{
+      enabled : false
+    },
+    todayButton : {
+      enabled : true
+    }
+  },
+  timePicker : {
+      enabled: false,
+      step: 1,
+      hour: {
+        enabled: false,
+        step: 1
+      },
+      minute: {
+          enabled: false,
+          step: 1
+        },
+      second: {
+          enabled: false
+      },
+      meridian: {
+          enabled: false
+        }
+  }
+}
 
 var pickers = [
   {
@@ -78,57 +163,13 @@ var setHiddenFields = function (d, o) {
 }
 
 
-var localDatePicker = function(options) {
-
-  var default_opts = {
-    initialValue : false,
-    responsive : true,
-    observer: true,
-    calendar : {
-      persian : {
-        locale : "fa"
-      },
-      gregorian :{
-        locale : "fa"
-      }
-    },
-    format: 'DD/MM/YYYY',
-    toolbox : {
-      submitButton :{
-        enabled : true
-      },
-      calendarSwitch :{
-        enabled : false
-      },
-      todayButton : {
-        enabled : true
-      }
-    },
-    timePicker : {
-        enabled: false,
-        step: 1,
-        hour: {
-          enabled: true,
-          step: 1
-        },
-        minute: {
-            enabled: true,
-            step: 1
-          },
-        second: {
-            enabled: false
-        },
-        meridian: {
-            enabled: false
-          }
-    }
-  }
+var localDatePicker = function(opts) {
 
   $(document).ready(function() {
 
     let chosen_opts = default_opts;
 
-    let opts = $.extend({}, chosen_opts, options);
+    opts = $.extend({}, chosen_opts, opts);
 
     if(opts.useTime != null && opts.useTime !== 0){
       opts.timePicker.enabled = true;
@@ -158,28 +199,39 @@ var localDatePicker = function(options) {
     }
     datepickerapi.options.toolbox.todayButton.onToday = function() {
 
-      if(datepickerapi.options.useTime != 0){
-        datepickerapi.setDate(getPreferredSakaiDatetime());
+      if (portal.serverTimeMillis && portal.user && portal.user.offsetFromServerMillis) {
+        let osTzOffset = (new Date()).getTimezoneOffset();
+        var t = moment(parseInt(portal.serverTimeMillis))
+          .add(portal.user.offsetFromServerMillis, 'ms')
+          .add(osTzOffset, 'm')
+          .toDate();
+          datepickerapi.setDate(t.getTime());
       }
-      else{
-        var date = getPreferredSakaiDatetime();
-        date.setHours(0,0,0,0);
-        datepickerapi.setDate(date);
+      else {      
+        var d = datepickerapi.getState().selected.dateObject.toDate();
+        setHiddenFields(d, opts);
       }
+
     }
 
-      
+     if(  $(opts.input).val() ){
+         var c = moment( $(opts.input).val(), opts.parseFormat ).toDate();
+         datepickerapi.setDate(c.getTime());
+       }  
 
-      if(opts.ashidden !== undefined) {
-        var inp = opts.input;
-        jQuery.each(opts.ashidden, function(i, h) {
-          if ($('#' + h).length < 1) {
-            jQuery(inp).after('<input type="hidden" name="' + h + '" id="' + h + '" value="">');
-          }
-        });
-      }
       initDateTime(opts, datepickerapi);
   });
+
+
+
+  if(opts.ashidden !== undefined) {
+    var inp = opts.input;
+    jQuery.each(opts.ashidden, function(i, h) {
+      if ($('#' + h).length < 1) {
+        jQuery(inp).after('<input type="hidden" name="' + h + '" id="' + h + '" value="">');
+      }
+    });
+  }
 
  
 }

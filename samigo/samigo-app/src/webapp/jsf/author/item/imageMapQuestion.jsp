@@ -38,7 +38,7 @@
 	  <script type="text/javascript" src="/library/webjars/jquery/1.12.4/jquery.min.js"></script>
 	  <script type="text/javascript" src="/samigo-app/js/jquery.dynamiclist.author.js"></script>
 	  <script type="text/javascript" src="/samigo-app/js/selection.author.js"></script>
-	  
+      <link href="/samigo-app/css/question-forms.css" type="text/css" rel="stylesheet" media="all" />
 	  <link rel="stylesheet" type="text/css" href="/samigo-app/css/imageQuestion.author.css">
 <%--
 <script type="text/JavaScript">
@@ -118,29 +118,6 @@
 
 <h:form id="itemForm" enctype="multipart/form-data">
 
-	
-<p class="act">
-  <h:commandButton rendered="#{itemauthor.target=='assessment'}" value="#{commonMessages.action_save}" action="#{itemauthor.currentItem.getOutcome}" styleClass="active" onclick="return validateZones()">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ItemAddListener" />
-  </h:commandButton>
-  <h:commandButton rendered="#{itemauthor.target=='questionpool'}" value="#{commonMessages.action_save}" action="#{itemauthor.currentItem.getPoolOutcome}" styleClass="active" onclick="return validateZones()">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ItemAddListener" />
-  </h:commandButton>
-
-  <h:commandButton rendered="#{itemauthor.target=='assessment'}" value="#{commonMessages.cancel_action}" action="editAssessment" immediate="true">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ResetItemAttachmentListener" />
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.EditAssessmentListener" />
-  </h:commandButton>
-
- <h:commandButton rendered="#{itemauthor.target=='questionpool'}" value="#{commonMessages.cancel_action}" action="editPool" immediate="true">
-        <f:actionListener
-           type="org.sakaiproject.tool.assessment.ui.listener.author.ResetItemAttachmentListener" />
- </h:commandButton>
-</p>
 
   <!-- QUESTION PROPERTIES -->
   <!-- this is for creating multiple choice questions -->

@@ -1,4 +1,4 @@
-<div class="form-group row">
+<div class="form-group row" style="display: none;">
     <div class="col-sm-12">
         <sakai-rubric-association
             token='<h:outputText value="#{itemauthor.rbcsToken}" />'

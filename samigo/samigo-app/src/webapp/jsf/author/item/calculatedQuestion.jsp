@@ -45,6 +45,7 @@ confirmation dialog
 	<script type="text/javascript" src="/samigo-app/js/info.js"></script>
 	<!-- AUTHORING -->
 	<script type="text/javascript" src="/samigo-app/js/authoring.js"></script>
+	<link href="/samigo-app/css/question-forms.css" type="text/css" rel="stylesheet" media="all" />
 	<script type="text/javascript">
 	$(document).ready(function() {
 		initCalcQuestion();
@@ -62,38 +63,6 @@ confirmation dialog
 <!-- HEADING -->
 <%@ include file="/jsf/author/item/itemHeadings.jsp" %>
 <h:form id="itemForm">
-	<p class="act">
-		<h:commandButton 
-				rendered="#{itemauthor.target=='assessment'}" 
-				value="#{commonMessages.action_save}" 
-				action="#{itemauthor.currentItem.getOutcome}" 
-				styleClass="active saveButton">
-	        <f:actionListener type="org.sakaiproject.tool.assessment.ui.listener.author.ItemAddListener" />
-	  	</h:commandButton>
-	  	<h:commandButton 
-	  			rendered="#{itemauthor.target=='questionpool'}" 
-	  			value="#{commonMessages.action_save}" 
-	  			action="#{itemauthor.currentItem.getPoolOutcome}" 
-	  			styleClass="active saveButton">
-	    	<f:actionListener type="org.sakaiproject.tool.assessment.ui.listener.author.ItemAddListener" />
-	  	</h:commandButton>
-	
-	  	<h:commandButton 
-	  			rendered="#{itemauthor.target=='assessment'}" 
-	  			value="#{commonMessages.cancel_action}" 
-	  			action="editAssessment" 
-	  			immediate="true">
-	        <f:actionListener type="org.sakaiproject.tool.assessment.ui.listener.author.ResetItemAttachmentListener" />
-	        <f:actionListener type="org.sakaiproject.tool.assessment.ui.listener.author.EditAssessmentListener" />
-	  	</h:commandButton>
-	 	<h:commandButton 
-                rendered="#{itemauthor.target=='questionpool'}" 
-	 			value="#{commonMessages.cancel_action}" 
-	 			action="editPool" 
-	 			immediate="true">
-	        <f:actionListener type="org.sakaiproject.tool.assessment.ui.listener.author.ResetItemAttachmentListener" />
-	 	</h:commandButton>
-	</p>
 
   	<!-- QUESTION PROPERTIES -->
   	<!-- this is for creating multiple choice questions -->
