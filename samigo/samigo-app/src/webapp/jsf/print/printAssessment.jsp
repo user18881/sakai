@@ -138,7 +138,10 @@ document.links[newindex].onclick();
         
         <h:commandButton action="#{pdfAssessment.prepDocumentPDF}" value="#{printMessages.apply_settings}" styleClass="noActionButton" />
         <h:outputText value="<input type='button' onclick='print(); return false;' value='#{printMessages.print_html}' class='noActionButton' />" escape="false" />
-        <h:commandButton action="#{pdfAssessment.getPDFAttachment}" value="#{printMessages.print_pdf}" styleClass="noActionButton" />
+        <!-- <h:commandButton action="#{pdfAssessment.getPDFAttachment}" value="#{printMessages.print_pdf}" styleClass="noActionButton" /> -->
+        <div>
+          <h:outputText value="#{printMessages.html_print_help}" />
+        </div>
       </div>
     </div>
     <!-- END HEADINGS -->

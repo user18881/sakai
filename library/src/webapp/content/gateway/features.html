@@ -12,7 +12,9 @@
 </script>
 
 <style type="text/css">
-
+.container{
+	width: 100%;
+}
 .row-eq-height {
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -25,25 +27,35 @@
 }
 
 .panel-primary {
-	border-color: #000036;
-	border-radius: 1rem;
+	border : none;
+	border-radius: 24px;
 	height:100%;
+	background-color: #ecf0f3;
+	position: relative;
 }
 .panel-primary > .panel-heading {
-	background-color: #000036;
-	border-color: #000036;
-	border-top-left-radius: calc(1rem - 1px);
-	border-top-right-radius: calc(1rem - 1px);
-	
-	font-size: 18pt;
-	text-align: center;
+	color : #1e385b;
+	/* border-top-left-radius: calc(1rem - 1px);
+	border-top-right-radius: calc(1rem - 1px); */
+	font-family: "Vazir";
+	font-size: 20pt;
+	text-align: right;
+	background : #ecf0f3;
+	border : none;
+	margin-top: 10px;
+	margin-right: 15px;
 }
 
 .panel-body {
 	font-family: "Vazir";
 	font-size:14pt;
 	padding-bottom:0;
-	height:100%;
+	text-align: justify;
+	/* height:100%; */
+	margin-right: 15px;
+	margin-left: 15px;
+	line-height: 2.1em;
+	margin-bottom: 95px;
 }
 
 .panel-heading{
@@ -56,33 +68,60 @@
 
 .btn-box {
 	padding: 1rem 1rem 0;
+	position: absolute;
+	left: 20px;
+	bottom : 40px;
+	font-family: "Kalameh", "A Ghasem", "Vazir", "Arial";
 }
 
 .btn-primary{
-	background-color: #000036;
+	background-color: #1d375c;
 	width:100%;
-	font-size:12pt;
+	font-size:18pt;
+	border-radius: 20px;
 }
 
 .jtop{
     padding: 1rem 3rem;
-    margin-bottom: 2rem;
     background-color: #e9ecef;
-    border-radius: 0.3rem;
+    border-radius: 7px;
+    margin: 15px 15px 70px 15px;
 }
 
 .jtop > h1 {
     font-size:36px;
-	font-family: "Kalameh";
 }
 
 .jtop > p {
-    font-size:18px;
 	font-family: "Vazir";
+    font-size:20px;
+    line-height: 3.4em;
+    font-weight: 380;
 }
 
 strong{
 	font-family: "Vazir";
+}
+
+.row{
+	display : flex;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.header-image{
+	position: relative;
+	width: 100%;
+}
+.btm{
+	background-color: #6f8197;
+	height: 60px;
+	position:absolute;
+	width: 100%;
+	overflow: hidden;
+	bottom: 0;
+	border-bottom-left-radius: 24px;
+	border-bottom-right-radius: 24px;
 }
 
 </style>
@@ -102,6 +141,7 @@ strong{
 	
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
+				<img src="/library/content/gateway/images/image4.png" class="header-image"/>
 				<div class="panel-heading">ارتباطات و همکاری</div>
 				
 				<div class="panel-body">
@@ -109,15 +149,18 @@ strong{
 					باعث میشود که در ارتباط بودن و کار با یکدیگر آسانتر شود.
 					شما میتوانید از ابزار های متنوع پیام رسانی همگام و ناهمگام برای بحث،
 					ارتباطات اجتماعی و کار های تیمی استفاده نمایید،
-					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#CaCmodal">بیشتر</button>
-					</div>
+				</div>
+				<span class="btm"></span>
+				<div class="btn-box">
+					<button class="btn btn-primary" data-toggle="modal" data-target="#CaCmodal">مشاهده بیشتر</button>
 				</div>
 			</div>
 		</div>
 		
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
+				<img src="/library/content/gateway/images/image2.png" class="header-image"/>
+
 				<div class="panel-heading">ارزشیابی و نمره دهی</div>
 				
 				<div class="panel-body">
@@ -125,15 +168,18 @@ strong{
 					برای جمع آوری اطلاعات ارسالی و فراهم کردن بازخوردی قوی بر عملکرد آن ها می سازد.
 					ارزشیابی شما چه آزمونی سرنوشت ساز باشد، چه یک امتحان آنلاین باشد و چه نیازمند یک سیستم نمره دهی سریع
 					و آسان باشید، ساکای تمامی نیاز های شما را پوشش میدهد.
-					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#GaAmodal">بیشتر</button>
-					</div>
+				</div>
+				<span class="btm"></span>
+				<div class="btn-box">
+					<button class="btn btn-primary" data-toggle="modal" data-target="#GaAmodal">مشاهده بیشتر</button>
 				</div>
 			</div>
 		</div>
 		
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
+				<img src="/library/content/gateway/images/image7.png" class="header-image"/>
+
 				<div class="panel-heading">تولید محتوا و اطلاع رسانی</div>
 				
 				<div class="panel-body">
@@ -142,30 +188,36 @@ strong{
 					به دروس و سرفصل هایتان اضافه کرده و دسته بندی کنید.
 					شما میتوانید برای محتوای خود محدودیت دسترسی به کاربرانی خاص تعریف کرده و همچنین فایل
 					های مورد نیاز خود را آپلود، نگه داری و به اشتراک بگذارید.
-					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#CDaDmodal">بیشتر</button>
-					</div>
+				</div>
+				<span class="btm"></span>
+				<div class="btn-box">
+					<button class="btn btn-primary" data-toggle="modal" data-target="#CDaDmodal">مشاهده بیشتر</button>
 				</div>
 			</div>
 		</div>
-		
+	</div>
+	<div class="row row-eq-height">	
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
+				<img src="/library/content/gateway/images/image9.png" class="header-image"/>
 				<div class="panel-heading">مدیریت دوره و سیستم</div>
 				
 				<div class="panel-body">
 					قابلیت های قدرتمند مدیریت دوره و سیستم ابزار هایی را به شما میدهد تا بتوانید
 					بصورت کارآمد دروس و کاربران را مدیریت کنید.
 					سیستم بسیار کارآمد نقش ها و دسترسی ها اجازه میدهد تا شما کاملا سیستم را با توجه به روند کاری خود شخصی سازی کنید.
-					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#CaSMmodal">بیشتر</button>
-					</div>
+				</div>
+				<span class="btm"></span>
+				<div class="btn-box">
+					<button class="btn btn-primary" data-toggle="modal" data-target="#CaSMmodal">مشاهده بیشتر</button>
 				</div>
 			</div>
 		</div>
 		
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
+				<img src="/library/content/gateway/images/image8.png" class="header-image"/>
+
 				<div class="panel-heading">ابزار های توسعه یافته توسط دیگران</div>
 				
 				<div class="panel-body">
@@ -173,27 +225,28 @@ strong{
 					ابزار های مخصوص ساکای که توسط اعضای جامعه ساکای توسعه یافته اند سپس جهت استفاده خارج از پکیج خود ساکای توزیع شده اند
 					میتوانید استفاده نمایید.
 					شما حتی میتوانید ابزار مورد نظر خود را نیز بسازید،
-					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#CCTmodal">بیشتر</button>
-					</div>
 				</div>
-				
+				<span class="btm"></span>
+				<div class="btn-box">
+					<button class="btn btn-primary" data-toggle="modal" data-target="#CCTmodal">مشاهده بیشتر</button>
+				</div>
 			</div>
 		</div>
 		
 		<div class="panel-box col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="panel panel-primary">
+				<img src="/library/content/gateway/images/image1.png" class="header-image"/>
 				<div class="panel-heading">سازگاری با برنامه های خارجی</div>
 				
 				<div class="panel-body">
 					ساکای پرچمداری در توسعه و پیاده سازی تخصص IMS LTI میباشد. علاوه بر آن، ساکای دارای یک API گسترده است که سازگاری با برنامه های طرف ثالت (third party) را امکان پذیر می‌سازد.
-					<div class="btn-box">
-						<button class="btn btn-primary" data-toggle="modal" data-target="#EAImodal">بیشتر</button>
-					</div>
+				</div>
+				<span class="btm"></span>
+				<div class="btn-box">
+					<button class="btn btn-primary" data-toggle="modal" data-target="#EAImodal">مشاهده بیشتر</button>
 				</div>
 			</div>
 		</div>
-		
 	</div>
 </div>
 

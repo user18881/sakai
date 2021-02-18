@@ -13,16 +13,11 @@
 </script>
 
 <style type="text/css">
-.symbol {
-    text-align: center;
-    color: #000036;
-
-}
-
 .text{
     font-size: 14pt;
-    text-align: center;
-    margin: 2rem 0 3rem
+    text-align: justify;
+    margin: 2rem 0 3rem;
+    width : 431px;
 }
 
 .panel { 
@@ -34,9 +29,9 @@
 
 .jtop{
     padding: 1rem 3rem;
-    margin-bottom: 2rem;
     background-color: #e9ecef;
-    border-radius: 0.3rem;
+    border-radius: 7px;
+    margin: 15px 15px 70px 15px;
 }
 
 .jtop > h1 {
@@ -44,45 +39,66 @@
 }
 
 .jtop > p {
-    font-size:18px;
+    font-size:20px;
+    line-height: 3.4em;
+    font-weight: 380;
 }
 .container{
     font-family: "Vazir";
+    margin: 10px;
+    width: 100%;
+    line-height: 4em;
+}
+.num{
+    font-family: "Kalameh";
+    font-size: 32px;
+    color : #6f8197
 }
 h1{
-    font-family: "Kalameh";
+    font-family: "Vazir";
 }
 p{
     font-family: "Vazir";
+    text-align: justify;
+}
+
+.pic{
+    width: 431px;
+}
+
+.flex-row{
+    display : flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 </style>
 
-<body>
+<body style="width : 96%">
 <div class="jumbotron jtop">
     <h1>درباره ساکای</h1>
     <p>
         ساکای مجموعه ای از ابزار های طراحی شده مختص استاد ها، محققان و دانش آموزان برای ایجاد محیطی جهت همکاری می باشد.
-         با استفاده از یک مرورگر کاربران میتوانند از مجمرعه ای از ابزار ها جهت ایجاد سایت کاری موردنظر خود استفاده نمایند. 
+         با استفاده از یک مرورگر کاربران میتوانند از مجموعه ای از ابزار ها جهت ایجاد سایت کاری موردنظر خود استفاده نمایند. 
     </p>
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <p class="symbol"><i class="fa fa-flask" aria-hidden="true" style="font-size:25rem;"></i></p>
-            <p class="text">یک محقق میتواند سایت کاری را برای همکاری مشترک با همکاران خود بر روی یک پروژه ایجاد نماید.</p>
+    <div class="flex-row">
+
+        <div class="pic col-md-4">
+            <img src="/library/content/gateway/images/image6.png"/>
+            <p class="text"><span class="num">۱.</span> یک دانش آموز میتواند محیطی را برای مطالعه جمعی یا فعالیت های فوق برنامه ای(طبق قوانین موسسه) با دیگر دانش آمرزان ایجاد نماید.</p>
         </div>
-        
-        <div class="col-md-4">
-            <p class="symbol"><i class="fa fa-university" aria-hidden="true" style="font-size:25rem;"></i></p>
-            <p class="text">یک استاد میتواند سایت کاری را ایجاد کند که به عنوان یک محیط قابلیت گفتگوی آنلاین در مورد یک تکلیف برای دانش آموزان را فراهم آورد.</p>
+        <div class="pic col-md-4">
+            <img src="/library/content/gateway/images/image5.png" style="height: 386px;"/>
+            <p class="text"><span class="num">۲.</span> یک استاد میتواند سایت کاری را ایجاد کند که به عنوان یک محیط قابلیت گفتگوی آنلاین در مورد یک تکلیف برای دانش آموزان را فراهم آورد.</p>
         </div>
-        
-        <div class="col-md-4">
-            <p class="symbol"><i class="fa fa-graduation-cap" aria-hidden="true" style="font-size:25rem;"></i></p>
-            <p class="text">یک دانش آموز میتواند محیطی را برای مطالعه جمعی یا فعالیت های فوق برنامه ای(طبق قوانین موسسه) با دیگر دانش آمرزان ایجاد نماید.</p>
+        <div class="pic col-md-4">
+            <img src="/library/content/gateway/images/image3.png" style="height: 386px;"/>
+            <p class="text"><span class="num">۳.</span> یک محقق میتواند سایت کاری را برای همکاری مشترک با همکاران خود بر روی یک پروژه ایجاد نماید.</p>
         </div>
+
     </div>
 </div>
 </body>
